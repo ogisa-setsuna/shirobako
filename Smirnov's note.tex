@@ -1,0 +1,85 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{Smirnov Advanced Mathematics(note)}
+\author{haruki}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{VolumeⅠ}
+\subsection{可求长曲线}
+\begin{center}
+	\includegraphics[width=\textwidth]{Wallpaper.png}
+	\textbf{灵梦}
+\end{center}
+为什么要探讨这个问题？\\
+实际上，世面上供给物理生的高数书上对曲线长度的定义模棱两可。大部分高数书上都是以折线近似曲线长度，这一操作的合理性以及适用范围有待商榷，因此将严格定义摘抄如下：\\
+\textbf{可求长曲线:\\def.}
+对一函数$f:[a,b]\subseteq R\to R$，对任何$[a,b]$上的分割$X=\{x_{0},x_{1}...x_{n}\}$，定义
+$$
+C(f,X)=\sum_{k=1}^{n}\sqrt{(f(x_{k})-f(x_{k-1}))^{2}+(x_{k}-x_{k-1})^{2}}
+$$
+我们定义$f$的长度为：
+$$
+C(f,[a,b])=sup\{C(f,X):X\text{是一个分割}\}
+$$
+如果$C(f,[a,b])$是有限的，我们就称$f$在$[a,b]$上是可求长的(Rectifiable)\\
+显然，若向分割$X$中加一个点变成$Y$，则$C(f,Y)\ge C(f,X)$。因为设所加点为$\{c\}\subseteq [x_{k-1},x_{k}]$，
+则$C(f,Y)$与$C(f,X)$只在$[x_{k-1},x_{k}]$内有差距，且显然有两边之和大于等于第三边，因此$C(f,Y)\ge C(f,X)$成立。\\
+由上确界定义可知，对于有限的$C(f,[a,b])$，存在$C(f,X)$使得$C(f,[a,b])-C(f,X)<\epsilon$，其中$\epsilon$为任一正数。
+于是当我们从任一分割$X_1$开始加点，增加有限个点直至变成$Y=X\cup X_1$，显然此时有$C(f,X)\le C(f,Y)<C(f,[a,b])$，于是有$C(f,[a,b])-C(f,Y)<\epsilon$。\\
+重复上述步骤，取递减的$\epsilon=\epsilon_1,\epsilon_2...$，便形成一个序列$C(f,Y_1),C(f,Y_2)...$，显然$\lim C(f,Y)=C(f,[a,b])$，
+于是我们可以通过不断加点形成一个递增序列使得其折线长度逼近曲线长度。\textbf{但是请注意，加点的方式并不是任意的，因为显然，只在一小块地方不断加点对逼近是没有意义的。}\\
+
+\noindent 下面回到我们熟知的公式上来：\\
+\textbf{Theorem} 对一函数$f:[a,b]\subseteq R\to R$，如果$f$在$[a,b]$上可导，并且$f^{'}$在$[a,b]$上连续，那么$f$是可求长的，并且：
+$$
+C(f,[a,b])=\int_{a}^{b}\sqrt{1+f^{'}(x)^2}dx
+$$
+证明：首先我们可以证明$f$是可求长的。对任意$[a,b]$上的分割$X=\{x_{0},x_{1}...x_{n}\}$，我们有：
+\begin{equation}
+\begin{aligned}
+	C(f,X)&=\sum_{k=1}^{n}\sqrt{(f(x_{k})-f(x_{k-1}))^{2}+(x_{k}-x_{k-1})^{2}}\\&=\sum_{k=1}^{n}\sqrt{1+\bigg(\frac{f(x_{k})-f(x_{k-1})}{x_{k}-x_{k-1}}\bigg)^2}\Delta x_{k}
+\end{aligned}
+\end{equation}
+其中$\Delta x_{k}=x_{k}-x_{k-1}$。根据拉格朗日中值定理，存在$t_{k}\subseteq (x_{k-1},x_{k})$，使得：
+$$
+C(f,X)=\sum_{k=1}^{n}\sqrt{1+f^{'}(t_{k})^2}
+$$
+由$f^{'}$的连续性可知，存在一个$M>0$使得对所有的$x\subseteq [a,b]$都有$|f^{'}|\le M$。于是我们有：
+$$
+C(f,X)\le \sum_{k=1}^{n}\sqrt{1+M^2}\Delta x_{k}=\sqrt{1+M^2}\sum_{k=1}^{n}\Delta x_{k}=\sqrt{1+M^2}(b-a)
+$$
+也就是说$C(f,[a,b])$是有限的，即$f$是可求长的。\\
+对于定理的第二部分，显然等同于证明对任意的$\epsilon>0$，有$|C(f,[a,b])-I|<\epsilon$，其中$I=\int_{a}^{b}\sqrt{1+f^{'}(x)^2}dx$。\\
+运用三角不等式可得：
+$$
+|C(f,[a,b])-I|\le |C(f,[a,b])-C(f,X)|+|C(f,X)-I|
+$$
+由上确界和定积分的定义可知上式中的两项皆可无限小，因此只需找出同时满足的一个分割$X$即可。\\
+根据上确界的定义，对任意的$\epsilon>0$，存在分割$X_1$满足
+$$
+|C(f,[a,b])-C(f,X_1)|<\frac{\epsilon}{2}
+$$
+根据定积分的定义，对任意的$\epsilon>0$，存在$\delta>0$，使得对任意分割$|P|<\delta$，和任意标志点$t_k$，都有
+$$
+|\sum_{k=1}^{n}f(t_k)\Delta x_k-I|<\frac{\epsilon}{2}
+$$
+选定一个$X_2$满足$|X_2|<\delta$，取$Y=X_1\cup X_2$，由前所证加点的递增性可知$Y$满足：
+$$
+|C(f,[a,b])-C(f,Y)|\le |C(f,[a,b])-C(f,X_1)|<\frac{\epsilon}{2}
+$$
+$$
+|C(f,Y)-I|\le |C(f,X_2)-I|<\frac{\epsilon}{2}
+$$
+于是有：
+$$
+|C(f,[a,b])-I|\le |C(f,[a,b])-C(f,Y)|+|C(f,Y)-I|<\epsilon
+$$
+定理得证。\\
+于是根据此定理，我们可以得到高数书上对曲线长度的定义。显然，对于参数表示的曲线长公式，以上证明仍成立，并且还可以推广到高维曲线。
+\end{document}
