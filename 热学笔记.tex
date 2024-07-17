@@ -1,0 +1,64 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{热学笔记}
+\author{haruki}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent 该笔记灵感源于竞赛题。我们经常会碰到这样的情况：一个圆筒以$\boldsymbol{\omega}$的角速度旋转，使其中空气以相同角速度整体旋转，相对静止，此时我们在旋转参考系中
+仍然使用麦克斯韦-玻尔兹曼分布律。这真的合理吗？难道真的只是加上离心势能就可以了吗？\\
+问题是显而易见的，与惯性系不同，旋转参考系下会受到两个惯性力（匀速旋转），一个是离心力，另一个是科里奥利力，前者可以当做势能处理，但后者也起着关键
+的作用，因而不可忽视。由此观之，我们并没有直接的理由认为麦克斯韦-玻尔兹曼分布律仍成立。\\
+为了解决这个问题，我们需要回到统计力学的最开始处。固然，哈密顿正则方程才是统计力学源点，因此，寻找旋转系的哈密顿量是首要的任务。可以看出，此时的哈密顿量
+不再是$\frac{1}{2}m\boldsymbol{v^2}-\frac{1}{2}m\boldsymbol{\omega} ^{2}r^2$（$\boldsymbol{v}$为旋转系中速度），将上式带入正则方程得不到正确的受力方程。让我们从改写拉格朗日量开始。\\
+初始的拉氏量为$L=\frac{1}{2}m\boldsymbol{v_0^{2}}-U$，转换至平动非惯性系有：$\boldsymbol{v_0}=\boldsymbol{v^{'}}+\boldsymbol{u}(t)$，其中$\frac{d\boldsymbol{u}}{dt}=\boldsymbol{a}(t)$，于是
+$$
+L=\frac{1}{2}m\boldsymbol{v^{'2}}+m\boldsymbol{v^{'}}\cdot\boldsymbol{u}(t)+\frac{1}{2}m\boldsymbol{u^{2}}(t)-U
+$$
+因为$\boldsymbol{v^{'}}=\frac{d\boldsymbol{r^{'}}}{dt}$，所以有
+$$
+m\boldsymbol{v^{'}}\cdot\boldsymbol{u}(t)=\frac{d}{dt}(m\boldsymbol{r^{'}}\cdot\boldsymbol{u}(t))-m\boldsymbol{r^{'}}\cdot\frac{d\boldsymbol{u}}{dt}
+$$
+根据拉格朗日量的性质，可以增减一项时间的全导数。因此此时拉氏量为：
+$$
+L=\frac{1}{2}m\boldsymbol{v^{'2}}-m\boldsymbol{r^{'}}\cdot\boldsymbol{a}(t)-U
+$$
+我们再换到旋转系中，有$\boldsymbol{v^{'}}=\boldsymbol{v}+\boldsymbol{\omega}\times\boldsymbol{r}$，且$\boldsymbol{r}=\boldsymbol{r^{'}}$，所以：
+$$
+L=\frac{1}{2}m\boldsymbol{v^{2}}+m\boldsymbol{v}\cdot(\boldsymbol{\omega}\times\boldsymbol{r})+\frac{1}{2}m(\boldsymbol{\boldsymbol{\omega}\times\boldsymbol{r}})^2-m\boldsymbol{r}\cdot\boldsymbol{a}-U
+$$
+这就是旋转参考系的拉格朗日量。不难验证受力方程的正确性。\\
+现在回归正题，另$\boldsymbol{u}(t)=0,\boldsymbol{\omega}=const$，得到：
+$$
+L=\frac{1}{2}m\boldsymbol{v^{2}}+m\boldsymbol{v}\cdot(\boldsymbol{\omega}\times\boldsymbol{r})+\frac{1}{2}m(\boldsymbol{\boldsymbol{\omega}\times\boldsymbol{r}})^2-U
+$$
+易得广义动量为：
+$$
+\boldsymbol{p}=\frac{\partial L}{\partial \boldsymbol{v}}=m\boldsymbol{v}+m\boldsymbol{\omega}\times\boldsymbol{r}
+$$
+代入$H=\boldsymbol{p}\cdot\boldsymbol{v}-L$得：
+$$
+H=\frac{1}{2}m\boldsymbol{v^2}-\frac{1}{2}m\boldsymbol{\omega} ^{2}r^2-U
+$$
+得到了一开始否定的哈密顿量。显然，此时成立的原因是广义动量$\boldsymbol{p}$的改变。\\
+但是到这里为止证明并没有结束。众所周知，经典近似下的统计力学需要对相空间进行积分，而此时的微元为$d^3\boldsymbol{p}d^3\boldsymbol{r}$，由于广义动量$\boldsymbol{p}$不再等于$m\boldsymbol{v}$，因此为了得出正确的分布律，还需证明微元$d^3\boldsymbol{p}d^3\boldsymbol{r}=d^3m\boldsymbol{v}d^3\boldsymbol{r}$。\\
+雅克比行列式为：
+$$
+\begin{vmatrix}
+	1  &0  &0  &0&-\boldsymbol{\omega_{z}}&\boldsymbol{\omega_{y}}\\
+	0  &1  &0  &\boldsymbol{\omega_{z}}&0&-\boldsymbol{\omega_{x}}\\
+	0  &0  &1  &-\boldsymbol{\omega_{y}}&\boldsymbol{\omega_{x}}&0\\
+	0  &0  &0  &1&0&0\\
+	0  &0  &0  &0&1&0\\
+	0  &0  &0  &0&0&1\\
+\end{vmatrix}
+$$
+显然为$1$。因此可以直接换元。于是我们就得到了梦寐以求的麦克斯韦-玻尔兹曼分布律，以后使用公式的时候也可以安心了呢（\^{}o\^{}）
+\begin{center}
+	\includegraphics[width=\textwidth]{shinobu.png}
+	\textbf{小忍}
+\end{center}
+\end{document}
+
+
