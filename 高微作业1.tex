@@ -1,0 +1,100 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{高等微积分第一次作业}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent 1.\\
+(1):\\
+先证明充分性：\\
+由条件映射$f:X\to Y$是双射可知，$\forall y\in Y$，存在唯一的$x\in X$与之对应，因此可以构造映射$f^{-1}:Y\to X$，使得每一个$y$与相应的$x$对应。显然，此时
+$$f^{-1}\circ f(x)=f^{-1}(f(x))=f^{-1}(y)=x\rightarrow f^{-1}\circ f=id_{X}$$
+同理可知$$f\circ f^{-1}(y)=id_{Y}$$
+充分性证毕。\\
+再证明必要性：\\
+假设存在映射$f^{-1}:Y\to X$使得
+$$f^{-1}\circ f=id_{X},f\circ f^{-1}(y)=id_{Y}$$
+若存在不同的$x_1,x_2$使得$f(x_1)=f(x_2)$，则
+$$x_1=f^{-1}\circ f(x_1)=f^{-1}(f(x_1))=f^{-1}(f(x_2))=f^{-1}\circ f(x_2)=x_2$$
+矛盾，因此$f(x)$是单射。\\
+若对于$y\in Y$没有$x$与之对应，则
+$$y=f\circ f^{-1}(y)=f(f^{-1}(y))=f(x')$$
+矛盾，因此$f(x)$是满射。\\
+综上，$f(x)$是双射。必要性证毕。\\
+Q.E.D.\\
+(2):\\
+由于$f:X\to Y,g:Y\to Z$是双射,因此$\forall z\in Z$，存在唯一的$\forall y\in Y$与之对应，对于这个$y$，存在唯一的$\forall x\in X$与之对应，由此可知复合函数\\$g\circ f:X\to Z$是双射。\\
+又由复合的结合律可知
+$$(f^{-1}\circ g^{-1})\circ (g\circ f)=f^{-1}\circ (g^{-1}\circ g)\circ f=f^{-1}\circ id_{Y}\circ f=f^{-1}\circ f=id_{X}$$
+同理可得$$(g\circ f)\circ (f^{-1}\circ g^{-1})=id_{Z}$$
+于是$$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$$
+Q.E.D.\\
+2.\\
+(1):\\
+设$\alpha=inf A,\beta=inf B$，不失一般性，令$min\{\alpha,\beta\}=\alpha$，则有
+$$\forall a\in A,a\ge \alpha$$
+$$\forall b\in B,b\ge \beta\ge \alpha$$
+$$\text{如果}\gamma>\alpha,\text{则}\gamma \text{不是}A\text{的下界，亦即不是}A\cup B\text{的下界。}$$
+于是$inf(A\cup B)=min\{inf A,inf B\}$。\\
+同理$sup(A\cup B)=min\{sup A,sup B\}$。\\
+Q.E.D.\\
+(2):\\
+同(1)设$\alpha=inf A,\beta=inf B,max\{\alpha,\beta\}=\beta$，则有
+$$\forall x\in A\cap B,x\in B,\text{即有}x\ge\beta$$
+所以$inf(A\cap B)\ge max\{inf A,inf B\}$。\\
+同理$sup(A\cap B)\le max\{sup A,sup B\}$。\\
+Q.E.D.\\
+3.\\
+构造函数：$g(x)=\frac{f(x)+f(-x)}{2},h(x)=\frac{f(x)-f(-x)}{2}$\\
+显然$$g(-x)=g(x),h(-x)=-h(x),f(x)=g(x)+h(x)$$
+Q.E.D.\\
+4.\\
+设$x=0$，则$f(0)=2f(0),f(0)=0$。\\
+设存在$x\neq 0$，使得$f(x)\neq 0$，则
+$$f(2x)=2f(x),f(4x)=2f(2x),...$$
+构成等比数列，其绝对值以$2$为倍数增加。\\
+设$|f(x)|=a$，对于任一正数$M$，存在$n>\log_2\frac{M}{a}$使得$|f(2^nx)|>M$，与题设条件矛盾。\\
+所以$\forall x,f(x)=0$。\\
+5.\\
+首先证明整数可以提出函数:
+$$f(2x)=f(x)+f(x)=2f(x),f(nx)=f((n-1)x)+f(x),f(-nx)=f(-(n-1)x)-f(x)$$
+由归纳法得$$f(px)=pf(x),p\text{是整数}$$
+再证明正整数的倒数可以提出函数:
+$$f(x)=2f(\frac{1}{2}x),f(x)=f(\frac{1}{n}x)+f(\frac{n-1}{n}x)=nf(\frac{1}{n}x)$$
+可得$$f(\frac{1}{q}x)=\frac{1}{q}f(x),q\text{是正整数}$$
+综上，对于任一有理数$\frac{p}{q}$，有
+$$f(\frac{p}{q})=\frac{p}{q}f(1)$$
+令$a=f(1)$，则对于有理数$f(x)=ax$。\\
+Q.E.D.\\
+6.\\
+(1):\\
+运用三角不等式得
+$$\forall \epsilon>0,\text{存在}N\text{使得所有}n>N,||A|-|a_n||<|A-a_n|<\epsilon$$
+所以$\lim_{n\to \infty}|a_n|=|A|$。\\
+Q.E.D.\\
+(2):\\
+由题设条件知，$\text{存在}N\text{使得所有}n>N_0,|A-a_n|<A$，此时$a_n>0$。因此$\sqrt{a_n}$有意义。\\
+于是有
+$$\forall \epsilon>0,\text{存在}N>N_0\text{使得所有}n>N,|\sqrt{A}-\sqrt{a_n}|<\frac{|A-a_n|}{\sqrt{A}+\sqrt{a_n}}<\frac{\epsilon}{\sqrt{A}}$$
+所以$\lim_{n\to \infty}\sqrt{a_n}=\sqrt{A}$\\
+Q.E.D.
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
