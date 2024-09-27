@@ -1,0 +1,373 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
+\title{Linear Algebra}
+\author{haruki}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Linear Equations}
+\subsection{What is Fields?What is Vector Spaces?}
+\noindent In short,a Field $F$ should satisfy these properties:
+\begin{enumerate}
+	\item[(A)] Axioms for addition
+	\begin{enumerate}
+		\item[(A1)] if $x$,$y$ in $F$,then $x+y$ in $F$
+	    \item[(A2)] Addition is commutative:\[x+y=y+x\]for all $x$ and $y$ in $F$
+	    \item[(A3)] Addition is associative:\[x+(y+z)=(x+y)+z\]for all $x$,$y$ and $z$ in $F$
+	    \item[(A4)] There is an element $0$ in $F$ such that $x+0=x$,for all $x$ in $F$
+	    \item[(A5)] To every $x$ in $F$,there exists an element $-x$ in $F$ such that \[(-x)+x=0\]
+	\end{enumerate}
+	\item[(M)] Axioms for multiplication
+	\begin{enumerate}
+		\item[(M1)] if $x$,$y$ in $F$,then $xy$ in $F$
+		\item[(M2)] Multiplication is commutative:\[xy=yx\]for all $x$ and $y$ in $F$
+		\item[(M3)] Multiplication is associative:\[x(yz)=(xy)z\]for all $x$,$y$ and $z$ in $F$
+		\item[(M4)] There is an element $1\neq 0$ in $F$ such that $1x=x$,for all $x$ in $F$
+		\item[(M5)] To every $x\neq 0$ in $F$,there exists an element $\dfrac{1}{x}$ in $F$ such that \[(\frac{1}{x})x=1\]
+	\end{enumerate}
+	\item[(D)] The distributive law\[x(y+z)=xy+xz\]for all $x$,$y$ and $z$ in $F$
+\end{enumerate}
+\indent Some familiar propositions like cancellation law and the uniqueness of $0$ and $1$ is omitted here.See the comprehensive proofs in Baby Rudin.\\
+\indent In the following context,we assume the field $F$ as a subfield of the complex numbers.Otherwise,it could be possible that $1+1+\dots =0$!You must not want to see that,which arises from the nonzero characteristic of the field.So we assume the field $F$ we discuss is a field of characteristic zero.\\
+\indent Our preparation work for vector spaces has done.Let's define it!
+\theoremstyle{defination}\newtheorem{dde}{Defination}[section]
+\begin{dde}
+	A vector space consists of the following:
+	\begin{enumerate}
+		\item a field $F$ for scalars
+		\item a set $V$ of objects,called vectors
+		\item an operation called vector addition,which satisfies the axioms for additions (A)
+		\item an operation called scalar multiplication,which satisfies:
+		\begin{enumerate}
+			\item[(a)] $c\alpha$ is in $V$ for every $\alpha$ in $V$
+			\item[(b)] $1\alpha=\alpha$
+			\item[(c)] $(c_1c_2)\alpha=c_1(c_2)\alpha$
+			\item[(d)] $c(\alpha+\beta)=c\alpha+c\beta$
+			\item[(e)] $(c_1+c_2)\alpha=c_1\alpha+c_2\alpha$
+		\end{enumerate}
+	\end{enumerate}
+\end{dde}
+The scalar multiplication has familiar properties just like the ordinary multiplication.We will dig into this concept more deeply in the following sections.
+\subsection{Systems of Linear Equations}\label{systems of le}
+\noindent Of Course,the numbers we involved are the elements of a field $F$.\\
+A system of linear equations is defined as:
+\begin{align}
+	A_{11}x_1+A_{12}x_2+\ldots+A_{1n}x_n&=y_1\notag\\
+	A_{21}x_1+A_{22}x_2+\ldots+A_{2n}x_n&=y_2\notag\\
+	\vdots\:\,\quad\quad\quad\vdots\quad\quad\quad\qquad\quad\vdots\quad&=\,\:\vdots\notag\\
+	A_{m1}x_1+A_{m2}x_2+\ldots+A_{mn}x_n&=y_m\notag
+\end{align}
+\indent Obviously,there's no doubt that all the linear combinations of the equations are still linear equations,and every solution of the previous system of linear equations is also a solution of the new one.\\
+However,we want to transform the original system of linear equations to the simplest form,which requires that the solutions should be the same.Therefore,if the original equations are also the linear combinations of the new one,the solutions must be the same,and we've reached our purpose.The two systems of linear equations are called \textbf{equivalent}, if each equation in each system is a linear combination of the equations in the other system.And we have the following apparent theorem.\\
+\theoremstyle{plain}\newtheorem{thm}{Theorem}[section]
+\begin{thm}
+	Equivalent systems of linear equations have exactly the same solutions.
+\end{thm}
+Then all we have to do is to find the suitable way of linear combinations.
+\subsection{Matrices and Elementary Row Operations}
+\noindent To simplify our notations,we introduce a concept:
+\[A=\begin{bmatrix}
+	A_{11}&A_{12}&$\ldots$&A_{1n}\\
+	A_{21}&A_{22}&$\ldots$&A_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	A_{n1}&A_{n2}&$\ldots$&A_{nn}
+\end{bmatrix}\]
+We called $A$ a matrix.Sometimes we use the notation $\{A_{ij}\}$ to denote it.\\
+\indent By now the matrix is only a pile of numbers,so we endow it some operations:
+\begin{enumerate}
+	\item matrix addition:$(A+B)_{ij}=A_{ij}+B_{ij}$
+	\item scalar multiplication:$(cA)_{ij}=cA_{ij}$
+	\item matrix multiplication:$(AB)_{ij}=\sum\limits_{r=1}^pA_{ir}B_{rj}$,where $AB$ is a $m\times n$ matrix,and $A,B$ are $m\times p,p\times n$ matrices respectively. 
+\end{enumerate}
+The $n\times n$ identity matrix is denoted by $I_n$ with entries $I_{ij}$ that:
+\[I_{ij}=
+\begin{cases}
+	1&\text{if }i=j\\
+	0&\text{if }i\neq j
+\end{cases}\]
+which has a significant property:$IA=AI=A$.\\
+\indent The first and second operations make the matrices space become a vector space,and the third operation make the matrices space become a algebra,which will simplify our notations greatly.\\
+\indent An important property of matrix multiplication should be pointed out:
+\theoremstyle{plain}\newtheorem{pro}{Proposition}[section]
+\begin{pro}
+	The matrix multiplication is associative.
+\end{pro}
+\begin{proof}
+	The proof is direct.If $A,B,C$ are $m\times p,p\times q,q\times n$ matrices,then
+	\begin{align}
+		((AB)C)_{ij}&=\sum\limits_{t=1}^q(\sum\limits_{r=1}^pA_{ir}B_{rt})C_{tj}=\sum\limits_{t=1}^q\sum\limits_{r=1}^pA_{ir}B_{rt}C_{tj}\notag\\
+		&=\sum\limits_{r=1}^pA_{ir}(\sum\limits_{t=1}^qB_{rt}C_{tj})=(A(BC))_{ij}\notag
+	\end{align}
+\end{proof}
+But it isn't commutative and you can prove it directly as well.\\
+\indent We have possessed the matrix,so let's come back to the system of linear equations.You could find an amazing thing we expect:
+\[AX=Y\]and where
+\[A=\begin{bmatrix}
+	A_{11}&A_{12}&$\ldots$&A_{1n}\\
+	A_{21}&A_{22}&$\ldots$&A_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	A_{n1}&A_{n2}&$\ldots$&A_{nn}
+\end{bmatrix}\]
+\[X=\begin{bmatrix}
+	x_1\\
+	x_2\\
+	\vdots\\
+	x_n\\
+\end{bmatrix},
+Y=\begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n\\
+\end{bmatrix}\]This is just the same thing we discussed above!So the objects concerned will be matrices from now on.\\
+\indent Don't forget the target we said at the end of the subsection \ref{systems of le}!I will show you that the way we're looking for can be presented as a convenient matrix.\\
+\indent We define three elementary raw operations of matrix as following:
+\begin{enumerate}
+	\item multiplication of one row of $A$ by a nonzero scalar $c$
+	\item replacement of the $r$th row of $A$ by row $r$ plus $c$ times row $s$, $c$ is any scalar and $r\neq s$
+	\item interchange of two rows of $A$
+\end{enumerate}
+The elementary matrices come after:
+\begin{dde}
+	An elementary matrix $E_n$ is a matrix which is the consequence of an elementary raw operation on the identity matrix $I_n$. 
+\end{dde}
+A simple but important conclusion reached now:
+\begin{pro}
+	The consequence of an elementary raw operation on $m\times n$ matrix $A$ is just $e_mA$.
+\end{pro}
+Whose proof is direct and I'm lazy to type.\\
+\indent By the definition of elementary raw operations,it's apparent that each operation has a \textbf{unique} inverse operation to cancel the effect it cause. 
+\indent For a further convenience,we introduce the inverse of a matrix:
+\begin{dde}
+	Let $A$ be a $n\times n$ matrix.If $BA=I$,we call $B$ a \textbf{left inverse} of $A$.If $AC=I$,we call $C$ a \textbf{right inverse} of $A$.If $BA=AB=I$,we call $B$ a \textbf{two-side inverse} of $A$.You may find that:\[B=BI=BAC=IC=C\]So we use $A^{-1}$ to denote the \textbf{inverse} of $A$,and $A$ is called invertible.
+\end{dde}
+It's simple to prove:
+\begin{thm}
+\begin{enumerate}
+	\item If $A$ is invertible,then $(A^{-1})^{-1}=A$
+	\item If $A,B$ are invertible,then $AB$ is invertible and the inverse is $B^{-1}A^{-1}$ 
+\end{enumerate}
+\end{thm}
+Then we can formalize the statement above:
+\begin{thm}
+	The elementary matrix is invertible,and its inverse is just the matrix which corresponds to the inverse operation.
+\end{thm}
+Let's come back to the topic again.Why we choose the elementary raw operations?Because we have the following theorem:
+\begin{thm}
+	Let $A^*$ be $(A,Y)$ for a system of linear equations which we call the \textbf{augmented matrix} of the system.$B^*,A^*$ are called \textbf{raw-equivalent} if they are connected by a series of elementary raw operations,then the two system are equivalent as a result.
+\end{thm}
+We can write $A^*,B^*$ in an equation:\[B^*=E_1E_2\dots E_nA^*\footnote{the foot scripts here don't mean the dimension}\]
+and an inverse one:\[A^*=E_n^{-1}E_{n-1}^{-1}\dots E_1^{-1}B^*\]
+\indent A more convenient concept comes now:
+\begin{dde}
+	An $m\times n$ echelon matrix $R$ is called row-reduced if:
+	\begin{enumerate}
+		\item[(a)] the first nonzero entry in each nonzero row of $R$ is equal to $1$
+		\item[(b)] each column of $R$ which contains the leading nonzero entry of some row has all its other entries $0$.
+		\item[(c)] if rows$1,2,\dots,r$ are the nonzero rows of $R$, and if the leading nonzero entry of row $i$ occurs in column $k_i$,$i=1,2,\dots,r$,then $k_1<k_2<\dots<k_r$
+	\end{enumerate}
+\end{dde}
+For example,$I_n$ is just a row-reduced echelon matrix.\\
+\indent We have a theorem below,whose proof is apparent:
+\begin{thm}
+	Every $m\times n$ matrix over the field $F$ is row-equivalent to a row-reduced echelon matrix.
+\end{thm}
+And we have done the most of all things of systems of linear equations.You may find that if we use the elementary raw operations on the augmented matrix $A^*$ to make it become row-reduced echelon matrix $R$,then we get a explicit solution,because from the definition,we have $x_{k_1},x_{k_2},\dots\footnote{the foot scripts label the first nonzero entry of each nonzero row}$ as linear combinations of the rest $x_m$,which by arbitrary values of $x_m$ becomes a solution.\\
+\indent Of course we forgot the situation of no solutions,which can be simply demonstrated by the statement:
+\begin{pro}
+	Let $R$ be the raw-reduced echelon augmented matrix of a system of linear equations,then:
+	\begin{itemize}
+		\item If there's a first nonzero entry in the last column,there's no solutions
+		\item If not the above condition,the solution is unique if except the last column $R$ is $I_n$,otherwise there are infinite number of solutions. 
+	\end{itemize} 
+\end{pro} 
+If you are smart enough,you would find that the uniqueness of solutions means the coefficient matrix $A$ is an invertible matrix,because:
+\[E_1E_2\dots E_nA=I_n\]
+implies the inverse of $A$ is:
+\[A^{-1}=E_n^{-1}E_{n-1}^{-1}\dots E_1^{-1}I_n\]
+and the procedure can be taken by hand if we write them together $(A,I_n)$,and use the elementary raw operations till $A$ becomes $I_n$,then the right is just $A^{-1}$.
+\indent The last thing about systems of linear equations you need to know is that the solutions of a system of linear equations is a vector space.Let the rest $x_m$ be a series of values:\[(1,0,\dots,0),(0,1,\dots,0),\dots(0,0,\dots,1)\]and a series of solutions come after.You may notice that each solutions of the system is a linear combination of the $n-r$ solutions,which implies the solutions of the system is a vector space that has a dimension of $n-r$,which we will detail in the next section.\\
+\indent We finish this section by some properties of matrices:
+\begin{thm}
+	\begin{enumerate}
+		\item Write $B$ as $(\beta_1,\beta_2,\dots,\beta_n)$,then $AB=(A\beta_1,A\beta_2,\dots,A\beta_n)$
+		\item $A$ is called upper triangle matrix if it only have nonzero entries above the diagonal(contain the diagonal),and the product of two upper triangle matrices is still a upper triangle matrix
+		\item It will be useful if you notice that $AE_n$ corresponds to an elementary column operation,which is just a copy version of the row one. 
+	\end{enumerate}
+\end{thm}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{reimu}
+\end{figure}
+\newpage
+\section{Vector Spaces}
+\subsection{Subspaces,Basis and Dimension}
+For a further discussion about linear algebra,we will introduce some useful concepts:
+\begin{dde}
+	Let $V$ be a vector space over the field $F$.$W$ is a subset of $V$.$W$ is a subspace of $V$ if $W$ is a vector space with vector addition and scalar multiplication on $V$.
+\end{dde}
+A simple method to check $W$ is make an arbitrary linear combination by two arbitrary vectors in $W$,which means:
+\begin{thm}
+	If $\alpha$ and $\beta$ are vectors in $W$,then $W$ is a subspace if and only if $c\alpha+\beta$ in $W$ for each pair of $\alpha,\beta$ and each scalar $c$.
+\end{thm}
+We will introduce the concept ``span" in a new way:
+\begin{thm}
+	The intersection of any collections of subspaces is also a subspaces.
+\end{thm}
+The proof is easy,so let's skip it.
+\begin{dde}
+	Let $S$ be a set of vectors of $V$.The \textbf{subspace spanned} by $S$ is the intersection $W$ of all subspaces that contains $S$.If $S$ is a finite set,then we call $W$ the \textbf{subspace spanned by the vectors} $\{\alpha_1,\alpha_2,\dots,\alpha_n\}$. 
+\end{dde}
+A more usual form comes form this:
+\begin{thm}
+	The subspace spanned by a non-empty subset $S$ of a vector space $V$ is the set of all linear combinations of vectors in $S$. 
+\end{thm}
+There's an operation of addition defined on the subsets:
+\begin{dde}
+	If $S_1,S_2,\dots,S_k$ is subsets of a vector space $V$,the set of all sums
+	\[\alpha_1,\alpha_2,\dots,\alpha_k\]of vectors $\alpha_i$ in $S_i$ is called the \textbf{sum} of the subsets $S_1,S_2,\dots,S_k$ and is denoted by
+	\[S_1+S_2+\dots+S_k\]If $S_1,S_2,\dots,S_k$ are subspaces,then the sum of them is also a subspace.
+\end{dde}
+A further exploration need the concept ``linear dependent":
+\begin{dde}
+	A subset $S$ of a vector space $V$ is called \textbf{linearly dependent} if there exits distinct vectors $\alpha_1,\alpha_2,\dots,\alpha_n$ in $S$ and scalars $c_1,c_2,\dots,c_n$ in F,not all of which are $0$,such that
+	\[c_1\alpha_1+c_2\alpha_2+\dots+c_n\alpha_n=0\]
+	A set which is not linear dependent is called \textbf{linearly independent}.If $S$ is only a finite set of vectors,we call these vectors \textbf{dependent} or \textbf{independent} rather than call $S$.
+\end{dde}
+An important remark is that if $S$ is an infinite set,the concept above didn't mean \textbf{any} infinite sum of vectors.We will see this in the following concept.
+\begin{dde}
+	A \textbf{basis} for $V$ is a linearly independent set of vectors in $V$,which span the $V$.The \textbf{dimension} of $V$ is the number of elements in the basis.It's easy to see that the linear combination of each vector is unique
+\end{dde}
+You may notice a theorem is a must to make the definition legitimate.
+\theoremstyle{plain}\newtheorem{lem}{Lemma}[section]
+\begin{lem}\label{lemma1}
+	Let $\alpha_1,\alpha_2,\dots,\alpha_k$ be independent vectors.A vector $\beta$ is a linear combination of $\alpha_1,\alpha_2,\dots,\alpha_k$ if and only if $\beta,\alpha_1,\alpha_2,\dots,\alpha_k$ are dependent vectors.
+\end{lem}
+\begin{lem}\label{lemma2}
+	If a nonzero vector $\beta$ is a linear combination of independent vectors $\alpha_1,\alpha_2,\dots,\alpha_k$,there exits $i$ such that $\beta,\alpha_1,\alpha_2,\dots,\alpha_{i-1},\alpha_{i+1},\dots,\alpha_k$ are independent vectors.
+\end{lem}
+\begin{proof}
+	Because $\beta$ is nonzero,there exits $i$ such that the coefficient of $\alpha_i$ is nonzero,which means $\alpha_i$ is a linear combination of $\beta,\alpha_1,\alpha_2,\dots,\alpha_{i-1},\alpha_{i+1},\dots,\alpha_k$.\\
+	If $\beta,\alpha_1,\alpha_2,\dots,\alpha_{i-1},\alpha_{i+1},\dots,\alpha_k$ are dependent,the coefficient of $\beta$ should be nonzero otherwise $\alpha_1,\alpha_2,\dots,\alpha_{i-1},\alpha_{i+1},\dots,\alpha_k$ are dependent,which means $\alpha_i$ is a linear combination of $\alpha_1,\alpha_2,\dots,\alpha_{i-1},\alpha_{i+1},\dots,\alpha_k$,and by the Lemma \ref{lemma1},they are dependent.\\Therefore the hypothesis is incorrect.
+\end{proof}
+\begin{thm}\label{repthm}
+	If $\beta_1,\beta_2,\dots,\beta_m$ are independent vectors so as $\alpha_1,\alpha_2,\dots,\alpha_n$,and each of them is a linear combination of $\alpha_1,\alpha_2,\dots,\alpha_n$,then they can replace some of the $\alpha$ to form a new independent vector set.
+\end{thm}
+\begin{proof}
+	We notice that repeat the procedure in Lemma \ref{lemma2} we can change the original set by the new set,and by the independence of $\beta$ we assure the nonzero coefficients happen on $\alpha$,then the proof is over.
+\end{proof}
+From this theorem,We can prove lots of corollaries.
+\theoremstyle{plain}\newtheorem{coro}{Corollary}[section]
+\begin{coro}
+	If every element of a finite set of independent vectors is a linear combination of the other,then the number of elements of the former $m$ is no more than the one of the latter $n$.  
+\end{coro}
+\begin{coro}
+	The number of every finite basis is equal.
+\end{coro}
+\begin{coro}
+	If there exits an infinite basis,then there's no finite basis.
+\end{coro}
+Hence definition of dimension is legitimate now.\\
+\indent A simple example of basis is below.
+Let $V$ be $F^n$\footnote{This means n-triples on field $F$,whose operations defined as usual.},then
+\[e_i=(0,0,\dots,1,\dots,0)\qquad\text{The $i$th value is $1$}\]
+is a basis.It's natural to popularize this to infinite-dimensional space $F^{\infty}$,but it's wrong.Do you remember the remark above?Yes,the \textbf{``span"} should be \textbf{``finite"} as the \textbf{``finite"} requirement appears in the definition of linear combination!So it's impossible to express $(1,1,\dots)$ by the method above.To ``span" this vector space,we need \textbf{orthogonal basis} rather than usual basis,which appears in functional analysis.\\
+\indent How can we form a basis?A useful way to do that is extend a basis of a subspace $W$.The feasibility of this method is assured by Theorem \ref{repthm},which says every basis of $V$ can be replaced partly by a basis of $W$.There's a further theorem:
+\begin{thm}
+	Let $W_1,W_2$ be finite-dimensional subspaces of $V$,then
+	\[\dim W_1+\dim W_2 =\dim(W_1\cap W_2)+\dim(W_1+W_2)\]
+\end{thm} 
+\begin{proof}
+	We can extend the basis of $W_1\cap W_2$ in $W_1,W_2$ respectively,which forms a basis of $W_1,W_2$ and can be proved easily.
+\end{proof}
+Possessing these theorems,we can learn the topics about ``coordinate" and ``rank",which will be explained in the next subsection.
+\subsection{Coordinate and Rank}
+\noindent For convenience,the vector space we discuss below is finite-dimensional.
+\indent To describe the ``coordinate",we need a basis ordered.having an ordered basis we can define ``coordinate" as following:
+\begin{dde}
+	A vector $\alpha$ in $V$ can be uniquely presented as a linear combination of an ordered basis $\{\alpha_i\}$,and the coefficient $x_i$ of each $\alpha_i$ is called the $i$th \textbf{coordinate} of $\alpha$ related to the ordered basis $\{\alpha_i\}$.We can write the coordinates in a matrix called \textbf{coordinate matrix}
+	\[X=\begin{bmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{bmatrix}\]   
+\end{dde}
+To do something about coordinate further,we need a theorem about matrix.You may notice we develop the properties of matrix at the time we need it.
+\begin{thm}\label{invertindepend}
+	Write the square matrix $A$ as column vectors $(\alpha_1,\alpha_2,\dots,\alpha_n)$.$A$ is invertible if and only if $\alpha_1,\alpha_2,\dots,\alpha_n$ are linearly independent. 
+\end{thm}
+\begin{proof}
+	The proof is easy if you notice the fact that a linear combination of $\alpha_1,\alpha_2,\dots,\alpha_n$ is just a product of two matrices corresponded to a system of linear equations:
+	\[c_1\alpha_1+c_2\alpha_2+\dots+c_n\alpha_n=A\begin{bmatrix}
+		c_1\\
+		c_2\\
+		\vdots\\
+		c_n
+	\end{bmatrix}\]
+	and immediately we finish the proof.
+\end{proof}
+Let's come back to the topic.One thing you must notice is the term "relate",which tells us the arbitrariness of the coordinate because of the arbitrary choice of basis.Therefore a natural question is how to change the coordinate when the basis changed.
+\begin{thm}
+	Let $\{\alpha_i\},\{\alpha'_i\}$ be two bases.$P$ is a matrix whose entries is
+	\[\alpha_i=\sum\limits_{j=1}^nP_{ji}\alpha'_i\]Then the two coordinates are related by
+	\[X'=PX\]or\[X=P^{-1}X'\]The invertibility of $P$ is guaranteed by Theorem \ref{invertindepend}.\\
+	Inversely,an invertible matrix $P$ relate $\{\alpha_i\}$ to an unique basis $\{\alpha'_i\}$ that 
+	\[X'=PX\]and\[X=P^{-1}X\].
+\end{thm}
+The proof is direct.\\
+\indent The rest properties of coordinate are left to the next section.Therefore let's discuss the term "rank".
+\begin{dde}
+	The \textbf{raw rank} of a matrix $A$ is the dimension of the vector space\footnote{Obviously a subspace of $F^n$} spanned by the row vectors of $A$.The \textbf{column rank} is defined similarly.
+\end{dde}
+\begin{thm}
+	Row-equivalent matrices have the same raw space. 
+\end{thm}
+\begin{proof}
+	Use Theorem \ref{repthm}.
+\end{proof}
+The similar conclusion about column-equivalent is established as well.
+\begin{thm}
+	The nonzero raws of raw-reduced echelon matrix $R$ is a basis of the raw space.So as column-reduced echelon matrix.
+\end{thm}
+If a matrix $R$ is both a raw-reduced echelon matrix and a column-reduced echelon matrix,it's direct to draw the conclusion:
+\begin{thm}
+	The raw rank is equal to the column rank.Hence we call them the \textbf{rank} of matrix $A$.
+\end{thm}
+We can also call the finite dimension of a space spanned by a vector set the \textbf{rank} of the vector set.\\
+\indent Why we introduce the rank of a matrix?You will find the answer in the next section.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{siji}
+\end{figure}
+\newpage
+\section{Linear Transformations}
+\subsection{Linear Transformations and Matrices}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
