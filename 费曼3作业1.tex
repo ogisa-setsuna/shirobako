@@ -1,0 +1,81 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\title{费曼3作业1}
+\author{郑子诺,物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent70.6:\\
+(a):Because $L\gg d,L\gg a$,we have:
+\[d\,\theta\approx m\lambda\]
+\[L\theta\approx x\]
+and we have de-Broglie formula:
+\[\lambda=\frac{h}{p_0}\]
+therefore:
+\[a=\frac{L}{d}\frac{h}{p_0}\]
+(b):We add the altered phase to the first equation above:
+\[d\theta-\delta\phi_1+\delta\phi_2\approx m\lambda\]
+and the fact that the central maximum appears when $m=0$.Then we have:
+\[S=+(\delta\phi_1-\delta\phi_2)\frac{L}{d}\frac{h}{p_0}\]
+(c):Because the potential changed slightly on the vertical direction,we can make Taylor expansion and reserve the first-order:
+\[\frac{p^2(x)}{2m}=\frac{p^2(0)}{2m}+V(0)-V(x)\]
+\[p(x)=\sqrt{p^2(0)+2m(V(0)-V(x))}\approx p(0)+\frac{m}{p(0)}(V(0)-V(x))\]
+and if V(x) varies slowly,we have:
+\[F=-\frac{\partial V}{\partial x}\approx -\frac{V(x)-V(0)}{x}\] 
+\[p(x)=p(0)+\frac{Fx}{v}\]
+(d):\\
+(1):For the same reason above($L$ is very large),we can simply write:
+\[\delta\phi_1-\delta\phi_2\approx (k_{up}-k_{down})L\]
+and according to the de-Broglie formula:
+\[p=\hbar k\]
+use the result of (c) and let $x=\dfrac{d}{2}$we have:
+\[\delta\phi_1-\delta\phi_2=\frac{d}{2v}\frac{F}{\hbar}L\]
+(2):Use the result of (b) we have:
+\[S=\frac{1}{2}F(\frac{L}{v})^2=\frac{1}{2}Ft^2\]
+It's not a surprise that the classical consequence related to the central maximum of the probability amplitude,which is just corresponded to the classical limitation(the most possible situation when $\hbar\rightarrow0$).\\
+70.7:\\
+(a):The amplitude of "unflipped" path:
+\[\braket{x|S}_1=\alpha(\braket{x|1}\braket{1|S}+\braket{x|2}\braket{2|S})\]
+The amplitude of "flipped" path:
+\[\braket{x|S}_2=\beta(\braket{x|1}\braket{1|S}+\braket{x|2}\braket{2|S})\]
+Therefore the distribution $P$ is:
+\[P=(|\alpha|^2+|\beta|^2)|\braket{x|1}\braket{1|S}+\braket{x|2}\braket{2|S}|^2\]
+(b):Obviously,the answer is the same as (a):
+\[P=(|\alpha|^2+|\beta|^2)|\braket{x|1}\braket{1|S}+\braket{x|2}\braket{2|S}|^2\]
+(c):For every electron,no matter what spin it has,the distribution is the same,so the answer is the same:
+\[P=(|\alpha|^2+|\beta|^2)|\braket{x|1}\braket{1|S}+\braket{x|2}\braket{2|S}|^2\]
+70.9:\\
+(a):It's important that the photons are identical,so that the amplitude of $p_{12}$ should contain two case:
+\[\braket{ab|\psi_{12}}=\braket{a|A}\braket{b|B}+\braket{b|A}\braket{a|B}\]
+and use symmetry:
+\[\braket{ab|\psi_{12}}=c^2(\exp(2i\alpha_1)+\exp(2i\alpha_2))\]
+then we have:
+\[p_{12}=|\braket{ab|\psi_{12}}|^2=|c|^4(2+\cos2k(R_2-R_1))\]
+(b):Let $\theta=\dfrac{D}{2R}$,we have:
+\[d\,\theta\approx R_2-R_1\]
+\[p_{12}\propto2+\cos\frac{kD}{R}d\]
+Hence we can measure how $p_{12}$ changed when $d$ varies,which is just like the distribution of interference.If we have measured the interval $\Delta d$ between two maximum,then we have:
+\[D=\frac{R}{\Delta d}\lambda\qquad\text{where }\lambda\text{ is the wavelength of the light}\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
