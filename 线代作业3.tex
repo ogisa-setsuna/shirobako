@@ -1,0 +1,242 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\title{线代作业3}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1):\[\begin{bmatrix}
+	11&7&5\\
+	14&17&4\\
+	11&8&12
+\end{bmatrix}\]
+(2):\[\begin{bmatrix}
+	12&12\\
+	3&8\\
+	13&19
+\end{bmatrix}\]
+(3):\[\begin{bmatrix}
+	5&6&7&8\\
+	10&12&14&16\\
+	15&18&21&24\\
+	20&24&28&32
+\end{bmatrix}\]
+2.\\
+显然，由于$AB=BA$，矩阵乘法运算将与实数无异，于是由二项式展开得：
+\[(A+B)^k=\sum\limits_{i=0}^{k}\frac{k!}{i!(k-i)!}A^iB^{k-i}\]
+若$AB\neq BA$，则显然该式不成立，例如：
+\[(A+B)^2=A^2+AB+BA+B^2\neq A^2+2AB+B^2\]
+3.\\
+(1):\\
+\[\begin{bmatrix}
+	1&1\\
+	0&1
+\end{bmatrix}
+\begin{bmatrix}
+    1&1\\
+    0&1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	1&2\\
+	0&1
+\end{bmatrix}\]
+\[\begin{bmatrix}
+	1&k-1\\
+	0&1
+\end{bmatrix}
+\begin{bmatrix}
+	1&1\\
+	0&1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	1&k\\
+	0&1
+\end{bmatrix}\]
+由归纳法可得：
+\[A^n=
+\begin{bmatrix}
+	1&n\\
+	0&1
+\end{bmatrix}\]
+(2):\\
+\[\begin{bmatrix}
+	a^{k-1}&(k-1)a^{k-2}b\\
+	0&a^{k-1}
+\end{bmatrix}
+\begin{bmatrix}
+	a&b\\
+	0&a
+\end{bmatrix}
+=
+\begin{bmatrix}
+	a^k&ka^{k-1}b\\
+	0&a^k
+\end{bmatrix}\]
+由归纳法得：
+\[A^n=
+\begin{bmatrix}
+	a^n&na^{n-1}b\\
+	0&a^n
+\end{bmatrix}\]
+(3):\\
+\begin{align}
+	\begin{bmatrix}
+		\cos\theta&-\sin\theta\\
+		\sin\theta&\cos\theta
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos\alpha&-\sin\alpha\\
+		\sin\alpha&\cos\alpha
+	\end{bmatrix}
+	&=
+	\begin{bmatrix}
+		\cos\theta\cos\alpha-\sin\theta\sin\alpha&-\sin\alpha\cos\theta-\sin\theta\cos\alpha\\
+		\sin\alpha\cos\theta+\sin\theta\cos\alpha&\cos\theta\cos\alpha-\sin\theta\sin\alpha
+	\end{bmatrix}\notag\\
+	&=
+	\begin{bmatrix}
+		\cos(\alpha+\theta)&-\sin(\alpha+\theta)\\
+		\sin(\alpha+\theta)&\cos(\alpha+\theta)
+	\end{bmatrix}\notag
+\end{align}
+所以显然有：
+\[A^n=
+\begin{bmatrix}
+	\cos n\theta&-\sin n\theta\\
+	\sin n\theta&\cos n\theta
+\end{bmatrix}\]
+(4):\\
+\[
+\begin{bmatrix}
+	a&b&c&d\\
+	0&e&f&g\\
+	0&0&h&i\\
+	0&0&0&j
+\end{bmatrix}
+\begin{bmatrix}
+	1&1&0&0\\
+	0&1&1&0\\
+	0&0&1&1\\
+	0&0&0&1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	a&a+b&b+c&c+d\\
+	0&e&e+f&f+g\\
+	0&0&h&h+i\\
+	0&0&0&j
+\end{bmatrix}\]
+显然，矩阵元素构成杨辉三角，因此：
+\[A^n=
+\begin{bmatrix}
+	1&n&\frac{n(n-1)}{2}&\frac{n(n-1)(n-2)}{6}\\
+	0&1&n&\frac{n(n-1)}{2}\\
+	0&0&1&n\\
+	0&0&0&1
+\end{bmatrix},n\ge2\]
+(5):\\
+显然我们有：
+\[A=XY,
+X=\\
+\begin{bmatrix}
+	a_1\\
+	a_2\\
+	a_3
+\end{bmatrix},
+Y=
+\begin{bmatrix}
+	b_1&b_2&b_3
+\end{bmatrix}\]
+\[YX=a_1b_1+a_2b_2+a_3b_3\]
+因此：
+\begin{align}
+	A^n=(XY)^n&=X(YX)(YX)\cdots(YX)Y=(a_1b_1+a_2b_2+a_3b_3)^{n-1}XY\notag\\
+	&=(a_1b_1+a_2b_2+a_3b_3)^{n-1}\begin{bmatrix}
+		a_1b_1&a_1b_2&a_1b_3\\
+		a_2b_1&a_2b_2&a_2b_3\\
+		a_3b_!&a_3b_2&a_3b_3
+	\end{bmatrix}\notag
+\end{align}
+4.\\
+(1):\\
+\[\begin{cases}
+	x=5\\
+	y=5\\
+	z=2
+\end{cases}\]
+(2):\\
+\[\begin{cases}
+	x_1=1\\
+	x_2=2\\
+	x_3=3\\
+	x_4=-1
+\end{cases}\]
+(3):\\
+无解，因为原增广矩阵行等价于：
+\[\begin{bmatrix}
+	1&4&-2&3&5\\
+	0&-6&1&-2&-9\\
+	0&-13&8&-8&-6\\
+	0&0&0&0&-2
+\end{bmatrix}\]
+5.\\
+系数行列式为$\lambda^4-4\lambda^2$，所以：
+当$\lambda=0$时，有无穷多个解：
+\[\begin{cases}
+	x_3=1-x_1\\
+	x_4=1-x_2
+\end{cases}\]
+当$\lambda=2$时，有无穷多个解：
+\[\begin{cases}
+	x_1=x_3=\frac{1}{2}-x_4\\
+	x_2=x_4
+\end{cases}\]
+当$\lambda=-2$时，无解，因为其增广矩阵行等价于：
+\[\begin{bmatrix}
+	-1&1&-1&1&1\\
+	0&0&0&0&2\\
+	0&1&-2&1&1\\
+	1&0&1&-2&1
+\end{bmatrix}\]
+当$\lambda\neq0,2,-2$时，有唯一解为：
+\[x_1=x_2=x_3=x_4=\frac{1}{2+\lambda}\]
+6.\\
+显然，由于每个矩阵都行等价于一个行简化阶梯矩阵，因此若$m<n$，则主元数量少于变量，因此要么有无穷多组解，要么无解。又因为必有零解，因此有无穷多个非零解。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
