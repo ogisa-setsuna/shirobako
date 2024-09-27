@@ -1,0 +1,66 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathabx}
+\usepackage{braket}
+\title{费曼3作业2}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+71.4\\
+(a)Because the photons are Bosons,we have:
+\[P_{emission}=|\braket{n+1|n}|^2=(n+1)P_0\]
+\[P_{absorption}=|\braket{n-1|n}|^2=nP_0\]
+The emission and absorption build an equilibrium:
+\[N_2P_{emission}=N_1P_{absorption},N_1P_{emission}=N_0P_{absorption}\]
+\[\therefore\frac{N_2}{N_1}=\frac{N_1}{N_0}=\frac{n(\omega)}{n(\omega)+1}\] 
+(b)Use Boltzmann distribution we have:
+\[\frac{N_2}{N_1}=\frac{N_1}{N_0}=e^{-\frac{\Delta E}{kT}}\]
+\[\therefore n(\omega)=\frac{1}{e^{\frac{\Delta E}{kT}}-1}\]
+(c)\\
+\[\hbar\omega\gg kT,n(\omega)\approx e^{-\frac{\hbar\omega}{kT}}\]
+\[\hbar\omega\ll kT,n(\omega)\approx \frac{kT}{\hbar\omega}\]
+71.6\\
+(a)Because the stimulated emission produces photons at exactly the same state as the one induces,the direction of the photons is obviously the same.\\
+(b)Impossible.Because neutrinos have spin of one-half that they are fermions,they couldn't be the same state as a result of Pauli exclusion principle.\\
+71.9\\
+(a)The recoil breaks up the nucleus,which distinguishes the one proton interacted.Therefore the probability is:
+\[P(\theta)=P_1|f_1(\theta)|^2+P_2|f_2(\theta)|^2\]
+(b)The nucleus remains intact,which means the final states of two kinds of scattering are the same.Hence the probability is:
+\[P_(\theta)=|\sqrt{P_1}f_1(\theta)+\sqrt{P_2}f_2(\theta)|^2=P_1|f_1(\theta)|^2+\sqrt{P_1P_2}(f_1^*(\theta)f_2(\theta)+f_1(\theta)f_2^*(\theta))+P_2|f_2(\theta)|^2\]
+The phase of the probability amplitude of $P_1,P_2$ is absorbed in $f_1(\theta),f_2(\theta)$.
+(c)The probability of the case in (b) have an interference term,which is probably positive and gives more scattering,otherwise it gives less scattering.\\
+71.11\\
+(a)Because the velocity of proton in center-of-mass system is the same as the velocity of center-of-mass,we have
+\[\alpha=\frac{\theta}{2}\]
+(b)Obviously it's
+\[g(\theta)-f'(\pi-\theta)\]
+(c)The scattering probability of up-up and down-down is
+\[2|f(\theta)-f(\pi-\theta)|^2\]
+The scattering probability of up-down and down-up is
+\[|f'(\theta)-g(\pi-\theta)|^2+|g(\theta)-f'(\pi-\theta)|^2\]
+Because the probability of each case is $\dfrac{1}{4}$,we have:
+\[P(\theta)=|f(\theta)-f(\pi-\theta)|^2+\frac{1}{2}(|f'(\theta)-g(\pi-\theta)|^2+|g(\theta)-f'(\pi-\theta)|^2)\]
+(d)Simplify the result of (c) we have
+\[P(\theta)=|f(\theta)-f(\pi-\theta)|^2+\frac{1}{2}(|f(\theta)|^2+|f(\pi-\theta)|^2)=\frac{5}{4}|f(\theta)-f(\pi-\theta)|^2+\frac{1}{4}|f(\theta)+f(\pi-\theta)|^2\]
+(e)\[A=\frac{5}{4},B=\frac{1}{4}\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
