@@ -1,0 +1,79 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{braket}
+\graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
+\title{费曼3作业3}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent72.2\\
+(a)No.Because when the beam of spin one particles went through T,they collapsed into the only state that is open.Therefore,the final proportion only depends on the transformation matrix between the open T state and the S states.\\
+(b)Yes.Because when the beam of spin one particles went through T,they collapsed into the two states that are open,the proportion of which depends on the input state.Hence the final proportion depends on the transformation matrix between the two T states and the S states and the proportion of the two T states,and therefore depends on the input proportion.\\
+(c)Yes.Because now going through the T filter is just doing an identity operation on the input states,the final proportion is just the input proportion.\\
+72.3\\
+(a)According to (5.38) and $\alpha=\dfrac{\pi}{2}$,we have
+\[
+N_2=N_1(|\braket{0T|+S}|^2+|\braket{-T|+S}|^2)=\frac{3}{4}N_1
+\]
+(b)According to (5.38) and $\alpha=-\dfrac{\pi}{2}$,we have
+\[
+N_3=N_1|\braket{-S|0T}\braket{0T|+S}+\braket{-S|-T}\braket{-T|+S}|^2=\frac{1}{16}N_1
+\]
+(c)Obviously,we have
+\[N_2=N_1\]
+\[N_3=N_1|\braket{-S|I|+S}|^2=0\]
+72.4\\
+(a)According to (5.38) and $\alpha=\dfrac{\pi}{2}$ or $\dfrac{-\pi}{2}$,we have
+\[
+N_{+S'}=N_0|\braket{+S'|+T}\braket{+T|0S}+\braket{+S'|-T}\braket{-T|0S}|^2=0
+\]
+\[
+N_{-S'}=N_0|\braket{-S'|+T}\braket{+T|0S}+\braket{-S'|-T}\braket{-T|0S}|^2=0
+\]
+(b)Obviously,$N_{+T}=N_{-T}=\dfrac{1}{2}N_0$,and therefore
+\[
+N_{+S'}=\frac{1}{2}N_0|\braket{+S'|+T}|^2+\frac{1}{2}N_0|\braket{+S'|-T}|^2=\frac{1}{4}N_0
+\]
+\[
+N_{0S'}=\frac{1}{2}N_0|\braket{0S'|+T}|^2+\frac{1}{2}N_0|\braket{0S'|-T}|^2=\frac{1}{2}N_0
+\]
+(c)It wouldn't change because the ``measure" is independent of whether the counts are recorded.\\
+(d)Add the factor $\dfrac{1}{2}$ and average the result of (a),(b),we have
+\[
+N_{+S'}=\frac{1}{2}(\frac{1}{2}N_0|\braket{+S'|+T}|^2+\frac{1}{2}N_0|\braket{+S'|-T}|^2)+0=\frac{1}{8}N_0
+\]
+\[
+N_{0S'}=\frac{1}{2}(\frac{1}{2}N_0)+\frac{1}{2}N_0|\braket{0S'|+T}\braket{+T|0S}+\braket{0S'|-T}\braket{-T|0S}|^2=\frac{3}{4}N_0
+\]
+(e)Use the ensemble average,we have
+\begin{align}
+	N_{+S'}={}&\frac{1}{3}N_0|\braket{+S'|+T}\braket{+T|+S}+\braket{+S'|-T}\braket{-T|+S}|^2\notag\\
+	&+\frac{1}{3}N_0|\braket{+S'|+T}\braket{+T|0S}+\braket{+S'|-T}\braket{-T|0S}|^2\notag\\
+	&+\frac{1}{3}N_0|\braket{+S'|+T}\braket{+T|-S}+\braket{+S'|-T}\braket{-T|-S}|^2\notag\\
+	={}&\frac{1}{6}N_0\notag
+\end{align}
+\begin{align}
+	N_{0S'}={}&\frac{1}{3}N_0|\braket{0S'|+T}\braket{+T|+S}+\braket{0S'|-T}\braket{-T|+S}|^2\notag\\
+	&+\frac{1}{3}N_0|\braket{0S'|+T}\braket{+T|0S}+\braket{0S'|-T}\braket{-T|0S}|^2\notag\\
+	&+\frac{1}{3}N_0|\braket{0S'|+T}\braket{+T|-S}+\braket{0S'|-T}\braket{-T|-S}|^2\notag\\
+	={}&\frac{1}{3}N_0\notag
+\end{align}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
