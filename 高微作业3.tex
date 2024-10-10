@@ -1,0 +1,131 @@
+\documentclass{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{braket}
+\graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
+\title{高微作业3}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+由三角函数和线性函数的连续性知：
+\[\lim\limits_{x\rightarrow0^+}f(x)=0\]
+\[\lim\limits_{x\rightarrow0^-}f(x)=a\]
+左右极限相等，极限存在。因此$a=0$，$b$任意。\\
+2.\\
+(1)(2):\\
+先证根式函数的连续性：
+\[y=y_0+\epsilon,\epsilon>0\]
+\[\sqrt[k]{y}-\sqrt[k]{y_0}=b,b>0\]
+\[y_0+\epsilon=y=(\sqrt[k]{y_0}+b)^k>y_0+kby_0^{\frac{k-1}{k}}\]
+\[b<\epsilon\frac{1}{ky_0^{\frac{k-1}{k}}}\]
+\[\therefore\lim\limits_{y\rightarrow y_0^+}\sqrt[k]{y}=\sqrt[k]{y_0}\]
+同理左侧有
+\[y=y_0-\epsilon,\epsilon>0\]
+\[\sqrt[k]{y_0}-\sqrt[k]{y}=b,b>0\]
+\[y+\epsilon=y_0=(\sqrt[k]{y}+b)^k>y+kby^{\frac{k-1}{k}}\]
+\[b<\epsilon\frac{1}{ky^{\frac{k-1}{k}}}\]
+\[\therefore\lim\limits_{y\rightarrow y_0^-}\sqrt[k]{y}=\sqrt[k]{y_0}\]
+\[\therefore\lim\limits_{y\rightarrow y_0}\sqrt[k]{y}=\sqrt[k]{y_0}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral2}，因此证毕。\\
+3.\\
+(1):
+\[\lim\limits_{x\rightarrow1}\frac{x^m-1}{x^n-1}=\lim\limits_{x\rightarrow1}\frac{(x-1)(x^m+x^{m+1}+\dots+1)}{(x-1)(x^n+x^{n-1}+\dots+1)}=\frac{m}{n}\]
+(2):\\
+由(1)知
+\[\lim\limits_{t\rightarrow0}\frac{\sqrt[n]{1+t}-1}{t}=\lim\limits_{t\rightarrow0}\frac{\sqrt[n]{1+t}-1}{1+t-1}=\frac{1}{n}\]
+令$t=\dfrac{x^n}{p^n}$即有
+\[\lim\limits_{x\rightarrow0}\frac{\sqrt[n]{x^n+p^n}-p}{x^n}=\frac{1}{np^{n-1}}\]
+(3):\\
+由(2)知，上下同除$x^n$得
+\[\lim\limits_{x\rightarrow0}\frac{\sqrt[n]{x^n+p^n}-p}{\sqrt[n]{x^n+q^n}-q}=\frac{q^{n-1}}{p^{n-1}}\]
+(4):
+\[\lim\limits_{t\rightarrow0}\frac{t}{\tan t}=\lim\limits_{t\rightarrow0}\frac{t\cos t}{\sin t}=1\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow0}\frac{\arctan x}{x}=1\]
+(5):
+\[\lim\limits_{x\rightarrow0}\frac{1-\cos x}{x^2}=\lim\limits_{x\rightarrow0}\frac{1}{2}(\frac{\sin\frac{x}{2}}{\frac{x}{2}})^2=\frac{1}{2}\]
+\[\lim\limits_{x\rightarrow0}\frac{\tan x-\sin x}{x^3}=\lim\limits_{x\rightarrow0}\frac{\sin x}{x}\frac{1-\cos x}{x^2}\frac{1}{\cos x}=\frac{1}{2}\]
+4.\\
+(1):\\
+令$\delta<\min\{A-Ae^{-\epsilon},Ae^{\epsilon}-A\},|x-A|<\delta,\epsilon>0$，则有
+\[-\epsilon<\ln x-\ln A=\ln\frac{x}{A}<\epsilon\]
+\[\therefore\lim\limits_{x\rightarrow A}\ln x=\ln A\]
+(2):\\
+令$\delta<\frac{1}{n},1+\frac{n\epsilon}{e^c}>e,|x-A|<\delta,\epsilon>0$，则有
+\[e<1+\frac{n\epsilon}{e^c}<(1+\frac{\epsilon}{e^c})^n\]
+\[e<1+\frac{n\epsilon}{e^c}<(1-\frac{\epsilon}{e^c})^{-n}\]
+\[x>c,0<e^{x-c}-1<e^{\frac{1}{n}}<\frac{\epsilon}{e^c}\]
+\[x>c,-\frac{\epsilon}{e^c}<e^{-\frac{1}{n}}<e^{x-c}-1<0\]
+\[\therefore\lim\limits_{x\rightarrow c}e^x=\lim\limits_{x\rightarrow c}e^c(e^{x-c}-1)+e^c=e^c\]
+(3):\\
+\[\lim\limits_{x\rightarrow x_0}u(x)^{v(x)}=\lim\limits_{x\rightarrow x_0}e^{v(x)\ln u(x)}\]
+由(1)(2)得
+\[\lim\limits_{x\rightarrow x_0}v(x)\ln u(x)=b\ln a\]
+\[\lim\limits_{x\rightarrow x_0}e^{v(x)\ln u(x)}=e^{b\ln a}=a^b\]
+证毕。\\
+5.\\
+(1):\\
+\[\lim\limits_{x\rightarrow x_0}\frac{\sin(f(x))}{g(x)}=\lim\limits_{x\rightarrow x_0}\frac{\sin(f(x))}{f(x)}\frac{f(x)}{g(x)}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow x_0}\frac{\sin(f(x))}{g(x)}=A\]
+(2):\\
+\[\lim\limits_{x\rightarrow x_0}(1+f(x))^{\frac{1}{g(x)}}=\lim\limits_{x\rightarrow x_0}(1+f(x))^{\frac{1}{f(x)}\frac{f(x)}{g(x)}}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow x_0}(1+f(x))^{\frac{1}{g(x)}}=e^A\]
+(3):\\
+\[\lim\limits_{x\rightarrow 0}\frac{\sin ax}{\sin bx}=\lim\limits_{x\rightarrow x_0}\frac{\sin ax}{ax}\frac{bx}{\sin bx}\frac{a}{b}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow 0}\frac{\sin ax}{\sin bx}=\frac{a}{b}\]
+(4):\\
+\[\lim\limits_{x\rightarrow \frac{\pi}{2}}\frac{\cos x}{x-\frac{\pi}{2}}=\lim\limits_{x\rightarrow \frac{\pi}{2}}-\frac{\sin (x-\frac{\pi}{2})}{x-\frac{\pi}{2}}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow \frac{\pi}{2}}\frac{\cos x}{x-\frac{\pi}{2}}=-1\]
+(5):\\
+\[\lim\limits_{x\rightarrow 0}\frac{\sin 2x}{\sqrt{x+2}-\sqrt{2}}=\lim\limits_{x\rightarrow 0}2\frac{\sin 2x}{2x}(\sqrt{x+2}+\sqrt{2})\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow 0}\frac{\sin 2x}{\sqrt{x+2}-\sqrt{2}}=4\sqrt{2}\]
+(6):\\
+\[\lim\limits_{x\rightarrow 0}(1+kx)^{\frac{1}{x}}=\lim\limits_{x\rightarrow 0}(1+kx)^{\frac{1}{kx}k}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow 0}(1+kx)^{\frac{1}{x}}=e^k\]
+(7):\\
+\[\lim\limits_{x\rightarrow\infty}(\frac{x+a}{x-a})^x=\lim\limits_{x\rightarrow\infty}(1+\frac{2a}{x-a})^{\frac{x-a}{2a}2a}(1+\frac{2a}{x-a})^a\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow\infty}(\frac{x+a}{x-a})^x=e^{2a}\]
+(8):\\
+\[\lim\limits_{x\rightarrow\infty}(1-\frac{a}{x})^{bx}=\lim\limits_{x\rightarrow\infty}(1-\frac{a}{x})^{-ab\frac{x}{-a}}\]
+运用复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow\infty}(1-\frac{a}{x})^{bx}=e^{-ab}\]
+(9):\\
+\[\lim\limits_{x\rightarrow0}(\cos 2x)^{\frac{1}{x^2}}=\lim\limits_{x\rightarrow0}(1-2\sin^2x)^{\frac{1}{-2\sin^2x}\frac{-2\sin^2x}{x^2}}\]
+运用第四题以及复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral1}，得到
+\[\lim\limits_{x\rightarrow0}(\cos 2x)^{\frac{1}{x^2}}=e^{-2}\]
+(10):\\
+\[\lim\limits_{x\rightarrow0}(2\sin x+\cos x)^{\frac{1}{x}}=\lim\limits_{x\rightarrow0}(1+2\sin x+\cos x-1)^{\frac{1}{2\sin x+\cos x-1}\frac{x\sin x+\cos x-1}{x}}\]
+运用第四题以及复合函数极限定理，满足修正条件\uppercase\expandafter{\romannumeral2}，得到
+\[\lim\limits_{x\rightarrow0}(2\sin x+\cos x)^{\frac{1}{x}}=e^2\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
