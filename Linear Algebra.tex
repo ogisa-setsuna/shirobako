@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{mathrsfs}
 \graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
 \title{Linear Algebra}
 \author{haruki}
@@ -313,7 +314,7 @@ To do something about coordinate further,we need a theorem about matrix.You may 
 Let's come back to the topic.One thing you must notice is the term "relate",which tells us the arbitrariness of the coordinate because of the arbitrary choice of basis.Therefore a natural question is how to change the coordinate when the basis changed.
 \begin{thm}
 	Let $\{\alpha_i\},\{\alpha'_i\}$ be two bases.$P$ is a matrix whose entries is
-	\[\alpha_i=\sum\limits_{j=1}^nP_{ji}\alpha'_i\]Then the two coordinates are related by
+	\[\alpha_i=\sum\limits_{j=1}^nP_{ji}\alpha'_j\]Then the two coordinates are related by
 	\[X'=PX\]or\[X=P^{-1}X'\]The invertibility of $P$ is guaranteed by Theorem \ref{invertindepend}.\\
 	Inversely,an invertible matrix $P$ relate $\{\alpha_i\}$ to an unique basis $\{\alpha'_i\}$ that 
 	\[X'=PX\]and\[X=P^{-1}X\].
@@ -344,8 +345,98 @@ We can also call the finite dimension of a space spanned by a vector set the \te
 	\includegraphics[width=\linewidth]{siji}
 \end{figure}
 \newpage
-\section{Linear Transformations}
+\section{Linear Transformations and Forms}
 \subsection{Linear Transformations and Matrices}
+\begin{dde}
+	Let $V,W$ be vector spaces over $F$.\textbf{A linear transformation} from $V$ to $W$ is a function $T$ from $V$ to $W$ such that
+	\[T(c\alpha+\beta)=c(T\alpha)+T\beta\]
+	for all $\alpha,\beta$ in $V$ and $c$ in $F$.
+\end{dde}
+Obviously,the image 
+\begin{dde}
+	The \textbf{null space} of $T$ is the set of all vectors $\alpha$ in $V$ such that $T\alpha=0$.\\
+	If $V$ is finite-dimensional,the \textbf{rank} of $T$ is the dimension of the range of $T$,and the \textbf{nullity} of $T$ is the dimension of the null space of $T$.
+\end{dde}
+For convenience,we confined ourselves to finite-dimensional vector spaces.We will have an important theorem.
+\begin{thm}\label{dimthm}
+	rank($T$)+nullity($T$)=$\dim(T)$
+\end{thm}
+\begin{proof}
+	Let $\{\alpha_i\}$ be an ordered basis of the null space $W$ with dimension $m$.Use theorem \ref{repthm} we can expend it to an ordered basis $\{\alpha_{i}\}$ of $V$.Now we prove $T\alpha_i,i=m+1,\dots,n$ is an ordered basis of the range of $V$.
+	\[T\alpha=T(x_1\alpha_1+x_2\alpha_2+\dots+x_n\alpha_n)=x_{m+1}T\alpha_{m+1}+\dots+x_nT\alpha_n\]
+	Hence they span the range.
+	\[c_1T\alpha_{m+1}+\dots+c_{n-m}T\alpha_n=0\]
+	\[T(c_1\alpha_{m+1}+\dots+c_{n-m}\alpha_n)=0\rightarrow c_1\alpha_{m+1}+\dots+c_{n-m}\alpha_n\in W\]
+	\[c_1=c_2=\cdots=c_{n-m}=0\]
+	Hence they are linearly independent.We have finished the proof.
+\end{proof}
+We have seen the rank in the previous section.We combine them by the theorem below. 
+\begin{thm}
+	A linear transformation is determined uniquely by its action on an ordered basis of $V$,which is connected to a unique matrix when an ordered basis of $W$ is chosen.
+\end{thm}
+\begin{proof}
+	Let $\{\alpha_i\}$ be an ordered basis of $V$.Let $\{\gamma_i\}$ in $W$ satisfy
+	\[T\alpha_i=\gamma_i\]
+	Obviously,for all $\alpha$ in $V$,we have
+	\[T\alpha=\sum\limits_{i=1}^nx_i\beta_i\]
+	where $\{x_i\}$ is the coordinate of $\alpha$.This determines $T$ uniquely.\\
+	Let $\{\beta_j\}$ be an ordered basis of $W$,we have
+	\[T\alpha=\sum\limits_{i=1}^nx_i\sum\limits_{j=1}^mA_{ji}\beta_j=\sum\limits_{j=1}^m\beta_j\sum\limits_{i=1}^nA_{ji}x_i\]
+	Let $\{y_j\}$ be the coordinate of $\beta=T\alpha$,we have
+	\[y_j=\sum\limits_{i=1}^nA_{ji}x_i\rightarrow Y=AX\]
+	which implies that $T$ is connected to the $m\times n$ matrix $A$.
+\end{proof}
+Apparently,the rank of matrix is just the rank of the linear transformation,because the nullity of $T$ is just the solution space of $AX=0$ with a connection between coordinate $X$ and $\alpha$.\\
+For a further discussion,we should focus on the algebra of linear transformations.
+\begin{thm}
+	Let $V,W,Z$ be vector spaces.$U,T$ is linear transformations from $W$ to $Z$ and from $V$ to $W$ respectively.Then the function $UT$ is a linear transformation from $V$ to $Z$. If $V$ is invertible,the inverse $T^{-1}$ is also a linear transformation from $W$ to $V$.
+\end{thm}
+Because the matrices representation of linear transformations,we can define the addition and scalar multiplication on the linear transformations naturally to make a vector space of linear transformations from $V$ to $W$ called $\mathcal{L}(V,W)$,whose dimension is $mn$.Obviously,the addition,scalar multiplication and function composition(a sense of multiplication) of linear transformation are corresponded to the ones of matrix.The linear transformations from $V$ to $V$ is denoted by $\mathcal{L}(V)$.We call $T$ non-singular if $T\alpha=0$ implies $\alpha=0$,which implies that the nullity of $T$ is $0$ and $T$ is one-to-one.
+\begin{thm}
+	$T$ is non-singular if and only if T carries each linearly independent subset of $W$ onto a linearly independent subset of $W$. 
+\end{thm}
+The proof is one-step.
+\begin{thm}
+	Let $\dim V=\dim W$.$T$ is invertible if and only if $T$ is non-singular or $T$ is onto.
+\end{thm}
+Use theorem \ref{dimthm} and the proof is done.
+\begin{dde}
+	$V$ is isomorphic to $W$ if there exists an one-to-one linear transformation $T$ of $V$ onto $W$,which is called isomorphism.
+\end{dde}
+Obviously,isomorphism is an equivalence relation on the class of vector spaces.
+\begin{thm}
+	$V$ is isomorphic to $W$ if and only if they have the same dimension.
+\end{thm}
+\begin{proof}
+	Let a linear transformation connect the ordered bases of $V,W$,then we have done the proof.
+\end{proof}
+This theorem tells that the matrix of an invertible $T$ is a square matrix.
+\begin{thm}
+	The linear transformation is invertible if and only if a matrix of it is invertible,and the matrix of it related to the same basis is just the inverse one.
+\end{thm}
+The proof is direct.
+It's important to notice that the $A$ depends on the choice of ordered bases.You may have found that the $P$ matrix of basis transformation from $\{\alpha_i\}$ to $\{\alpha'_i\}$ is just the matrix of a linear transformation $C$ related to an ordered basis of $V$ such that
+\[\alpha'_i=C\alpha_i=\sum\limits_{i=1}^nP^{-1}_{ji}\alpha_j\]
+We want to use $C$ on $\alpha$.
+\[C\alpha=\sum\limits_{i=1}^nx_i\alpha'_i=\sum\limits_{j=1}^n\sum\limits_{i=1}^nP^{-1}_{ji}x_i\alpha_j\rightarrow X''=P^{-1}X\]
+If you look it carefully enough,you may find some difference compared to the previous statement.This denotes a different view of basis transformation.The view before is that basis is changed and vectors is unchanged,which is called passive view.The view above is that vectors is changed and basis is unchanged,which is called active view.We will use passive view below.\\
+\begin{thm}
+	Let $\{\alpha_i\},\{\alpha'_i\}$ be ordered bases of $V$,$T\in\mathcal{L}(V)$.$A,B$ is the matrices of $T$ related to them respectively.Then we have
+	\[B=P^{-1}AP\]
+	where $X=PX',\alpha_i=C\alpha'_i$
+\end{thm}
+\begin{proof}
+	\[AX=Y\]
+	\[P^{-1}APP^{-1}X=P^{-1}Y\]
+	\[P^{-1}AP^{-1}X'=BX'=Y'\]
+\end{proof}
+\begin{dde}
+	Let $A,B$ be square matrices.$B$ is \textbf{similar} to $A$ if there exists an invertible matrix $P$ such that
+	\[B=P^{-1}AP\]
+\end{dde}
+We have
+\[C=Q^{-1}BQ=Q^{-1}P^{-1}APQ=(PQ)^{-1}A(PQ)\]
+Thus,similarity is an equivalent relation on the set of $n\times n$ square matrices,which implies that $B,A$ are corresponded to the same linear transformation related to different ordered bases.
 \end{document}
 
 
