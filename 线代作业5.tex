@@ -1,0 +1,183 @@
+\documentclass{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{braket}
+\graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
+\title{线代作业5}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1):
+\[
+\begin{vmatrix}
+	1&2&3\\
+	0&1&4\\
+	5&6&0
+\end{vmatrix}
+=
+0+40+0-24-0-15=1\]
+(2):
+\[\begin{vmatrix}
+	1&2&3&4\\
+	0&1&0&2\\
+	1&0&1&1\\
+	2&3&0&1
+\end{vmatrix}
+=1\begin{vmatrix}
+	1&0&2\\
+	0&1&1\\
+	3&0&1
+\end{vmatrix}
++1\begin{vmatrix}
+	2&3&4\\
+	1&0&2\\
+	3&0&1
+\end{vmatrix}
+-2\begin{vmatrix}
+	2&3&4\\
+	1&0&2\\
+	0&1&1
+\end{vmatrix}
+=-5+15-6=16\]
+(3):
+\[
+\begin{vmatrix}
+	1&2&3&4\\
+	2&3&4&1\\
+	3&4&1&2\\
+	4&1&2&3
+\end{vmatrix}
+=40\begin{vmatrix}
+	1&1&0&3\\
+	2&1&0&-1\\
+	3&0&-1&0\\
+	1&0&0&0
+\end{vmatrix}
+=-40\begin{vmatrix}
+	1&0&3\\
+	1&0&-1\\
+	0&-1&0
+\end{vmatrix}
+=160\]
+2.\\
+(1):\\
+\[\begin{vmatrix}
+a&b&\cdots&0\\
+0&a&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+b&0&\cdots&a
+\end{vmatrix}
+=a\begin{vmatrix}
+	a&b&\cdots&0\\
+	0&a&\cdots&0\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&0&\cdots&a
+\end{vmatrix}+(-1)^{1+n}b\begin{vmatrix}
+b&0&\cdots&0\\
+a&b&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&b
+\end{vmatrix}
+=a^n+(-1)^{1+n}b^n\]
+(2):\\
+用归纳法。做归纳假设：
+\[\det A_n=a_n+a_{n-1}x+\dots+a_1x^{n-1}+x^n\]
+对于$n=1$显然成立。设对于$n=k-1$成立。对于$n=k$我们有
+\[\det A_k=a_k(-1)^{n+1}\begin{vmatrix}
+-1&0&\cdots&0\\
+x&-1&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&-1
+\end{vmatrix}+x\det A_{k-1}
+=a_k+a_{k-1}x+\dots+a_1x^{k-1}+x^{k}\]
+由数学归纳法知假设成立。
+\[\therefore\begin{vmatrix}
+	x&-1&\cdots&0\\
+	0&x&\cdots&0\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&0&\cdots&-1\\
+	a_n&a_{n-1}&\cdots&x+a_1
+\end{vmatrix}=a_n+a_{n-1}x+\dots+a_1x^{n-1}+x^n\]
+3.\\
+(a):\\
+对第$k$行乘一个数$c$
+\[P_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } i\neq k\\
+	c\delta_{ij}&\text{if } i=k
+\end{cases}\]
+\[\det P=c\]
+第$k$行和第$k'$行交换
+\[P_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } i\neq k,k'\\
+	\delta_{k'j}&\text{if } i=k\\
+	\delta_{kj}&\text{if }i=k'
+\end{cases}\]
+\[\det P=-1\]
+第$k$行乘$c$加到第$k'$行
+\[P_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } i\neq k\\
+	c\delta_{kj}+\delta_{ij}&\text{if } i=k'
+\end{cases}\]
+\[\det P=1\]
+以上是显然的。\\
+(b):\\
+对第$k$列乘一个数$c$
+\[Q_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } j\neq k\\
+	c\delta_{ij}&\text{if } j=k
+\end{cases}\]
+\[\det Q=c\]
+第$k$列和第$k'$列交换
+\[Q_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } j\neq k,k'\\
+	\delta_{ik'}&\text{if } j=k\\
+	\delta_{ik}&\text{if }j=k'
+\end{cases}\]
+\[\det Q=-1\]
+第$k$列乘$c$加到第$k'$列
+\[Q_{ij}=\begin{cases}
+	\delta_{ij}&\text{if } j\neq k\\
+	c\delta_{ik}+\delta_{ik'}&\text{if } j=k'
+\end{cases}\]
+\[\det Q=1\]
+以上是显然的。\\
+4.\\
+\[|A|=\begin{vmatrix}
+	B&C\\
+	0&D
+\end{vmatrix}
+=\sum\limits_\sigma sgn(\sigma)a_{1\sigma(1)}a_{2\sigma(2)}\dots a_{n\sigma(n)}\]
+\[\because i>k,a_{ij}=\begin{cases}
+	0&\text{if } j\le n-k\\
+	d_{(i-k)j}&\text{if }j>n-k
+\end{cases}\]
+\[\therefore\sigma(k+1),\sigma(k+2),\dots,\sigma(n)\notin 1,2,\dots,k\rightarrow\sigma(1),\sigma(2),\dots,\sigma(k)\in1,2,\dots,k\]
+\[\therefore\sum\limits_\sigma sgn(\sigma)a_{1\sigma(1)}a_{2\sigma(2)}\dots a_{n\sigma(n)}=\sum\limits_\sigma sgn(\sigma)b_{1\sigma'(1)}b_{2\sigma'(2)}\dots b_{k\sigma'(k)}d_{k+1\sigma''(k+1)}d_{k+2\sigma''(k+2)}\dots d_{n\sigma''(n)}\]
+\[\because\sigma=\{\sigma',\sigma''\},sgn(\sigma)=sgn(\sigma')sgn(\sigma'')\]
+\[\therefore|A|=\begin{vmatrix}
+	B&C\\
+	0&D
+\end{vmatrix}
+=\sum\limits_{\sigma',\sigma''} sgn(\sigma')b_{1\sigma'(1)}b_{2\sigma'(2)}\dots b_{k\sigma'(k)}sgn(\sigma')d_{k+1\sigma''(k+1)}d_{k+2\sigma''(k+2)}\dots d_{n\sigma''(n)}
+=|B||D|\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
