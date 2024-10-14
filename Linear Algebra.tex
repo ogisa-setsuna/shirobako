@@ -371,7 +371,7 @@ For convenience,we confined ourselves to finite-dimensional vector spaces.We wil
 	Hence they are linearly independent.We have finished the proof.
 \end{proof}
 We have seen the rank in the previous section.We combine them by the theorem below. 
-\begin{thm}
+\begin{thm}\label{matrixrepthm}
 	A linear transformation is determined uniquely by its action on an ordered basis of $V$,which is connected to a unique matrix when an ordered basis of $W$ is chosen.
 \end{thm}
 \begin{proof}
@@ -396,10 +396,10 @@ Because the matrices representation of linear transformations,we can define the 
 	$T$ is non-singular if and only if T carries each linearly independent subset of $W$ onto a linearly independent subset of $W$. 
 \end{thm}
 The proof is one-step.
-\begin{thm}
+\begin{thm}\label{invertiblelineartransformation}
 	Let $\dim V=\dim W$.$T$ is invertible if and only if $T$ is non-singular or $T$ is onto.
 \end{thm}
-Use theorem \ref{dimthm} and the proof is done.
+Use Theorem \ref{dimthm} and the proof is done.
 \begin{dde}
 	$V$ is isomorphic to $W$ if there exists an one-to-one linear transformation $T$ of $V$ onto $W$,which is called isomorphism.
 \end{dde}
@@ -423,12 +423,12 @@ If you look it carefully enough,you may find some difference compared to the pre
 \begin{thm}
 	Let $\{\alpha_i\},\{\alpha'_i\}$ be ordered bases of $V$,$T\in\mathcal{L}(V)$.$A,B$ is the matrices of $T$ related to them respectively.Then we have
 	\[B=P^{-1}AP\]
-	where $X=PX',\alpha_i=C\alpha'_i$
+	where $X=PX',\alpha'_i=C\alpha_i=\sum\limits_{i=1}^nP_{ji}\alpha_j$
 \end{thm}
 \begin{proof}
 	\[AX=Y\]
 	\[P^{-1}APP^{-1}X=P^{-1}Y\]
-	\[P^{-1}AP^{-1}X'=BX'=Y'\]
+	\[P^{-1}APX'=BX'=Y'\]
 \end{proof}
 \begin{dde}
 	Let $A,B$ be square matrices.$B$ is \textbf{similar} to $A$ if there exists an invertible matrix $P$ such that
@@ -437,8 +437,324 @@ If you look it carefully enough,you may find some difference compared to the pre
 We have
 \[C=Q^{-1}BQ=Q^{-1}P^{-1}APQ=(PQ)^{-1}A(PQ)\]
 Thus,similarity is an equivalent relation on the set of $n\times n$ square matrices,which implies that $B,A$ are corresponded to the same linear transformation related to different ordered bases.
+\subsection{Linear Functionals and Forms}
+A linear transformation $f$ from $V$ to $F$ is called \textbf{linear functional}.We use $V^*$ to denote $\mathcal{L(V,F)}$.Obviously we have
+\[\dim V^*=\dim V\]
+If $\{\alpha_i\}$ is an ordered basis of $V$,we have a matrix representation of $f$
+\[\begin{bmatrix}
+	a_1&a_2&\dots&a_n
+\end{bmatrix}\]
+where $a_i=f(\alpha_i)$.\\
+\indent A natural basis of $ V^*$ comes after,if we define $f_i(\alpha_j)=\delta_{ij}$,which is guaranteed by Theorem \ref{matrixrepthm}.Then we have the theorem below.
+\begin{thm}
+	If $V$ is a finite-dimensional vector space and has an ordered basis $\{\alpha_i\}$,then there is a unique \textbf{dual basis} $\{f_i\}$ for $V^*$ such that $f_i(\alpha_j)=\delta_{ij}$.For each linear functional $f$ on $V$ we have
+	\[f=\sum\limits_{i=1}^nf(\alpha_i)f_i\]
+	and for each vector $\alpha$ in $V$ we have
+	\[\alpha=\sum\limits_{i=1}^nf_i(\alpha)\alpha_i\]
+\end{thm}
+The proof is direct.
+\begin{dde}
+	If $V$ is a vector space over the field $F$ and $S$ is a subset of $V$,the \textbf{annihilator} of $S$ is the set $S^0$ of linear functionals $f$ on $V$ such that $f(\alpha)=0$ for every $\alpha$ in $S$.
+\end{dde}
+It's clear that $S^0$ is a subspace of $V^*$.
+\begin{thm}\label{dimfunc}
+	Let $V$ be a finite-dimensional vector space and let $W$ be a subspace of $V$,we have
+	\[\dim W+\dim W^0=\dim V\]
+\end{thm}
+\begin{proof}
+	Let $\{\alpha_i\},i=1,2,\dots,k$ be an ordered basis of $W$ and extend it to an ordered basis of $V$.A linear functional $f$ can be written as a linear combination of the dual basis related to $\{\alpha_i\}$
+	\[f=\sum\limits_{i=1}^nf(\alpha_i)f_i\]
+	For the functionals in $W^0$ we have
+	\[\forall \alpha \in W,f(\alpha)=0\rightarrow\sum\limits_{i=1}^kc_if(\alpha_i)\]
+	Because $c_i$ is arbitrary,we have
+	\[f(\alpha_i)=0,i=1,2,\dots,k\]
+	Therefore $\{f_i\},i=k+1,k+2,\dots,n$ is an ordered basis of $W^0$ and we have
+	\[\dim W+\dim W^0=\dim V\]
+\end{proof}
+In a vector space of dimension $n$, a subspace of dimension $n-1$ is called a \textbf{hyperspace}.Obviously a hyperspace is a null space of a linear functional.Use the theorem above we have
+\begin{coro}\label{hyperinter}
+	If $W$ is a $k$-dimensional subspace of an $n$-dimensional vector space $V$,then $W$ is the intersection of $n-k$ hyperspaces in $V$ 
+\end{coro}
+\begin{proof}
+	From the proof above we learn that $W$ is the intersection of null spaces of $f_i,i=k+1,k+2,\dots,n$,then we done the proof.  
+\end{proof}
+\begin{coro}\label{uniqueW}
+	If $W_1,W_2$ are subspaces of finite-dimensional vector space $V$,then $W_1=W_2$ if and only if $W_1^0=W_2^0$.
+\end{coro} 
+\begin{proof}
+	Use Corollary \ref{hyperinter}
+\end{proof}
+Another proof of Corollary \ref{hyperinter} is that consider $f(\alpha)=0$ as a system of linear equations,the solution space is $n-k$-dimensional with rank of $k$.\\
+You may ask if there exits a basis of $V$ dual to a basis of $V^*$.The answer is to consider $V^{**}$.Let $L_\alpha$ be a linear functional on $V^*$ such that
+\[L_\alpha(f)=f(\alpha),\alpha\in V\]
+It seems to be a connection to the vector space $V$.
+\begin{thm}
+	Let $V$ be a finite-dimensional vector space over the field $F$.For each vector $\alpha$ in $V$ define
+	\[L_\alpha=f(\alpha),f\in V^*\]
+	The mapping $\alpha\rightarrow L_\alpha$ is then an isomorphism of $V$ onto $V^{**}$
+\end{thm}
+\begin{proof}
+	It's easy to show that the mapping is a linear transformation and non-singular.Use Theorem \ref{invertiblelineartransformation}.
+\end{proof}
+\begin{coro}\label{DualDual}
+	Let $V$ be a finite-dimensional vector space over the field $F$.If $L$ is a linear functional on the dual space $V^*$ of $V$, then there is a unique vector $\alpha$ in $V$ such that 
+	\[L(f)=f(\alpha)\]
+	for every $f$ in $V^*$.
+\end{coro}
+\begin{coro}
+	Let $V$ be a finite-dimensional vector space over the field $F$.Each basis for $V^*$ is the dual of some basis for $V$. 
+\end{coro}
+\begin{proof}
+	Each basis for $V^*$ has a dual basis for $V^{**}$.Use Corollary \ref{DualDual},there exists a basis for $V$ such that
+	\[L_i(f_j)=f_j(\alpha_i)=\delta_{ij}\]
+	whose dual basis is exactly $\{f_i\}$.
+\end{proof}
+We usually identify $\alpha$ with $L_\alpha$ and say that $V$ is the dual space of $V^*$
+\begin{thm}
+	If $S$ is a subset of a finite-dimensional vector space $V$,then $(S^0)^0$ is the subspace spanned by $S$.
+\end{thm}
+\begin{proof}
+	Let $W$ be the subspace spanned by $S$.Clearly $W^0=S^0$.$W$ is uniquely determined by $W^0$ according to Corollary \ref{uniqueW}.You may notice that for $\alpha$ in $(S^0)^0$ we have
+	\[L_\alpha(f)=f(\alpha)=0\]
+	which means $(W^0)^0=W$,according to Theorem \ref{dimfunc}.
+\end{proof}
+As for infinite-dimensional vector space,we omitted the proof.\\
+\indent It's clear that our definition of hyperspace fails when $V$ is infinite-dimensional,so we need another definition.
+\begin{dde}
+	If $V$ is a vector space,a \textbf{hyperspace} in $V$ is a \textbf{maximal proper subspace} of $V$,which satisfies
+	\begin{enumerate}
+		\item $N$ is a proper subspace of $V$.
+		\item if $W$ is a subspace of $V$ which contains $N$,then either $W=N$ or $W=V$.
+	\end{enumerate}
+\end{dde}
+\begin{thm}
+	If $f$ is a non-zero linear functional on the vector space $V$,then the null space of $f$ is a hyperspace of in $V$.Conversely,every hyperspace in $V$ is the null space of a (not unique) nonzero linear functional on $V$.
+\end{thm}
+\begin{proof}
+	Clearly $N_f$ is a proper subspace of $V$.Let $W$ be a subspace of $V$ which contains $N_f$ and $W\neq N_f$.Choose the vector $\alpha\in W\setminus N_f$ and a vector $\beta$ in $V$ such that $f(\alpha),f(\beta)\neq0$,then we define
+	\[c=\frac{f(\beta)}{f(\alpha)}\]
+	let $\gamma=\beta-c\alpha$,we have
+	\[f(\gamma)=f(\beta)-cf(\alpha)=0\]
+	which means $\gamma\in N_f$.Therefore $\beta=\gamma+c\alpha\in W$,$W=V$.\\
+	Let $N$ be a hyperspace in $V$.Choose a vector $\alpha\in V\setminus N$,we have
+	\[\beta=\gamma+c\alpha,\gamma\in N,\beta\in V\]
+	The $\gamma$ and $\alpha$ is determined uniquely by $\beta$.If we have
+	\[\beta=\gamma'+c'\alpha\]
+	then
+	\[(c-c')\alpha=\gamma'-\gamma\]
+	If $c-c'\neq0$,then $\alpha\in N$.Hence $c=c',\gamma=\gamma'$.We can define $g(\beta)=c$,which is a linear functional on $V$,and then $N$ is the null space of $g$. 
+\end{proof}
+\begin{lem}
+	If $f,g$ are linear functionals on $V$,then $g=cf,c\in F$ if and only if $N_f\subseteq N_g$.
+\end{lem}
+\begin{proof}
+	The `only if' part is trivial.If $f=0$,then $g=0$.Thus we assume $f\neq0$.The null space $N_f$ is a hyperspace of $V$.Choose $\alpha\in V\setminus N_f$ and define
+	\[c=\frac{g(\alpha)}{f(\alpha)}\]
+	\[h=g-cf\]
+	If $\beta\in V$,similar to the proof above we have
+	\[h(\beta)=g(\gamma+c'\alpha)-cf(\gamma+c'\alpha)=c'(g(\alpha)-cf(\alpha))=0\]
+	Hence $g=cf$
+\end{proof}
+\begin{thm}
+	Let $g,f_1,f_2,\dots,f_r$ be linear functionals on a vector space $V$ with respective null space $N,N_1,N_2,\dots,N_r$.Then $g$ is a linear combination of $f_1,\dots,f_r$ if and only if $N_1\cap N_2\cap\cdots\cap N_r\subseteq N$.
+\end{thm}
+\begin{proof}
+	The `only if' part is trivial.Suppose the theorem holds for $r=k-1$.If we restrict $g,f_1,\dots,f_{k-1}$ on $N_k$ to be $g',f_1',\dots,f_{k-1}'$,it's clear that $N_i'=N_i\cap N_k,N'=N\cap N_k$,we have
+	\[N_1\cap\dots\cap N_k=N_1'\cap\dots\cap N_{k-1}'\subseteq N'\]
+	then use induction hypothesis
+	\[g'=\sum\limits_{i=1}^{k-1}c_if_i'\]
+	Now define $h$ such that
+	\[h=g-\sum\limits_{i=1}^{k-1}f_i\]
+	Then $h(\alpha)=0$ for every $\alpha\in N_k$.By the proceeding lemma we have $h=c_kf_k$,then
+	\[g=\sum\limits_{i=1}^kf_i\] 
+\end{proof}
+Before we turn to discuss multilinear forms,let's talk something about the transpose of a linear transformation.It's easy to define the transpose of a matrix
+\[A^T_{ij}=A_{ji}\]
+and obviously has the properties
+\begin{enumerate}
+	\item $(A^T)^T=A$
+	\item $(AB)^T=B^TA^T$
+\end{enumerate}
+\indent To introduce the transpose of a linear transformation,we need the help of dual space.
+\begin{thm}
+	Let $V,W$ be vector spaces over the field $F$.For each linear transformation $T$ from $V$ into $W$,there is a unique linear transformation $T^T$ from $W^*$ into $V^*$ such that
+	\[(T^Tg)\alpha=g(T\alpha)\]
+	for every $g$ in $W^*$ and $\alpha$ in $V$. 
+\end{thm}
+\begin{proof}
+	\[(T^T(cg_1+g_2))(\alpha)=(cg_1+g_2)(T\alpha)=cg_1(T\alpha)+g_2(T\alpha)\]
+	\[T^T(cg_1+g_2)=cT^Tg_1+T^Tg_2\]
+	The uniqueness is easy to prove.
+\end{proof}
+We call $T^T$ be the \textbf{transpose} of $T$.$T^T$ is also called the adjoint of $T$.
+\begin{thm}
+	Let $V,W$ be vector spaces over the field $F$ and let $T$ be a linear transformation from $V$ into $W$.The null space of $T^T$ is the annihilator of the range of $T$.If $V,W$ is finite-dimensional,then
+	\begin{enumerate}
+		\item[\romannumeral1] $rank(T^T)=rank(T)$
+		\item[\romannumeral2] the range of $T^T$ is the annihilator of the null space of $T$.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	Use the definition
+	\[(T^Tg)\alpha=g(T\alpha)\]
+	It's clear that the null space of $T^T$ is precisely the annihilator of the range of $T$.If $V,W$ are finite-dimensional,use Theorem \ref{dimthm} and Theorem \ref{dimfunc} we have
+	\[rank(T^T)=\dim W^*-nullity(T^T)\]
+	\[nullity(T^T)=\dim W-rank(T)\]
+	\[\dim W=\dim W^*\rightarrow rank(T^T)=rank(T)\] 
+	If $\alpha\in N_T$ then we have
+	\[(T^Tg)\alpha=g(T\alpha)=0\]
+	implies that the range of $T^T$ is a subset of the annihilator of $N_T$.We have
+	\[rank(T^T)=rank(T)=\dim V-nullity(T)=\dim N_T^0\]
+	Thus the range of $T^T$ is precisely the annihilator of the null space of $T$.
+\end{proof}
+We know the relation between matrices and linear transformations,thus we have
+\begin{thm}
+	Let $V,W$ be vector spaces over the field $F$ and let $T$ be a linear transformation from $V$ into $W$.Let $\{\alpha_i\},\{\beta_i\}$ be ordered bases for $V,W$ and let $\{f_i\},\{g_i\}$ be the dual bases of them.Let $A$ be the matrix of $T$ relative to $\{\alpha_i\},\{\beta_i\}$ and let $B$ be the matrix of $T^T$ relative to $\{f_i\},\{g_i\}$.We have
+	\[B^T=A\] 
+\end{thm}
+\begin{proof}
+	\[B_{ji}=(T^Tg_i)\alpha_j=g_i(T\alpha_j)=A_{ij}\]
+\end{proof}
+Use this we can prove a theorem which we have proven by a different method before.
+\begin{thm}
+	The raw rank is equal to the column rank.
+\end{thm}
+Let's turn to the topic.
+\begin{dde}
+	A \textbf{multilinear function} (tensor) is a function from $V^r=V\times V\times\cdots\times V$\footnote{You can define the natural addition and scalar multiplication on $V^r$ like $R^n$} into $F$,which satisfies
+	\[L(\alpha_1,\dots,c\alpha_i+\beta_i,\dots,\alpha_r)=cL(\alpha_1,\dots,\alpha_i,\dots,\alpha_r)+L(\alpha_1,\dots,\beta_i,\dots,\alpha_r)\]
+	for each $i$ and every $\alpha\in V$.We have the natural definition of addition and scalar multiplication
+	\[(L+M)(\alpha_1,\dots,\alpha_r)=L(\alpha_1,\dots,\alpha_r)+M(\alpha_1,\dots,\alpha_r)\]
+	\[(cL)(\alpha_1,\dots,\alpha_r)=cL(\alpha_1,\dots,\alpha_r)\]
+	Then the collection of all multilinear functions on $V$ is a vector space denoted by $\mathcal{M}^r(V)$. 
+\end{dde}
+We want to construct an ordered basis of $\mathcal{M}^r(V)$,we need introduce a concept.
+\begin{dde}
+	The tensor product of $L,M$ is a multilinear function on $V^{r+s}$ such that
+	\[L\otimes M(\alpha_1,\dots,\alpha_{r+s})=L(\alpha_1,\dots,\alpha_r)M(\alpha_{r+1},\dots,\alpha_{r+s})\]
+\end{dde}
+\begin{thm}
+	For $L\in\mathcal{M}^r(V),M\in\mathcal{M}^s(V)$,we have
+	\begin{enumerate}
+		\item $(cL_1+L_2)\otimes M=cL_1\otimes M+L_2\otimes M$
+		\item $L\otimes(cM_1+M_2)=cL\otimes M_1+L\otimes M_2$
+		\item $L\otimes(M\otimes N)=(L\otimes M)\otimes N$
+	\end{enumerate}
+\end{thm}
+\begin{thm}
+	Let $V$ be a finite-dimensional vector space and let $\{\alpha_i\}$ be an ordered basis for $V$.Let $\{f_i\}$ be the dual basis for $V^*$.Then
+	\[f_{j_1}\otimes f_{j_2}\otimes\dots\otimes f_{j_r},1\le j_1\le n,\dots,1\le j_r\le n\]
+	form a basis for $\mathcal{M}^r(V)$.
+\end{thm}
+\begin{proof}
+	\[L(\alpha)=\sum\limits_{j_1,j_2,\dots,j_r=1}^nA_{1j_1}A_{2j_2}\cdots A_{rj_r}L(\alpha_{j_1},\alpha_{j_2},\dots,\alpha_{j_r})\]
+	We shall prove
+	\[L=\sum\limits_{j_1,j_2,\dots,j_r=1}^nL(\alpha_{j_1},\alpha_{j_2},\dots,\alpha_{j_r})f_{j_1}\otimes f_{j_2}\otimes\dots\otimes f_{j_r}\]
+	which is apparently correct.The linearly independence is easy to prove.
+\end{proof}
+\begin{dde}
+	Let $L$ be a multilinear function on $V^r$.We say that $L$ is alternating if $L(\alpha_1,\dots,\alpha_r)=0$ whenever $\alpha_i=\alpha_j,|i-j|=1$.
+\end{dde}
+\begin{thm}
+	An alternating multilinear function has the properties:
+	\begin{enumerate}
+		\item $L(\alpha_1,\dots,\alpha_r)=0$ whenever $\alpha_i=\alpha_j,i\neq j$
+		\item $L(\alpha_1,\dots,\alpha_i,\dots,\alpha_j,\dots,\alpha_r)=-L(\alpha_1,\dots,\alpha_j,\dots,\alpha_i,\dots,\alpha_r)$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	Let $i<j$.If $j=i+1$,we have
+	\begin{align}
+		L(\alpha_1,\dots,\alpha_i+\alpha_j,\alpha_i+\alpha_j,\dots,\alpha_r)&=L(\alpha_1,\dots,\alpha_i,\alpha_i,\dots,\alpha_r)+L(\alpha_1,\dots,\alpha_i,\alpha_j,\dots,\alpha_r)\notag\\
+		&+L(\alpha_1,\dots,\alpha_j,\alpha_i,\dots,\alpha_r)+L(\alpha_1,\dots,\alpha_j,\alpha_j,\dots,\alpha_r)=0\notag
+	\end{align}
+	\[L(\alpha_1,\dots,\alpha_i,\alpha_j,\dots,\alpha_r)=-L(\alpha_1,\dots,\alpha_j,\alpha_i,\dots,\alpha_r)\]
+	If $j>i+1$,we need commute one-by-one.Suppose $k=j-i$,then we need commute $2k-1$ times.Thus we have
+	\begin{align}
+		L(\alpha_1,\dots,\alpha_i,\dots,\alpha_j,\dots,\alpha_r)&=(-1)^{2k-1}L(\alpha_1,\dots,\alpha_j,\dots,\alpha_i,\dots,\alpha_r)\notag\\
+		&=-L(\alpha_1,\dots,\alpha_j,\dots,\alpha_i,\dots,\alpha_r)\notag
+	\end{align}
+	If $\alpha_i=\alpha_j,i\neq j$,we commute to make them adjacent,then we have \[L(A)=-L(B)=0\]
+\end{proof}
+\begin{dde}
+	For an ordered $n$-tuple $a_1a_2\cdots a_n$,each pair of number forms an ordered pair.Let $j=i+1$,if $a_i>a_i$,then we call this pair an \textbf{inversion}.The number of all inversion is called the \textbf{inversion number} of the $n$-tuple.
+\end{dde}
+\begin{dde}
+	A permutation is called an \textbf{odd permutation} if its inversion number is odd,and is called an \textbf{even permutation} if its inversion number is even.
+\end{dde}
+\begin{thm}
+	Transposition change the parity of a permutation.
+\end{thm}
+The proof is easy so we omitted it.
+\begin{thm}
+	A permutation is a product of transpositions.
+\end{thm}
+\begin{proof}
+	We can use transposition to change a permutation to $123\cdots n$,and then the inverse is also a product of transpositions. 
+\end{proof}
+Thus,The parity of the number of transpositions you need to change a permutation to $123\cdots n$ is unique,because the parity of a permutation is unique.Therefore we can define the signal of permutations.
+\begin{dde}
+	The signal of a permutation is $1$,if it's an even permutation,and is $-1$,if it's an odd permutation.
+\end{dde}
+This also tells us that $L(\alpha_{\sigma(1)},\alpha_{\sigma(2)},\dots,\alpha_{\sigma(r)})=sgn(\sigma)L(\alpha_1,\dots,\alpha_r)$,and the definition about alternating is legitimate because of the uniqueness of the parity of the number of transpositions the permutation has.\\
+\begin{dde}
+	A multilinear function $L$ on $V^r$ is called a linear $r$-form if it is alternating.
+\end{dde}
+The collection of all $r$-forms is obviously a subspace of $\mathcal{M}^r(V)$,we denote it by $\bigwedge^r(V)$.
+\begin{thm}
+	If $L$ is a non-zero $r$-form,then $r\le n$.The dimension of $\bigwedge^r(V),1\le r\le n$ is $\dbinom{n}{r}$.
+\end{thm}
+\begin{proof}
+	There exist $\dbinom{n}{r}$ $r$-shuffle,which is a $r$-tuple $j_1j_2\cdots j_r$ with $j_1<j_2<\cdots<j_r$.For the coordinate of $f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}$\footnote{We only consider permutations because the alternating property},we have
+	\[L(\alpha_{j_{\sigma(1)}},\dots,\alpha_{j_{\sigma(r)}})=sgn(\sigma)L(\alpha_{j_1},\dots,\alpha_{j_r})\]
+	and therefore we have
+	\[L=\sum\limits_{shuffles-J}L(\alpha_{j_1},\dots,\alpha_{j_r})D_J\]
+	\[D_J=\sum\limits_\sigma f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\]
+	$D_J$ are obviously linearly independent,hence forms a basis of $\bigwedge^r(V)$.We have
+	\[L=\sum\limits_Jc_JD_J\]
+\end{proof}
+\begin{dde}
+	$\pi_r$ is a linear transformation from $\mathcal{M}^r(V)$ into $\bigwedge^r(V)$ such that
+	\[\pi_r(L)=\sum\limits_\sigma sgn(\sigma)L_\sigma\]
+	\[L_\sigma(\alpha_1,\dots,\alpha_r)=L(\alpha_{\sigma(1)},\dots,\alpha_{\sigma(r)})\]
+	If $L\in\bigwedge^r(V)$,$\pi_r(L)=r!L$
+\end{dde}
+We can write $D_J$ as $\pi_r(f_{j_1}\otimes\cdots\otimes f_{j_r})$\footnote{You may notice that the existence of alternating multilinear functions is proven when we construct the $D_J$}.The proof is easy.
+\begin{coro}
+	If $V$ is a $n$-dimensional vector space,then $\bigwedge^n(V)$ is a vector space with dimension $1$.If $T$ is a linear transformation on $V$,then there exists a unique $c$ such that
+	\[L(T\alpha_1,\dots,T\alpha_n)=cL(\alpha_1,\dots,\alpha_n)\]
+	for all $L\in\bigwedge^n(V)$
+\end{coro}
+\begin{proof}
+	Apparently,define $L_T(\alpha_1,\dots,\alpha_n)=L(T\alpha_1,\dots,T\alpha_n)$ and $L_T$ is a $n$-form.For a basis $M$,we have $L=aM$ and $M_T=cM$,then
+	\[L_T=(aM)_T=aM_T=c(aM)=cL\]
+	You may notice that $D_J$ here is just $\pi_n(f_{1}\otimes\cdots\otimes f_{n})$,and we have
+	\[c=\sum\limits_\sigma sgn(\sigma)A_{1\sigma(1)}\cdots A_{n\sigma(n)}\]
+	where $A$ is the matrix of $T$ related to the basis $\{\alpha_i\}$.We call $c$ the \textbf{determinant} of the transformation $T$ and denote it as $\det T$.It's clear that the matrix determinant comes after,and is independent of the basis.
+\end{proof}
+\begin{thm}
+	The determinant has some important properties:
+	\begin{enumerate}
+		\item $\det AB=\det A\det B$
+		\item The determinant of upper-triangle matrix is the product of diagonal elements $a_{11}\cdots a_{nn}$
+		\item $\det A^T=\det A$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	The last two statements are easy.We prove the first.
+	\begin{align}
+		\det AB&=\sum\limits_{\sigma}sgn(\sigma)(\sum\limits_{k_1=1}^na_{1k_1}b_{k_1\sigma(1)})\cdots(\sum\limits_{k_n=1}^na_{nk_n}b_{k_n\sigma(n)})\notag\\
+		&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag
+	\end{align}
+	Every term has $k_i=k_j$ cancels because of $sgn(\sigma)$,thus $k_1,k_2,\dots,k_n=\tau(1),\dots,\tau(n)$.
+	\begin{align}
+		\det AB&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag\\
+		&=\sum\limits_{\sigma}\sum\limits_{\tau}sgn(\sigma)a_{1\tau(1)}\cdots a_{n\tau(n)}b_{\sigma^{-1}\tau(1)1}\cdots b_{\sigma^{-1}\tau(n)n}\notag\\
+		&=\sum\limits_{\sigma}\sum\limits_{\tau}sgn(\sigma^{-1}\tau)sgn(\tau)a_{1\tau(1)}\cdots a_{n\tau(n)}b_{\sigma^{-1}\tau(1)1}\cdots b_{\sigma^{-1}\tau(n)n}\notag\\
+		&=\det A\det B\notag
+	\end{align}
+\end{proof}
 \end{document}
-
 
 
 
