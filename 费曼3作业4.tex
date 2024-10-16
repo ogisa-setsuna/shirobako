@@ -1,0 +1,124 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\title{费曼3作业4}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+74.1\\
+(a)
+\[V=+\mu B,0,-\mu B\]
+\[\Delta(\frac{p_0^2}{2M})\approx\frac{p_0\Delta p_0}{M}=-\Delta V\]
+\[\Delta\phi=\Delta p_0L=-\frac{ML}{p_0}\Delta V=p_y\Delta z\]
+\[\therefore \delta\theta\approx\frac{p_y}{p_0}=-\frac{ML}{p_0^2}\frac{\Delta V}{\Delta z}\approx-\frac{ML}{p_0^2}\frac{\partial V}{\partial z}\]
+For different states,we have
+\[\delta\theta=-\frac{ML}{p_0^2}\frac{\mu\partial B}{\partial z},0,+\frac{ML}{p_0^2}\frac{\mu\partial B}{\partial z}\]
+(b)
+\begin{align}
+	\ket{+x(t)}&=\braket{+z|+x}\ket{+z(t)}+\braket{0z|+x}\ket{0z(t)}+\braket{-z|+x}\ket{-z(t)}\notag\\
+	&=\frac{1}{2}e^{-i\frac{\mu B}{\hbar}t}\ket{+z}-\frac{1}{\sqrt{2}}\ket{0z}+\frac{1}{2}e^{i\frac{\mu B}{\hbar}t}\ket{-z}\notag
+\end{align}
+\[\ket{0x(t)}=\frac{1}{\sqrt{2}}e^{-i\frac{\mu B}{\hbar}t}\ket{+z}-\frac{1}{\sqrt{2}}e^{i\frac{\mu B}{\hbar}t}\ket{-z}\]
+\[\ket{-x(t)}=\frac{1}{2}e^{-i\frac{\mu B}{\hbar}t}\ket{+z}+\frac{1}{\sqrt{2}}\ket{0z}+\frac{1}{2}e^{i\frac{\mu B}{\hbar}t}\ket{-z}\]
+\begin{align}
+	\braket{+x|+x(t)}&=\braket{+x|+z(t)}\braket{+z|+x}+\braket{+x|0z(t)}\braket{0z|+x}+\braket{+x|-z(t)}\braket{-z|+x}\notag\\
+	&=\frac{1}{2}(\cos(\frac{\mu B}{\hbar}t)+1)\notag
+\end{align}
+\[\braket{0x|0x(t)}=\cos(\frac{\mu B}{\hbar}t)\]
+\[\braket{-x|-x(t)}=\frac{1}{2}(\cos(\frac{\mu B}{\hbar}t)+1)\]
+(c)
+Method 1:Measure the deflection of a beam of particles that passed through an inhomogeneous magnetic field,then we have
+\[\mu=\frac{p_0^2}{ML\frac{\partial B}{\partial z}}\delta\theta\]
+Method 2:Measure the oscillation angular frequency of the probability of detecting a particle that has a spin on $+x$ direction,which is put in a uniform magnetic field with $+z$ direction.Then we have
+\[\mu=\frac{\hbar}{B}\omega\]
+73.3\\
+(a)
+\begin{align*}
+	N&=N_0|\braket{+U|+T}\braket{+T|-S}+\braket{+U|-T}\braket{-T|-S}|^2\\
+	&=N_0|\braket{+U|-S}|^2
+\end{align*}
+(b)
+\[\begin{bmatrix}
+	0&1\\
+	-1&0
+\end{bmatrix}
+\begin{bmatrix}
+	0\\
+	1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	1\\
+	0
+\end{bmatrix}\]
+\[\therefore\braket{+T|-S}=1,\braket{-T|-S}=0\]
+(c)
+\[\begin{bmatrix}
+	C_1'\\
+	C_2'
+\end{bmatrix}
+=R_y(-\frac{\pi}{2})R_z(\theta)R_y(\frac{\pi}{2})\begin{bmatrix}
+	C_1\\
+	C_2
+\end{bmatrix}
+=\begin{bmatrix}
+	\cos\frac{\theta}{2}&i\sin\frac{\theta}{2}\\
+	i\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+\end{bmatrix}\begin{bmatrix}
+C_1\\
+C_2
+\end{bmatrix}\]
+\[\therefore\braket{+U|-S}=i\sin\frac{\theta}{2}\]
+(d)
+\[\theta=0,\braket{+U|-S}=0\]
+\[\theta=\pi,\braket{+U|-S}=i\]
+(e)
+Because $U$ need a rotation along $z$-axis to become $T$.
+\[\begin{bmatrix}
+	-i&0\\
+	0&i
+\end{bmatrix}\begin{bmatrix}
+	0&i\\
+	i&0
+\end{bmatrix}=\begin{bmatrix}
+0&1\\
+-1&0
+\end{bmatrix}\]
+73.6\\
+(a)
+\[P_{+z}=|\sqrt{1+\frac{v}{c}}\sin\frac{\theta}{2}|^2=(1+\frac{v}{c})\sin^2\frac{\theta}{2}\]
+\[P_{-z}=(1-\frac{v}{c})\cos^2\frac{\theta}{2}\]
+(b)
+\begin{align*}
+	P_{+x}&=|\frac{1}{\sqrt{2}}\sqrt{1+\frac{v}{c}}\sin\frac{\theta}{2}+\frac{1}{\sqrt{2}}\sqrt{1-\frac{v}{c}}\cos\frac{\theta}{2}|^2\\
+	&=\frac{1}{2}(1-\frac{v}{c}\cos\theta+\sqrt{1-\frac{v^2}{c^2}}\sin\theta)
+\end{align*}
+\[P_{-x}=\frac{1}{2}(1-\frac{v}{c}\cos\theta-\sqrt{1-\frac{v^2}{c^2}}\sin\theta)\]
+(c)
+\begin{align*}
+	P_{+y}&=|\frac{1}{\sqrt{2}}\sqrt{1+\frac{v}{c}}\sin\frac{\theta}{2}-i\frac{1}{\sqrt{2}}\sqrt{1-\frac{v}{c}}\cos\frac{\theta}{2}|^2\\
+	&=\frac{1}{2}(1-\frac{v}{c}\cos\theta)
+\end{align*}
+\[P_{-y}=\frac{1}{2}(1-\frac{v}{c}\cos\theta)\]
+(d)
+\[P_{+z}=\int_{0}^{\pi}\frac{1}{2}\sin\theta(1+\frac{v}{c})\sin^2\frac{\theta}{2}d\theta=\frac{1}{2}(1+\frac{v}{c})\]
+\[P_{-z}=\frac{1}{2}(1-\frac{v}{c})\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
