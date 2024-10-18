@@ -1,0 +1,210 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{线代作业5}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)
+\[\begin{vmatrix}
+	1&2&3&4\\
+	0&1&0&2\\
+	1&0&1&1\\
+	2&3&0&1
+\end{vmatrix}
+=\begin{vmatrix}
+	1&0&2\\
+	0&1&1\\
+	3&0&1
+\end{vmatrix}+
+\begin{vmatrix}
+	2&3&4\\
+	1&0&2\\
+	3&0&1
+\end{vmatrix}
+-2\begin{vmatrix}
+	2&3&4\\
+	1&0&2\\
+	0&1&1
+\end{vmatrix}
+=16\]
+(2)
+\begin{align*}
+	\begin{vmatrix}
+		1&0&0&0&1\\
+		0&1&0&1&0\\
+		0&0&1&0&1\\
+		1&1&1&1&1\\
+		2&3&4&5&6
+	\end{vmatrix}
+	&=\begin{vmatrix}
+		1&0&1&0\\
+		0&1&0&1\\
+		1&1&1&1\\
+		3&4&5&6
+	\end{vmatrix}
+	+\begin{vmatrix}
+		0&1&0&1\\
+		0&0&1&0\\
+		1&1&1&1\\
+		2&3&4&5
+	\end{vmatrix}\\
+	&=\begin{vmatrix}
+		1&0&1\\
+		1&1&1\\
+		4&5&6
+	\end{vmatrix}+\begin{vmatrix}
+	0&1&1\\
+	1&1&1\\
+	3&4&6
+	\end{vmatrix}-\begin{vmatrix}
+	0&1&1\\
+	1&1&1\\
+	2&3&5
+	\end{vmatrix}=2
+\end{align*}
+2.\\
+\begin{align*}
+	&\begin{vmatrix}
+		1&1&0&0&\cdots&0\\
+		-1&1&1&0&\cdots&0\\
+		0&-1&1&1&\cdots&0\\
+		\vdots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&-1&1&1\\
+		0&0&\cdots&0&-1&1
+	\end{vmatrix}\\
+	&=\begin{vmatrix}
+		1&1&0&\cdots&0\\
+		-1&1&1&\cdots&0\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		0&\cdots&-1&1&1\\
+		0&\cdots&0&-1&1
+	\end{vmatrix}-\begin{vmatrix}
+	-1&1&0&\cdots&0\\
+	0&1&1&\cdots&0\\
+	\vdots&\vdots&\vdots&\ddots&\vdots\\
+	0&\cdots&-1&1&1\\
+	0&\cdots&0&-1&1
+	\end{vmatrix}\\
+	&=\begin{vmatrix}
+		1&1&0&\cdots&0\\
+		-1&1&1&\cdots&0\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		0&\cdots&-1&1&1\\
+		0&\cdots&0&-1&1
+	\end{vmatrix}+\begin{vmatrix}
+	1&1&\cdots&0\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&\cdots&1&1\\
+	0&\cdots&-1&1
+	\end{vmatrix}
+\end{align*}
+所以有
+\[F_n=F_{n-1}+F_{n-2}\]
+显然
+\[F_1=1,F_2=2\]
+3.\\
+\begin{align*}
+	\frac{d\det A}{dx}&=\sum\limits_{\sigma}sgn(\sigma)\frac{d}{dx}(a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)})\\
+	&=\sum\limits_{\sigma}sgn(\sigma)\sum\limits_{i=1}^n\frac{da_{i\sigma(i)}}{dx}a_{1\sigma(1)}\cdots\widehat{a_{i\sigma(i)}}\cdots a_{n\sigma(n)}\\
+	&=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\frac{da_{ij}}{dx}\sum\limits_{\sigma'}sgn(\sigma'(1)\cdots j\cdots\sigma'(n))a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+	&=\sum\limits_{i=1}^n\sum\limits_{j=1}^n(-1)^{i-1}\frac{da_{ij}}{dx}\sum\limits_{\sigma'}sgn(j\sigma')a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+	&=\sum\limits_{i=1}^n\sum\limits_{j=1}^n(-1)^{i+j}\frac{da_{ij}}{dx}\sum\limits_{\sigma'}sgn(\sigma')a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+	&=\sum\limits_{i=1}^n\sum\limits_{j=1}^n(-1)^{i+j}\frac{da_{ij}}{dx}A_{ij}
+\end{align*}
+4.\\
+(a)对于第一条式子，显然前$m\times m$个元素为$I_m$，我们有
+\[1\le i\le m,m+1\le j\le m+n,c_{ij}=\sum\limits_{k=1}^{m+n}\delta_{ik}a_{k(j-m)}=a_{i(j-m)}\]
+\[m+1\le i\le m+n,1\le j\le m,c_{ij}=\sum\limits_{k=1}^{m}-b_{(i-m)k}\delta_{kj}+\sum\limits_{k=m+1}^{m+n}\delta_{ik}b_{(k-m)j}=0\]
+\[m+1\le i\le m+n,m+1\le j\le m+n,c_{ij}=\sum\limits_{k=1}^{m}-b_{(i-m)k}a_{k(j-m)}+\sum\limits_{k=m+1}^{m+n}\delta_{ik}\delta_{kj}=\delta_{ij}-(BA)_{(i-m)(j-m)}\]
+所以
+\[\begin{bmatrix}
+	I_m&0\\
+	-B&I_n
+\end{bmatrix}
+\begin{bmatrix}
+	I_m&A\\
+	B&I_n
+\end{bmatrix}
+=\begin{bmatrix}
+	I_m&A\\
+	0&I_n-BA
+\end{bmatrix}\]
+对于第二条式子，后面$n\times n$也是显然的，我们有
+\[1\le i\le m,1\le j\le m,c_{ij}=\sum\limits_{k=1}^{m}\delta_{ik}\delta_{ij}+\sum\limits_{k=m+1}^{m+n}-a_{i(k-m)}b_{(k-m)j}=\delta_{ij}-(AB)_{ij}\]
+\[1\le i\le m,m+1\le j\le m+n,c_{ij}=\sum\limits_{k=1}^{m}\delta_{ik}a_{k(j-m)}+\sum\limits_{k=m+1}^{m+n}-a_{i(k-m)}\delta_{kj}=0\]
+\[m+1\le i\le m+n,1\le j\le m,c_{ij}=\sum\limits_{k=1}^{m+n}\delta_{ik}b_{(k-m)j}=b_{(i-m)j}\]
+所以
+\[\begin{bmatrix}
+	I_m&-A\\
+	0&I_n
+\end{bmatrix}
+\begin{bmatrix}
+	I_m&A\\
+	B&I_n
+\end{bmatrix}
+=\begin{bmatrix}
+	I_m-AB&0\\
+	B&I_n
+\end{bmatrix}\]
+(b)
+\begin{align*}
+	\det(I_m-AB)&=\det\begin{bmatrix}
+		I_m-AB&0\\
+		B&I_n
+	\end{bmatrix}\\
+	&=\det\begin{bmatrix}
+		I_m&A\\
+		B&I_n
+	\end{bmatrix}\\
+	&=\det\begin{bmatrix}
+		I_m&A\\
+		0&I_n-BA
+	\end{bmatrix}\\
+	&=\det(I_n-BA)
+\end{align*}
+(c)
+\begin{align*}
+	\begin{vmatrix}
+		1+a_1b_1&a_1b_2&\cdots&a_1b_n\\
+		a_2b_1&1+a_2b_2&\cdots&a_2b_n\\
+		\vdots&\vdots&\ddots&\vdots\\
+		a_nb_1&a_nb_2&\cdots&1+a_nb_n
+	\end{vmatrix}=\det(I_n-BA)
+\end{align*}
+其中
+\[B=\begin{bmatrix}
+	b_1\\
+	b_2\\
+	\vdots\\
+	b_n
+\end{bmatrix},A=\begin{bmatrix}
+-a_1&-a_2&\cdots&-a_n
+\end{bmatrix}\]
+所以
+\begin{align*}
+	\begin{vmatrix}
+		1+a_1b_1&a_1b_2&\cdots&a_1b_n\\
+		a_2b_1&1+a_2b_2&\cdots&a_2b_n\\
+		\vdots&\vdots&\ddots&\vdots\\
+		a_nb_1&a_nb_2&\cdots&1+a_nb_n
+	\end{vmatrix}&=\det(I_n-BA)\\
+	&=\det(1-AB)\\
+	&=1+a_1b_1+a_2b_2+\cdots+a_nb_n
+\end{align*}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
