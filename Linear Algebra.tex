@@ -709,7 +709,7 @@ The collection of all $r$-forms is obviously a subspace of $\mathcal{M}^r(V)$,we
 	\[L(\alpha_{j_{\sigma(1)}},\dots,\alpha_{j_{\sigma(r)}})=sgn(\sigma)L(\alpha_{j_1},\dots,\alpha_{j_r})\]
 	and therefore we have
 	\[L=\sum\limits_{shuffles-J}L(\alpha_{j_1},\dots,\alpha_{j_r})D_J\]
-	\[D_J=\sum\limits_\sigma f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\]
+	\[D_J=\sum\limits_\sigma sgn(\sigma)f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\]
 	$D_J$ are obviously linearly independent,hence forms a basis of $\bigwedge^r(V)$.We have
 	\[L=\sum\limits_Jc_JD_J\]
 \end{proof}
@@ -729,7 +729,7 @@ We can write $D_J$ as $\pi_r(f_{j_1}\otimes\cdots\otimes f_{j_r})$\footnote{You 
 	Apparently,define $L_T(\alpha_1,\dots,\alpha_n)=L(T\alpha_1,\dots,T\alpha_n)$ and $L_T$ is a $n$-form.For a basis $M$,we have $L=aM$ and $M_T=cM$,then
 	\[L_T=(aM)_T=aM_T=c(aM)=cL\]
 	You may notice that $D_J$ here is just $\pi_n(f_{1}\otimes\cdots\otimes f_{n})$,and we have
-	\[c=\sum\limits_\sigma sgn(\sigma)A_{1\sigma(1)}\cdots A_{n\sigma(n)}\]
+	\[c=\sum\limits_\sigma sgn(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}\]
 	where $A$ is the matrix of $T$ related to the basis $\{\alpha_i\}$.We call $c$ the \textbf{determinant} of the transformation $T$ and denote it as $\det T$.It's clear that the matrix determinant comes after,and is independent of the basis.
 \end{proof}
 \begin{thm}
@@ -744,16 +744,129 @@ We can write $D_J$ as $\pi_r(f_{j_1}\otimes\cdots\otimes f_{j_r})$\footnote{You 
 	The last two statements are easy.We prove the first.
 	\begin{align}
 		\det AB&=\sum\limits_{\sigma}sgn(\sigma)(\sum\limits_{k_1=1}^na_{1k_1}b_{k_1\sigma(1)})\cdots(\sum\limits_{k_n=1}^na_{nk_n}b_{k_n\sigma(n)})\notag\\
-		&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag
+		&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\cdots\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag
 	\end{align}
 	Every term has $k_i=k_j$ cancels because of $sgn(\sigma)$,thus $k_1,k_2,\dots,k_n=\tau(1),\dots,\tau(n)$.
 	\begin{align}
-		\det AB&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag\\
+		\det AB&=\sum\limits_{\sigma}\sum\limits_{k_1=1}^n\cdots\sum\limits_{k_n=1}^nsgn(\sigma)a_{1k_1}\cdots a_{nk_n}b_{k_1\sigma(1)}\cdots b_{k_n\sigma(n)}\notag\\
 		&=\sum\limits_{\sigma}\sum\limits_{\tau}sgn(\sigma)a_{1\tau(1)}\cdots a_{n\tau(n)}b_{\sigma^{-1}\tau(1)1}\cdots b_{\sigma^{-1}\tau(n)n}\notag\\
 		&=\sum\limits_{\sigma}\sum\limits_{\tau}sgn(\sigma^{-1}\tau)sgn(\tau)a_{1\tau(1)}\cdots a_{n\tau(n)}b_{\sigma^{-1}\tau(1)1}\cdots b_{\sigma^{-1}\tau(n)n}\notag\\
 		&=\det A\det B\notag
 	\end{align}
 \end{proof}
+\begin{thm}
+	Laplace Expansion
+	\[\det A=\sum\limits_{j=1}^n(-1)^{i+j}a_{ij}\det A(i|j)=\sum\limits_{i=1}^n(-1)^{i+j}a_{ij}\det A(i|j)\]
+	where $(-1)^{i+j}\det A(i|j)$ is usually called the $i,j$ \textbf{cofactor} of $A$.If we set
+	\[C_{ij}=(-1)^{i+j}\det A (i|j)\]
+	then we have
+	\[\det A=\sum\limits_{j=1}^na_{ij}C_{ij}=\sum\limits_{i=1}^na_{ij}C_{ij}\]
+	where the cofactor $C_{ij}$ is $(-1)^{i+j}$ times the determinant of the $(n-1)\times(n-1)$ matrix obtained by deleting the $i$th row and $j$th column of $A$.\\
+	we also have
+	\[\sum\limits_{j=1}a_{ij}C_{kj}=\delta_{ik}\det A\]  
+	\[\sum\limits_{i=1}a_{ij}C_{ik}=\delta_{jk}\det A\]
+	If we define the classical adjoint $adj\,A$ of $A$ such that
+	\[(adj\,A)_{ij}=C_{ji}\]
+	then we have
+	\[(adj\,A)A=A(adj\,A)=(\det A)I\]
+	and an explicit expression of $A^{-1}$
+	\[A^{-1}=\frac{1}{\det A}adj\,A\]
+\end{thm}
+\begin{proof}
+	\begin{align*}
+		\det A&=\sum\limits_{\sigma}sgn(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}\\
+		&=\sum\limits_{j=1}^na_{ij}\sum\limits_{\sigma'}sgn(\sigma'(1)\cdots j\cdots\sigma'(n))a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+		&=\sum\limits_{j=1}^n(-1)^{i-1}a_{ij}\sum\limits_{\sigma'}sgn(j\sigma'(1)\cdots\sigma'(n))a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+		&=\sum\limits_{j=1}^n(-1)^{i-1+j-1}a_{ij}\sum\limits_{\sigma'}sgn(\sigma')a_{1\sigma'(1)}\cdots\widehat{a_{ij}}\cdots a_{n\sigma'(n)}\\
+		&=\sum\limits_{j=1}^n(-1)^{i+j}a_{ij}\det A(i|j)
+	\end{align*}
+	The second equation can be proven similarly.If we expand the matrix by different raw or column,it's just the same expansion of a matrix with two same raws or columns,and the determinant of it is $0$. 
+\end{proof}
+A simpler proof will use the concept we introduce below.
+\begin{dde}
+	We call ``$\wedge$" wedge product,and write $D_J$ as $f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}$,which implies that
+	\[f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}=\sum\limits_{\sigma}sgn(\sigma)f_{j_{\sigma(1)}}\otimes f_{j_{\sigma(2)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\] 
+\end{dde}
+Recall the properties of tensor product,we want the ``wedge product" to have similar properties,namely
+\[(f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r})\wedge(f_{k_1}\wedge f_{k_2}\wedge\cdots\wedge f_{k_s})=f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}\wedge f_{k_1}\wedge f_{k_2}\wedge\cdots\wedge f_{k_s}\]
+To reach this,we first expand the RHS:
+\begin{align*}
+	&f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}\wedge f_{k_1}\wedge f_{k_2}\wedge\cdots\wedge f_{k_s}\\
+	&=\sum\limits_{\sigma}sgn(\sigma)f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\otimes f_{j_\sigma(r+1)}\otimes\cdots\otimes f_{j_{\sigma(r+s)}}\footnotemark[8]
+\end{align*}
+\footnotetext[8]{For convenience,we denote $k_1,\dots,k_s$ by $j_{r+1},\dots,j_{r+s}$}
+Let's divide $\sigma$ into two situation:
+\begin{enumerate}
+	\item $\sigma=(\sigma_1,\sigma_2)$,where $\sigma_1,\sigma_2$ are permutations of $1,\dots,r$ and $r+1,\dots,r+s$ respectively.
+	\item $\sigma$ can't be presented by a product of two permutations of $1,\dots,r$ and $r+1,\dots,r+s$.
+\end{enumerate}
+For the first situation,we have
+\begin{align*}
+	&\sum\limits_{some\;\sigma}sgn(\sigma)f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\otimes f_{j_{\sigma(r+1)}}\otimes\cdots\otimes f_{j_{\sigma(r+s)}}\\
+	&=\sum\limits_{some\;\sigma}sgn(\sigma_1)sgn(\sigma_2)f_{j_{\sigma_1(1)}}\otimes\cdots\otimes f_{j_{\sigma_1(r)}}\otimes f_{j_{\sigma_2(r+1)}}\otimes\cdots\otimes f_{j_{\sigma_2(r+s)}}\\
+	&=f_{j_1}\wedge\cdots\wedge f_{j_r}\otimes f_{k_1}\wedge\cdots\wedge f_{k_s}
+\end{align*}
+You may notice that the second situation is just the first situation with a combination of $1,2,\dots,r+s$.Thus we can write
+\begin{align*}
+	&\sum\limits_{\sigma}sgn(\sigma)f_{j_{\sigma(1)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\otimes f_{j_{\sigma(r+1)}}\otimes\cdots\otimes f_{j_{\sigma(r+s)}}\\
+	&=\sum\limits_{shuffles-J_1,J_2}f_{t_1}\wedge\cdots\wedge f_{t_r}\otimes f_{u_1}\wedge\cdots\wedge f_{u_s}
+\end{align*} 
+where $t_1,\dots,t_r,u_1,\dots,u_s$ are shuffles of $j_1,\dots,j_r,k_1,\dots,k_s$ respectively.\\
+Like the definition of tensor product,we can define wedge product as below:
+\begin{dde}
+	If $L\in\bigwedge^r(V),M\in\bigwedge^s(V)$,then the wedge product of $L,M$ is
+	\begin{align*}
+		L\wedge M(\alpha_1,\dots,\alpha_{r+s})&=\sum\limits_{shuffles-J_1,J_2}L(\alpha_{j_1},\dots,\alpha_{j_r})M(\alpha_{k_1},\dots,\alpha_{k_s})\\
+		&=\frac{1}{r!s!}\sum\limits_{\sigma}sgn(\sigma)L(\alpha_{\sigma(1)},\dots,\alpha_{\sigma(r)})M(\alpha_{\sigma(r+1)},\dots,\alpha_{\sigma(r+s)})
+	\end{align*}
+\end{dde}
+The second equation is derived from $\pi_r(L)=r!L$.This definition is just the above one,if you notice that
+\[sgn(\sigma)f_{\sigma(1)}\otimes\cdots\otimes f_{\sigma(r)}(\alpha_1,\dots,\alpha_r)=sgn(\sigma^{-1})f_1\otimes\cdots\otimes f_r(\alpha_{\sigma^{-1}(1)},\dots,\alpha_{\sigma^{-1}(r)})\]
+and use the second equation to prove.\\
+\indent The wedge product has some properties,which we omitted the proof
+\begin{thm}
+	If $L\in\bigwedge^r(V),M\in\bigwedge^s(V)$,then
+	\begin{enumerate}
+		\item $L\wedge M\in\bigwedge^{r+s}(V)$
+		\item $(cL_1+L_2)\wedge M=cL_1\wedge M+L_2\wedge M$
+		\item $L\wedge(M\wedge N)=(L\wedge M)\wedge N$
+		\item $L\wedge M=(-1)^{rs}M\wedge L$
+	\end{enumerate}
+\end{thm}
+The last one implies that
+\[f_{\sigma(1)}\wedge\cdots\wedge f_{\sigma(r)}=sgn(\sigma)f_1\wedge\cdots\wedge f_r\]
+\indent Having the wedge product,we can calculate determinant in a new way.
+\begin{thm}
+	If $A$ is a square matrix,define $\mathcal{A}$ such that
+	\[\mathcal{A}=\alpha_1\wedge\alpha_2\wedge\cdots\wedge\alpha_n\]
+	where $\alpha_i=\sum\limits_{j=1}^na_{ji}f_j$.Then we have
+	\[\mathcal{A}=(\det A)f_1\wedge f_2\wedge\cdots\wedge f_n\]
+\end{thm}
+The proof is easy.Use this expression of determinant,we can reproof previous conclusions.\\
+First we prove $\det AB=\det A\det B$.Let $\{e_i\}$ be an ordered basis for $V$.Define $D\in\mathcal(M)(V^n)$ as
+\[D(\beta_1,\beta_2,\dots,\beta_n)=\det (A\beta_1,A\beta_2,\dots,A\beta_n)=\det AB\]
+where $\beta_i=\sum\limits_{j=1}^nb_{ji}f_j,A\beta_i=\sum\limits_{j=1}^n\sum\limits_{k=1}^na_{jk}b_{ki}f_j$.\\
+Obviously,$D\in\bigwedge^n(V)$.We have
+\[D=D(e_1,e_2,\dots,e_n)f_1\wedge\cdots\wedge f_n=(\det(\alpha_1,\alpha_2,\dots,\alpha_n))f_1\wedge\cdots\wedge f_n=(\det A)f_1\wedge\cdots\wedge f_n\]
+where $\alpha_i$ is the column vector of $A$.Hence
+\[D(\beta_1,\dots,\beta_n)=\det AB=(\det A)f_1\wedge\cdots\wedge f_n(\beta_1,\dots,\beta_n)=\det A\det B\]
+Second we prove $\det A=\sum\limits_{j=1}^n(-1)^{i+j}a_{ij}\det A(i|j)=\sum\limits_{i=1}^n(-1)^{i+j}a_{ij}\det A(i|j)$.\\
+\begin{align*}
+	\mathcal{A}&=\alpha_1\wedge\cdots\wedge\alpha_n\\
+	&=\sum\limits_{i=1}^na_{ij}\alpha_1\wedge\cdots\wedge f_i\wedge\cdots\wedge\alpha_n\\
+	&=\sum\limits_{i=1}^n(-1)^{j-1}a_{ij}f_i\wedge\alpha_1\wedge\cdots\wedge\alpha_n\\
+	&=\sum\limits_{i=1}^n(-1)^{j-1}a_{ij}(\det A(i|j))f_i\wedge f_1\wedge\cdots\hat{f_i}\cdots\wedge f_n\\
+	&=\sum\limits_{i=1}^n(-1)^{i+j}a_{ij}(\det A(i|j))f_1\wedge\cdots\wedge f_n\\
+	&=(\det A)f_1\wedge\cdots\wedge f_n
+\end{align*}
+The raw expansion can be proven similarly.\\
+Next section we will talk about polynomials to prepare the later sections.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{Rubisama1}
+\end{figure}
+\section{Polynomials}
+
 \end{document}
 
 
