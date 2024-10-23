@@ -1,0 +1,124 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业5}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent75.2\\
+\[C'=R_{y}(\frac{\pi}{4})C\]
+\[\begin{bmatrix}
+	\cos\frac{\pi}{8}&\sin\frac{\pi}{8}\\
+	-\sin\frac{\pi}{8}&\cos\frac{\pi}{8}
+\end{bmatrix}
+\begin{bmatrix}
+	1\\
+	0
+\end{bmatrix}
+=\begin{bmatrix}
+	\cos\frac{\pi}{8}\\
+	-\sin\frac{\pi}{8}
+\end{bmatrix}\]
+\[\therefore\ket{\phi(t)}=\cos\frac{\pi}{8}e^{i\frac{\mu B}{\hbar}t}\ket{+'}-\sin\frac{\pi}{8}e^{-i\frac{\mu B}{\hbar}t}\ket{-'}\]
+\begin{align*}
+	P_{+x}&=|\braket{+x|+'}+\braket{+x|-'}|^2\\
+	&=|\cos^2\frac{\pi}{8}e^{i\frac{\mu B}{\hbar}t}-\sin^2\frac{\pi}{8}e^{-i\frac{\mu B}{\hbar}t}|^2\\
+	&=|\cos\frac{\pi}{4}\cos(\frac{\mu B}{\hbar}t)+i\sin(\frac{\mu B}{\hbar}t)|^2\\
+	&=\frac{1}{2}(1+\sin^2(\frac{\mu B}{\hbar}t))
+\end{align*}
+\[\because C_y=R_z(\frac{\pi}{2})C_x\rightarrow C_{+y}=e^{i\frac{\pi}{4}}C_{+x}\]
+\[\therefore P_{+y}=P_{+x}=\frac{1}{2}(1+\sin^2(\frac{\mu B}{\hbar}t))\]
+75.3\\
+(a)According to the condition, we have
+\begin{align*}
+	\frac{dC_+}{dt}&=i\frac{A}{\hbar}C_-\\
+	\frac{dC_-}{dt}&=i\frac{A}{\hbar}C_+
+\end{align*}
+Thus we have
+\[\frac{d^2C_+}{dt^2}+\frac{A^2}{\hbar^2}C_+=0\]
+and the initial condition
+\[C_+(0)=1,\frac{dC_+}{dt}(0)=0\]
+\[\therefore P_+=|C_+(t)|^2=\cos^2(\frac{A}{\hbar}t)\]
+(b)We can find the eigenvectors of $H$
+\[\begin{vmatrix}
+	-\lambda&-A\\
+	-A&-\lambda
+\end{vmatrix}=0\rightarrow\lambda=A,-A\]
+\[\alpha_1=\begin{bmatrix}
+	\frac{1}{\sqrt{2}}\\
+	\frac{1}{\sqrt{2}}
+\end{bmatrix},\alpha_2=\begin{bmatrix}
+\frac{1}{\sqrt{2}}\\
+-\frac{1}{\sqrt{2}}
+\end{bmatrix}\]
+Thus we have the stationary states
+\[\ket{\phi_1}=\frac{1}{\sqrt{2}}\ket{+}+\frac{1}{\sqrt{2}}\ket{-}\]
+\[\ket{\phi_2}=\frac{1}{\sqrt{2}}\ket{+}-\frac{1}{\sqrt{2}}\ket{-}\]
+and the new Hamiltonian matrix
+\[H'=\begin{bmatrix}
+	A&0\\
+	0&-A
+\end{bmatrix}\]
+Hence the energies of the two states are
+\[E_1=A,E_2=-A\]
+(c)For an arbitrary direction,we have
+\[\ket{+}=\cos\frac{\theta}{2}e^{i\frac{\phi}{2}}\ket{+'}-i\sin\frac{\theta}{2}e^{i\frac{\phi}{2}}\ket{-'}\]
+\[\ket{-}=\sin\frac{\theta}{2}e^{-i\frac{\phi}{2}}\ket{+'}+i\cos\frac{\theta}{2}e^{-i\frac{\phi}{2}}\ket{-'}\]
+which can be acquired by multiple $R_z(\phi-\frac{\pi}{2})$ and $R_x(\theta)$.\\
+Thus we have
+\[C_{+'}=\cos(\frac{A}{\hbar}t)\cos\frac{\theta}{2}e^{i\frac{\phi}{2}}+i\sin(\frac{A}{\hbar}t)\sin\frac{\theta}{2}e^{-i\frac{\phi}{2}}\]
+\[P_{+'}=|C_{+'}|^2=\sin^2\frac{\theta}{2}+\cos^2(\frac{A}{\hbar}t)\cos\theta+\sin(\frac{A}{\hbar}t)\cos(\frac{A}{\hbar}t)\sin\theta\sin\phi=1\]
+\[\cos2(\frac{A}{\hbar}t)\cos\theta+\sin2(\frac{A}{\hbar}t)\sin\theta\sin\phi=1\]
+\[\sqrt{\cos^2\theta+\sin^2\theta\sin^2\phi}\cos(2\frac{A}{\hbar}t-\delta)=1,\tan\delta=\frac{\sin\theta\sin\phi}{\cos\theta}\]
+\[\therefore\phi=\frac{\pi}{2},\theta=2\frac{A}{\hbar}t+2k\pi\]
+Another method:
+\[\cos\frac{\theta}{2}e^{-i\frac{\phi}{2}}=c\cos\frac{A}{\hbar}t\]
+\[\sin\frac{\theta}{2}e^{i\frac{\phi}{2}}=ci\sin\frac{A}{\hbar}t\]
+\[\therefore\phi=\frac{\pi}{2},\theta=2\frac{A}{\hbar}t+2k\pi\]
+(d)An equipment with $x$-axis uniform magnetic field.\\
+76.1\\
+(a)The probability of transmission is
+\[P'(T)=4\pi^2(\frac{\mu^2}{4\pi\epsilon_0\hbar^2c})\mathcal{J}(\omega_0)T\]
+Thus the probability per unit time is
+\[P(\Rmnum1\rightarrow\Rmnum2)=4\pi^2(\frac{\mu^2}{4\pi\epsilon_0\hbar^2c})\mathcal{J}(\omega_0)\]
+(b)Because the equations are symmetric, we immediately have
+\[P(\Rmnum2\rightarrow\Rmnum1)=4\pi^2(\frac{\mu^2}{4\pi\epsilon_0\hbar^2c})\mathcal{J}(\omega_0)\]
+(c)We have
+\[B_{\Rmnum1\rightarrow\Rmnum2}=B_{\Rmnum2\rightarrow\Rmnum1}=4\pi^2(\frac{\mu^2}{4\pi\epsilon_0\hbar^2c})\]
+(d)
+\[A_{\Rmnum{1}\rightarrow\Rmnum{2}}=4\pi^2(\frac{\mu^2}{4\pi\epsilon_0\hbar^2c})\frac{\hbar\omega_0^3}{\pi^2c^2}\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
