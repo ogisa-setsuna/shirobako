@@ -1,0 +1,102 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业5}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+\[f(x)=x^{2n}+a_{2n-1}x^{2n-1}+\cdots+a_1x+a_0=x^{2n}(1+\frac{a_{2n-1}}{x}+\cdots+\frac{a_0}{x^{2n}})\]
+\[\because\lim\limits_{x\rightarrow\infty}1+\frac{a_{2n-1}}{x}+\cdots+\frac{a_0}{x^{2n}}=1\]
+\[\therefore\exists N,|x|>N,1+\frac{a_{2n-1}}{x}+\cdots+\frac{a_0}{x^{2n}}>0\]
+\[\therefore x>N,f(x)>0;-x<-N,f(x)>0\]
+又因为$f(0)=a_0<0$，所以根据介值定理，$[0,N+1],[-N-1,0]$各存在一个零点，所以至少有两个零点。\\
+2.\\
+由于$\lim\limits_{x\rightarrow\infty}f(x)=+\infty$，所以
+\[\forall M,\exists N,|x|>N,f(x)>M\]
+因此$(-\infty,-N),(N,+\infty)$内的函数都有下界。对$[-N,N]$内的函数使用有界性定理，存在下界。因此$f(x)$的值域存在下界，因而有下确界$\alpha$。\\
+若取不到下确界，令
+\[g(x)=\frac{1}{f(x)-\alpha}\]
+且取$M=\alpha+\epsilon_0$。则对于$0<\epsilon<\epsilon_0,\exists x\in[-N,N],f(x)-\alpha<\epsilon$。
+\[\therefore\forall0<\epsilon<\epsilon_0,\exists x\in[-N,N],g(x)>\frac{1}{\epsilon}\]
+与有界性矛盾，因此存在最小值$f(x_0)$。\\
+3.\\
+利用第一题结论，我们有
+\[\exists N,|x|>N,1+\frac{a_3}{x}+\frac{a_2}{x^2}+\frac{a_1}{x}+\frac{a_0}{x^4}>0\]
+同时$\lim\limits_{x\rightarrow\infty}x^4=+\infty$。所以
+\[\lim\limits_{x\rightarrow\infty}P(x)=+\infty\]
+利用第二题结论，即可得$P(x)$存在最小值$P(x_0)$。\\
+4.\\
+首先我们证明伯努利不等式：对于$x>-1$，我们有
+\[(1+x)^\alpha\ge1+\alpha x,\alpha>1\]
+\[(1+x)^\alpha\le1+\alpha x,0<\alpha<1\]
+\[(1+x)^\alpha\ge1+\alpha x,\alpha<0\]
+对于正整数情况，用数学归纳法，$n=1$成立，设$n=k$成立，则有
+\[(1+x)^{k+1}\ge(1+kx)(1+x)\ge1+(k+1)x\]
+因此成立。
+对于有理数$r$，先设$r=\frac{p}{q}<1$，我们有
+\[(1+x)^\frac{p}{q}=\sqrt[q]{(1+x)^p}\le\frac{p(1+x)+q-p}{q}=1+\frac{p}{q}x\]
+若$r=\frac{p}{q}>1$，则有
+\[(1+rx)^\frac{1}{r}\le1+x\rightarrow(1+x)^r\ge1+rx\]
+若$r<0$，存在充分大的正整数$n$使得$-1<\frac{-rx}{n}<1$，因此
+\[(1+x)^\frac{-r}{n}\le1-\frac{r}{n}x\le\frac{1}{1+\frac{r}{n}x}\]
+\[(1+x)^r\ge(1+\frac{r}{n}x)^n\ge1+rx\]
+回到题目，$\alpha=0,1$显然一致连续。若$\alpha>1$，则有
+\[(x+\delta)^\alpha-x^\alpha=x^\alpha((1+\frac{\delta}{x})^\alpha-1)>\alpha\delta x^{\alpha-1}\]
+随$x$递增趋于无穷，因此不一致连续。若$0<\alpha<1$，则有
+\[(x+\delta)^\alpha-x^\alpha=x^\alpha((1+\frac{\delta}{x})^\alpha-1)<\alpha\delta x^{\alpha-1}\]
+随$x$递减，因此取$\delta<\frac{\epsilon}{\alpha}$即可，因而一致连续。若$\alpha<0$，则有
+\[x^\alpha-(x+\delta)^\alpha=x^\alpha(1-(1+\frac{\delta}{x})^\alpha)<-\alpha\delta x^{\alpha-1}\]
+随$x$递减，因此取$\delta<-\frac{\epsilon}{\alpha}$即可，因而一致连续。\\
+综上所述，$\alpha\le1$，一致连续，$\alpha>1$，不一致连续。\\
+5.\\
+\[\ln x<x^\alpha<a^x<[x]!<x^x\]
+首先
+\[e^x>(1+\frac{x}{N})^N,N>\alpha\]
+\[\lim\limits_{x\rightarrow+\infty}\frac{a^x}{x^\alpha}>\lim\limits_{x\rightarrow+\infty}(1+\frac{x\ln a}{N})^{N-\alpha}(\frac{1}{x}+\frac{\ln a}{N})^\alpha=+\infty\]
+其次
+\[\lim\limits_{x\rightarrow+\infty}\frac{x^\alpha}{\ln x}=\lim\limits_{t\rightarrow+\infty}\frac{e^t}{t^\frac{1}{\alpha}}=+\infty\]
+然后
+\[\frac{[x+1]!}{a^{[x+1]}}\frac{a^{[x]}}{[x]!}=\frac{[x+1]}{a}\]
+当$x$足够大时有$\frac{[x+1]}{a}>k>1$，因此
+\[\lim\limits_{x\rightarrow+\infty}\frac{[x]!}{a^{[x]}}=\lim\limits_{x\rightarrow+\infty}\frac{[x]!}{a^{[x+1]}}=+\infty\]
+\[\lim\limits_{x\rightarrow+\infty}\frac{[x]!}{a^x}>\lim\limits_{x\rightarrow+\infty}\frac{[x]!}{a^{[x+1]}}=+\infty\]
+最后
+\[\frac{[x+1]^{[x+1]}}{[x+1]!}\frac{[x]!}{[x]^{[x]}}=(1+\frac{1}{[x]})^{[x]}\]
+因为$\lim\limits_{x\rightarrow+\infty}(1+\frac{1}{x})^x=e$
+所以$x$足够大时，$(1+\frac{1}{[x]})^{[x]}>k>1$。因此
+\[\lim\limits_{x\rightarrow+\infty}\frac{[x]^{[x]}}{[x]!}=+\infty\]
+\[\lim\limits_{x\rightarrow+\infty}\frac{x^x}{[x]!}>\lim\limits_{x\rightarrow+\infty}\frac{[x]^{[x]}}{[x]!}=+\infty\]
+6.\\
+由题意可知
+\[a_{n+1}=f(a_n)<\frac{a_n}{1+a_n}\]
+\[\frac{1}{a_{n+1}}>1+\frac{1}{a_n}>n+\frac{1}{a_1}>n+1\]
+\[\therefore na_n<1,\lim\limits_{n\rightarrow\infty}a_n=0\]
+因此对于每一个$t$，存在$N$使得$n>N$时有
+\[a_{n+1}=f(a_n)>\frac{a_n}{1+ta_n}\]
+\[\frac{1}{a_{n+1}}<t+\frac{1}{a_n}<nt+\frac{1}{a_1}\]
+\[\therefore na_n>\frac{n}{nt-t+\frac{1}{a_1}}\]
+\[\because\lim\limits_{n\rightarrow\infty}\frac{n}{nt-t+\frac{1}{a_1}}=\frac{1}{t}\]
+而且$t$为任意大于$1$的数。因此存在$N_0$使得$na_n>1-\epsilon,\forall\epsilon>0$。于是我们有
+\[\frac{n}{nt-t+\frac{1}{a_1}}na_n=1\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
