@@ -94,21 +94,15 @@ $k=2$时成立，设$k=i-1$成立，下证$k=i$成立
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+1}=-1\]
 若$x<-1$
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+1}=\lim\limits_{n\rightarrow\infty}\frac{1-\frac{1}{(-x)^{2n+1}}}{1-\frac{1}{(-x)^n}+\frac{1}{(-x)^{2n}}}=1\]
-所以有两个间断点$x=0,-1$
+所以有两个间断点$x=0,-1$。\\
 7.\\
-先证函数值域有界。利用二分法可知，若函数值域无界，二分取其中无界的一半，则有
-\[a_{n-1}\le a_{n},b_{n-1}\ge b_n,b_n-a_n=2^{-n}(b-a)\]
-且在$[a_n,b_n]$上函数值域无界。利用区间套定理知存在唯一的$c=\bigcap[a_n,b_n]$，显然$f$在$c$上有界，因此矛盾。\\
-所以函数值域有界。因此函数值域存在上下确界。设下确界为$\alpha$，对于每个$\epsilon_n>0$，我们有
-\[X_{\epsilon_n}={x|f(x)-\alpha<\epsilon}\subseteq[a_n,b_n]\]
-显然有
-\[a_{n-1}\le a_{n},b_{n-1}\ge b_n\]
-令$\lim\limits_{n\rightarrow\infty}\epsilon_n=0$，根据单调序列极限定理，我们有
-\[\lim\limits_{n\rightarrow\infty}a_n=A,\lim\limits_{n\rightarrow\infty}b_n=B,A\le B\]
-若$A\neq B$，则闭区间$[A,B]$内存在点满足
-\[f(x)-\alpha<\epsilon_1,\epsilon_2,\dots\]
-这意味着$f(x)=\alpha$。\\
-若$A=B$，根据区间套定理我们同样有存在一个点$c$使得$f(c)=\alpha$。上确界同理。因此函数值域取得到最大值和最小值。选取其中一对点取得最大最小值，这一对点构成一个闭区间，于是应用介值定理，我们证明了最大最小值之间每一个值都可以取到，这意味着函数值域是一个有界闭区间。
+先证函数值域有界。利用有限覆盖定理，取$f(x_0)$的开邻域$|f(x)-f(x_0)|<\epsilon,\epsilon>0$，对于每一个$x_0$我们有$B_\delta(x_0):|x-x_0|<\delta$。$B_\delta(x_0)$内的所有$f(x)$显然是有界的，记其中一个上界为$M(x_0)$。$\{B_\delta(x)\}$形成了对$[a,b]$的一组开覆盖，因此存在有限个$B_\delta(x)$可以覆盖$[a,b]$。取$M=\max\{M(x_1),M(x_2),\dots,M(x_n)\}$，显然$M$是$f(x)$的上界。下界同理。\\
+所以函数值域有界。因此函数值域存在上下确界。设下确界为$\alpha$，若无法取到下确界，那么函数
+\[g(x)=\frac{1}{f(x)-\alpha}\]
+在$[a,b]$上是一个连续函数。又因为$\forall\epsilon>0,\exists x,|f(x)-\alpha|<\epsilon$，这意味着
+\[\forall\epsilon>0,\exists x,g(x)>\frac{1}{\epsilon}\]
+没有上界，与有界性矛盾。因此取得到下确界。上确界同理。\\
+因此函数值域取得到最大值和最小值。选取其中一对点取得最大最小值，这一对点构成一个闭区间，于是应用介值定理，我们证明了最大最小值之间每一个值都可以取到，这意味着函数值域是一个有界闭区间。
 \end{document}
 
 
