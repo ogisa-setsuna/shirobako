@@ -85,7 +85,7 @@ $k=2$时成立，设$k=i-1$成立，下证$k=i$成立
 若$x>1$，则有
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+x}=\lim\limits_{n\rightarrow\infty}\frac{1+\frac{1}{x^{2n+1}}}{1-\frac{1}{x^n}+\frac{1}{x^{2n}}}=1\]
 若$x=1$
-\[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+x}=1\]
+\[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+x}=2\]
 若$0<x<1$
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+x}=\frac{1}{x}\]
 若$-1<x<0$
@@ -94,7 +94,7 @@ $k=2$时成立，设$k=i-1$成立，下证$k=i$成立
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+1}=-1\]
 若$x<-1$
 \[\lim\limits_{n\rightarrow\infty}\frac{x^{2n+1}+1}{x^{2n+1}-x^{n+1}+1}=\lim\limits_{n\rightarrow\infty}\frac{1-\frac{1}{(-x)^{2n+1}}}{1-\frac{1}{(-x)^n}+\frac{1}{(-x)^{2n}}}=1\]
-所以有两个间断点$x=0,-1$。\\
+所以有三个间断点$x=1,0,-1$。\\
 7.\\
 先证函数值域有界。利用有限覆盖定理，取$f(x_0)$的开邻域$|f(x)-f(x_0)|<\epsilon,\epsilon>0$，对于每一个$x_0$我们有$B_\delta(x_0):|x-x_0|<\delta$。$B_\delta(x_0)$内的所有$f(x)$显然是有界的，记其中一个上界为$M(x_0)$。$\{B_\delta(x)\}$形成了对$[a,b]$的一组开覆盖，因此存在有限个$B_\delta(x)$可以覆盖$[a,b]$。取$M=\max\{M(x_1),M(x_2),\dots,M(x_n)\}$，显然$M$是$f(x)$的上界。下界同理。\\
 所以函数值域有界。因此函数值域存在上下确界。设下确界为$\alpha$，若无法取到下确界，那么函数
