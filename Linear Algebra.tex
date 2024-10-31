@@ -3,6 +3,10 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{mathrsfs}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
 \graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
 \title{Linear Algebra}
 \author{haruki}
@@ -10,7 +14,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Linear Equations}
+\section{Linear Equations}\label{1}
 \subsection{What is Fields?What is Vector Spaces?}
 \noindent In short,a Field $F$ should satisfy these properties:
 \begin{enumerate}
@@ -190,7 +194,13 @@ If you are smart enough,you would find that the uniqueness of solutions means th
 \[E_1E_2\dots E_nA=I_n\]
 implies the inverse of $A$ is:
 \[A^{-1}=E_n^{-1}E_{n-1}^{-1}\dots E_1^{-1}I_n\]
-and the procedure can be taken by hand if we write them together $(A,I_n)$,and use the elementary raw operations till $A$ becomes $I_n$,then the right is just $A^{-1}$.
+and the procedure can be taken by hand if we write them together $(A,I_n)$,and use the elementary raw operations till $A$ becomes $I_n$,then the right is just $A^{-1}$.We can go further with this,if you notice that for an invertible matrix $A$,the solution of the systems of linear equations with coefficient matrix $A$ is unique.Then we have a theorem
+\begin{thm}\label{determinantandinvertible}
+	A square matrix $A$ is invertible if and only if the solution of the systems of linear equations with coefficient matrix $A$ is unique.Moreover,if there exits a square matrix $B$ such that $BA=I$ or $AB=I$,then $A$ is invertible and $B=A^{-1}$. 
+\end{thm}
+\begin{proof}
+	We shall prove the last statement.If $BA=I$,then $AX=Y$ means $X=BY$ that has a unique solution,which implies $B=A^{-1}$.\\Similarly,$AB=I$ means $A=B^{-1}$,and then $B=A^{-1}$.
+\end{proof}
 \indent The last thing about systems of linear equations you need to know is that the solutions of a system of linear equations is a vector space.Let the rest $x_m$ be a series of values:\[(1,0,\dots,0),(0,1,\dots,0),\dots(0,0,\dots,1)\]and a series of solutions come after.You may notice that each solutions of the system is a linear combination of the $n-r$ solutions,which implies the solutions of the system is a vector space that has a dimension of $n-r$,which we will detail in the next section.\\
 \indent We finish this section by some properties of matrices:
 \begin{thm}
@@ -205,7 +215,7 @@ and the procedure can be taken by hand if we write them together $(A,I_n)$,and u
 	\includegraphics[width=\linewidth]{reimu}
 \end{figure}
 \newpage
-\section{Vector Spaces}
+\section{Vector Spaces}\label{2}
 \subsection{Subspaces,Basis and Dimension}
 For a further discussion about linear algebra,we will introduce some useful concepts:
 \begin{dde}
@@ -345,7 +355,7 @@ We can also call the finite dimension of a space spanned by a vector set the \te
 	\includegraphics[width=\linewidth]{siji}
 \end{figure}
 \newpage
-\section{Linear Transformations and Forms}
+\section{Linear Transformations and Forms}\label{3}
 \subsection{Linear Transformations and Matrices}
 \begin{dde}
 	Let $V,W$ be vector spaces over $F$.\textbf{A linear transformation} from $V$ to $W$ is a function $T$ from $V$ to $W$ such that
@@ -782,7 +792,8 @@ We can write $D_J$ as $\pi_r(f_{j_1}\otimes\cdots\otimes f_{j_r})$\footnote{You 
 	\end{align*}
 	The second equation can be proven similarly.If we expand the matrix by different raw or column,it's just the same expansion of a matrix with two same raws or columns,and the determinant of it is $0$. 
 \end{proof}
-A simpler proof will use the concept we introduce below.
+This theorem tells us that if and only if $\det A$ is nonzero,$A$ is invertible.In fact,we can reach this conclusion if you notice that $\det A$ is nonzero if and only if $A$ is raw-equivalent with $I$,which implies a unique solution of the system of linear equations with coefficient matrix $A$.Then use Theorem \ref{determinantandinvertible} we reach the conclusion.\\
+\indent A simpler proof of the theorem will use the concept we introduce below.
 \begin{dde}
 	We call ``$\wedge$" wedge product,and write $D_J$ as $f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}$,which implies that
 	\[f_{j_1}\wedge f_{j_2}\wedge\cdots\wedge f_{j_r}=\sum\limits_{\sigma}sgn(\sigma)f_{j_{\sigma(1)}}\otimes f_{j_{\sigma(2)}}\otimes\cdots\otimes f_{j_{\sigma(r)}}\] 
@@ -860,15 +871,329 @@ Second we prove $\det A=\sum\limits_{j=1}^n(-1)^{i+j}a_{ij}\det A(i|j)=\sum\limi
 	&=(\det A)f_1\wedge\cdots\wedge f_n
 \end{align*}
 The raw expansion can be proven similarly.\\
-Next section we will talk about polynomials to prepare the later sections.
+\indent Actually,we have introduced an strong concept,which can show its strength in the differential forms.\\ 
+\indent Next section we will talk about polynomials to prepare the later sections.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\linewidth]{Rubisama1}
 \end{figure}
-\section{Polynomials}
-
+\newpage
+\section{Polynomials}\label{4}
+\subsection{The Algebra of Polynomials}
+\noindent It's tempting to build the polynomials by linear algebra,thus we introduce the concept.
+\begin{dde}
+	Let $F$ be a field.\textbf{A linear algebra over the field} $F$ is a vector space $\mathcal{A}$ over $F$ with an additional operation called \textbf{multiplication of vectors} which associates with each pair of $\alpha,\beta$ in $\mathcal{A}$ a vector $\alpha\beta$ in $\mathcal{A}$ called the \textbf{product} of $\alpha$ and $\beta$ in such a way that
+	\begin{enumerate}
+		\item [(a)]multiplication is associative,
+		\[\alpha(\beta\gamma)=(\alpha\beta)\gamma\]
+		\item [(b)]multiplication is distributive with respect to addition,
+		\[\alpha(\beta+\gamma)=\alpha\beta+\alpha\gamma\text{ and }(\alpha+\beta)\gamma=\alpha\gamma+\beta\gamma\]
+		\item [(c)]for each scalar $c$ in $F$,
+		\[c(\alpha\beta)=(c\alpha)\beta=\alpha(c\beta)\]
+	\end{enumerate} 
+	If there exists an element $1$ in $\mathcal{A}$ such that $1\alpha=\alpha1=\alpha$ for each $\alpha$ in $\mathcal{A}$,we call $\mathcal{A}$ a \textbf{linear algebra with identity over} $F$,and call $1$ the \textbf{identity} of $\mathcal{A}$.The algebra $\mathcal{A}$ is called commutative if $\alpha\beta=\beta\alpha$ for all $\alpha,\beta$ in $\mathcal{A}$. 
+\end{dde}
+A linear algebra we concern in this section is $F^\infty$,a vector space we have mentioned in Section \ref{2}.We can write an element of $F^\infty$ by $f=(f_0,f_1,f_2,\dots)$ and define the addition and scalar multiplication as usual
+\[af+bg=(af_0+bg_0,af_1+bg_1,af_2+bg_2,\dots)\]
+We define a multiplication of vectors on $F^\infty$
+\[(fg)_n=\sum\limits_{i=0}^nf_{i}g_{n-i}\]
+Thus
+\[(gf)_n=\sum\limits_{i=0}^ng_{i}f_{n-i}=\sum\limits_{i=0}^nf_{i}g_{n-i}=(fg)_n\]
+\begin{align*}
+	(f(gh))_n&=\sum\limits_{j=0}^nf_j\sum\limits_{i=0}^{n-j}g_ih_{n-j-i}\\
+	&=\sum\limits_{j=0}^n\sum\limits_{k=0}^{n-j}f_jg_{n-j-k}h_k\\
+	&=\sum\limits_{k=0}^nh_k\sum\limits_{j=0}^{n-k}f_jg_{n-j-k}\\
+	&=((fg)h)_n
+\end{align*}
+The distributive law is apparent.We also have
+\[1=(1,0,0,\dots)\]
+is the identity.Therefore,$F^\infty$ with the operations defined above is a commutative linear algebra with identity over $F$.\\
+we shall denote $(0,1,0,\dots)$ as $x$,and you may find
+\[x^2=(0,0,1,0,\dots),x^3=(0,0,0,1,0,\dots)\]
+Thus we have $(x^k)_n=\delta_{nk}$.Obviously,the set $\{1,x,x^2,\dots\}$ is linearly independent and infinite,which implies that $F^\infty$ is infinite-dimensional.One thing you should remember is that this set is \textbf{not} a basis of $F^\infty$.\\
+\indent The algebra $F^\infty$ is sometimes called the \textbf{algebra of formal power series} over $F$.We shall denote $f$ as
+\[f=\sum\limits_{n=0}^\infty f_nx^n\]
+which is just a formally notation without anything about ``infinite sums". 
+\begin{dde}
+	Let $F[x]$ be the subspace of $F^\infty$ spanned by the vectors $1,x,x^2,\dots$.An element of $F[x]$ is called a \textbf{polynomials} over $F$.
+\end{dde}
+Since an element in $F[x]$ is a (finite) linear combination of $1,x,x^2,\dots$,we can find the maximum of $n$ with nonzero $f_n$,and call it the \textbf{degree} of $f$.We denote it by $\deg f$,and do not assign a degree to the $0$-polynomial.We can write $f$ in the manner
+\[f=f_01+f_1x+\cdots+f_nx^n,f_n\neq0\]
+We call $f_i$ the \textbf{coefficients} of $f$.We shall call $c1$ \textbf{scalar polynomials},and frequently denote it $c$\footnote{We will denote $1$ as $x^0$ in context}.A nonzero $f$ of degree $n$ such that $f_n=1$ is called a \textbf{monic} polynomial.
+\begin{thm}
+	Let $f,g$ be nonzero polynomials over $F$,then we have
+	\begin{enumerate}
+		\item [(\rmnum{1})]$fg$ is a nonzero polynomial
+		\item [(\rmnum{2})]$\deg (fg)=\deg f+\deg g$
+		\item [(\rmnum{3})]$fg$ is a monic polynomial if both $f$ and $g$ are monic polynomials
+		\item [(\rmnum{4})]$fg$ is a scalar polynomial if and only if both $f$ and $g$ are scalar polynomials
+		\item [(\rmnum{5})]if $f+g\neq0$,
+		\[\deg (f+g)\le\max\{\deg f,\deg g\}\]
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	Let $m,n$ be degrees of $f,g$.Obviously,we have
+	\[(fg)_{m+n}=f_mg_n\]
+	and
+	\[(fg)_{m+n+k}=0,k>0\]
+	Thus (\rmnum{1}),(\rmnum{2}),(\rmnum{3}),(\rmnum{4}) follow immediately.The proof of (\rmnum{5}) is easy.
+\end{proof}
+\begin{coro}
+	$F[x]$ is a commutative linear algebra with identity over $F$.
+\end{coro}
+\begin{coro}
+	If $f$ is a nonzero polynomial,then $fg=fh$ implies $g=h$.
+\end{coro}
+We can define the \textbf{division} of two polynomials.
+\begin{dde}
+	Let $g$ be a nonzero polynomials.Then we define
+	\[h=\frac{f}{g}\]
+	if $f=hg$.The uniqueness of $h$ is apparent.
+\end{dde}
+You may notice that we can also write $fg$ as 
+\[fg=\sum\limits_{i,j}f_ig_jx^{i+j},0\le i\le m,0\le j\le n\]
+\begin{dde}
+	Let $\mathcal{A}$ be a linear algebra with identity over $F$.We shall denote the identity of $\mathcal{A}$ by $1$ and make the convention that $\alpha^0=1$ for each $\alpha$ in $\mathcal{A}$.Then to each polynomial $f=\sum\limits_{i=0}^nf_ix^i$ over $F$ and $\alpha$ in $\mathcal{A}$ we associate an element $f(\alpha)$ in $\mathcal{A}$ by the rule
+	\[f(\alpha)=\sum\limits_{i=0}^nf_i\alpha^i\]
+\end{dde}
+\begin{thm}
+	Let $F$ be a field and $\mathcal{A}$ be a linear algebra with identity over $F$.Suppose $f,g$ are polynomials over $F$,$\alpha$ is an element of $\mathcal{A}$,and $c$ is a scalar,then we have
+	\begin{enumerate}
+		\item [(\rmnum{1})](cf+g)($\alpha$)=cf($\alpha$)+g($\alpha$)
+		\item [(\rmnum{2})](fg)($\alpha$)=f($\alpha$)g($\alpha$)
+	\end{enumerate}
+\end{thm}
+We notice that $F$ itself is a linear algebra with identity over $F$.Let $V$ be the subspace of $F[x]$ consisting of all polynomials of degree less than or equal to $n$ (together with $0$-polynomial).Obviously,$\{1,x,\dots,x^n\}$ is a basis for $V$.Let $t_0,t_1,\dots,t_n$ be elements of $F$.We define $P_i$ such that
+\[P_i=\prod_{j\neq i}\frac{x-t_j}{t_i-t_j}\]
+Then we have
+\[P_i(t_j)=\delta_{ij}\]
+Let $f=\sum\limits_{i=0}^nc_iP_i$,then
+\[f(t_j)=c_j\]
+Let $f$ be $0$ then we prove the linearly independence of $\{P_i\}$.Since the dimension of $V$ is $n+1$,$\{P_i\}$ is a basis for $V$ and we have
+\[f=\sum\limits_{i=0}^nf(t_i)P_i\]
+We can define the polynomial function $\tilde{f}$ form $F$ to $F$ by
+\[\tilde{f}(x)=f(x)\]
+and define similar addition and multiplication like polynomials over $F$
+\[(\tilde{f}\tilde{g})(x)=\tilde{f}(x)\tilde{g}(x)\]
+Apparently,we have
+\[\widetilde{fg}=\tilde{f}\tilde{g}\]
+and then the polynomial functions on $F$ is a linear algebra with identity over $F$.
+\begin{dde}
+	Let $F$ be a field and let $\mathcal{A}$ and $\tilde{\mathcal{A}}$ be linear algebras over $F$.The algebras $\mathcal{A}$ and $\tilde{\mathcal{A}}$ are said to be \textbf{isomorphic} if there is a one-to-one mapping $\alpha\rightarrow\tilde{\alpha}$ of $\mathcal{A}$ onto $\tilde{\mathcal{A}}$ such that
+	\begin{enumerate}
+		\item [(a)]$\widetilde{(c\alpha+d\beta)}=c\tilde{\alpha}+d\tilde{\beta}$
+		\item [(b)]$\widetilde{\alpha\beta}=\tilde{\alpha}\tilde{\beta}$
+	\end{enumerate}
+	for all $\alpha,\beta$ in $\mathcal{A}$ and all scalars $c,d$ in $F$.The mapping $\alpha\rightarrow\tilde{\alpha}$ is called an \textbf{isomorphism} of $\mathcal{A}$ onto $\tilde{\mathcal{A}}$.
+\end{dde}
+\begin{thm}
+	If $F$ is a field containing an infinite number of distinct elements,the mapping $f\rightarrow\tilde{f}$ is an isomorphism of the algebra of polynomials over $F$ onto the algebra of polynomial functions over $F$. 
+\end{thm}
+\begin{proof}
+	We just need to prove the mapping is one-to-one,which implies we just need to prove $\tilde{f}=0$ means $f=0$.Suppose $f$ is a polynomial of degree $n$ or less (or $0$-polynomial),which obviously is an element of $V$.Choose different $t_i,i=1,2,\dots,n$,and let $\{P_i\}$ be a basis for $V$,then we have
+	\[f(t_i)=\tilde{f}(t_i)=0,i=1,2,\dots,n\]
+	Thus $f=0$ when $\tilde{f}=0$.
+\end{proof}
+\subsection{Polynomial Ideals}
+\begin{thm}
+	Suppose $f,d$ are nonzero polynomials over $F$ such that $\deg d\le\deg f$,then there exists a unique polynomial $g$ such that
+	\[f-dg=0\text{ or }\deg(f-dg)<\deg d\]
+	We denote $f-dg$ by $r$,so we have
+	\[f=dg+r\]
+\end{thm}
+\begin{proof}
+	First we suppose
+	\[f=a_nx^n+\sum\limits_{i=0}^{n-1}a_ix^i\]
+	\[d=a_mx^m+\sum\limits_{i=0}^{m-1}a_ix^i\]
+	Then let $g_1$ be $\dfrac{a_n}{a_m}x^{n-m}$ we have
+	\[\deg(f-dg_1)<\deg f\]
+	If $\deg(f-dg_1)<\deg d$ or just zero polynomial,we have done.If not,construct $g_2$ similarly,we have
+	\[\deg(f-dg_1-d_2)<\deg(f-dg_1)\]
+	Obviously this process can be repeated finitely,and we have
+	\[g=\sum\limits_{i=1}^kg_i\]
+	If there exit another $g',r'$ such that
+	\[f=dg+r=dg'+r'\]
+	then we have
+	\[d(g-g')=r'-r\]
+	But if $g\neq g'$,$\deg d(g-g')\ge\deg d>\deg r,\deg r'$.\\
+	Hence we must have $g=g',r=r'$.
+\end{proof}
+\begin{coro}
+	$f$ is divisible by $x-c$ if and only if $f(c)=0$.
+\end{coro}
+\begin{dde}
+	Let $F$ be a field.An element $c$ in $F$ is said to be a \textbf{root} or a \textbf{zero} of a polynomial $f$ over $F$ if $f(c)=0$.
+\end{dde}
+\begin{coro}
+	A polynomial $f$ of degree $n$ over $F$ has at most $n$ roots in $F$. 
+\end{coro}
+\begin{dde}
+	Let $f$ be a polynomial over $F$ such that
+	\[f=a_0+a_1x+\cdots+a_nx^n\]
+	The \textbf{derivative} of the polynomial is
+	\[Df=a_1+2a_2x+\cdots+na_nx^{n-1}\]
+\end{dde}
+\begin{thm}
+	Let $F$ be a field and let $c$ be an element in $F$.Let $f$ be a polynomial over $F$,then we have
+	\[f=\sum\limits_{k=0}^n\frac{D^kf(c)}{k!}(x-c)^k\]
+	where $n\ge\deg f$.
+\end{thm}
+\begin{proof}
+	We notice that
+	\begin{align*}
+		x^m&=(x-c+c)^m\\
+		&=\sum\limits_{k=0}^m\binom{m}{k}(x-c)^kc^{m-k}\\
+		&=\sum\limits_{k=0}^m\frac{m!}{(m-k)!k!}(x-c)^kc^{m-k}
+	\end{align*}
+	\begin{align*}
+		f&=\sum\limits_{m=0}^na_mx^m\\
+		&=\sum\limits_{m=0}^na_m\sum\limits_{k=0}^m\frac{m!}{(m-k)!k!}(x-c)^kc^{m-k}\\
+		&=\sum\limits_{k=0}^n(x-c)^k\sum\limits_{m=k}^na_m\frac{m!}{(m-k)!k!}c^{m-k}\\
+		&=\sum\limits_{k=0}^n\frac{D^kf(c)}{k!}(x-c)^k
+	\end{align*}
+\end{proof}
+Obviously $\{(x-c)^k\}$ is linearly independent and is a basis for $F[x]$.\\ 
+\indent If $c$ is a root of $f$,the \textbf{multiplicity} of $c$ is the largest positive integer $r$ such that $(x-c)^r$ divides $f$.
+\begin{thm}
+	Let $f$ be a polynomial over $F$.Then $c$ is a root of $f$ of multiplicity $r$ if and only if
+	\[D^kf(c)=0,k=0,1,\dots,r-1\]
+	\[D^{r}f(c)\neq0\]  
+\end{thm}
+\begin{proof}
+	First we have
+	\[f=(x-c)^rg,g(c)\neq0\]
+	Then we expand $g$
+	\[f=\sum\limits_{m=0}^{n-r}\frac{D^mg(c)}{m!}(x-c)^{m+r}\]
+	which means
+	\[D^kf(c)=\begin{cases}
+		0&0\le k\le r-1\\[8pt]
+		\dfrac{D^{k-r}g(c)}{(k-r)!}&r\le k\le n
+	\end{cases}\]
+	And we have $g(c)\neq0$,which means $D^rf(c)\neq0$.
+\end{proof}
+\begin{dde}
+	Let $F$ be a field.An \textbf{ideal} in $F[x]$ is a subspace $M$ of $F[x]$ such that $fg$ belongs to $M$ whenever $f$ is in $F[x]$ and $g$ is in $M$. 
+\end{dde}
+Apparently,$M=dF[x]$ is an ideal of $F[x]$,which is called the \textbf{principal ideal generated by} $d$.\\
+\indent Let $d_1,d_2,\dots,d_n$ be a finite number of polynomials in $F[x]$.The sum $M$ of the subspaces $d_iF[x]$ is obviously an ideal,which is called the \textbf{ideal generated by} the polynomials,$d_1,d_2,\dots,d_n$.
+\begin{thm}
+	Let $F$ be a field and let $M$ be any nonzero ideal in $F[x]$.Then there is a unique monic polynomial $d$ in $F[x]$ such that $M$ is the principal ideal generated by $d$.
+\end{thm}
+\begin{proof}
+	Let $d$ be a monic polynomial in $M$ which has the smallest degree.Then let $g$ be an element in $M$ we have
+	\[g=dq+r\]
+	Because $M$ is a subspace,then $r=g-dq$ is in $M$.Hence $r$ must be $0$,otherwise $r$ would be the polynomial with the smallest degree.Therefore we have
+	\[g=dq,\forall g\in M\]
+	which means $M\subseteq dF[x]$.Obviously for all $g\in M$ we have $gF[x]\subseteq M$.Thus $M$ is the principal ideal generated by $d$.\\
+	If $d'$ is another monic polynomial in $M$ such that $M=d'F[x]$,then we have
+	\[d'=dq=d'pq\]
+	which means $p=q=1$. 
+\end{proof}
+\begin{coro}
+	If $p_1,p_2,\dots,p_n$ are polynomials in $F[x]$,not all of which is $0$.Then there exists a unique monic polynomial $d$ such that
+	\begin{enumerate}
+		\item [(a)]$d$ is in the ideal generated by $p_1,\dots,p_n$
+		\item [(b)]$d$ divides each of the polynomials $p_i$
+	\end{enumerate}
+	Any polynomials satisfying (a) and (b) necessarily satisfies
+	\begin{enumerate}
+		\item [(c)]$d$ is divided by every polynomial which divides each of the polynomials $p_i$
+	\end{enumerate} 
+\end{coro}
+\begin{proof}
+	According to the theorem above,the existence of $d$ is obvious.If there exists another monic polynomial $d'$ satisfies (a)(b),then we have
+	\[d'=dq=d'pq\]
+	which means $p=q=1,d=d'$.(c) is obviously correct from (a). 
+\end{proof}
+\begin{dde}
+	If $p_1,p_2,\dots,p_n$ are polynomials in $F[x]$,not all of which is $0$,the monic generator $d$ of 
+	\[p_1F[x]+p_2F[x]+\cdots+p_nF[x]\]
+	is called the \textbf{greatest common divisor} of $p_1,\dots,p_n$.We say $p_1,\dots,p_n$ are \textbf{relatively prime} if their greatest common divisor is $1$,or equivalently if the ideal they generate is all of $F[x]$.
+\end{dde}
+\begin{dde}
+	Let $F$ be a field.A polynomial $f$ in $F[x]$ is called \textbf{reducible over} $F$ if there exit polynomials $g,h$ in $F[x]$ of degree$\le1$ such that $f=gh$,and if not,$f$ is called \textbf{irreducible over} $F$.A non-scalar irreducible polynomial over $F$ is called a \textbf{prime polynomial over} $F$,and we sometimes say it is a \textbf{prime in} $F[x]$.  
+\end{dde}
+\begin{thm}
+	Let $p,f,g$ be polynomials over $F$.Suppose that $p$ is a prime polynomial and that $p$ divides the product $fg$.Then either $p$ divides $f$ or $p$ divides $g$.
+\end{thm}
+\begin{proof}
+	We can always suppose $p$ is a monic polynomial.Then the only monic divisor of $p$ is $1$ and $p$.Therefore the greatest common divisor of $f,p$ is $1$ or $p$.If $(f,p)=1$,then we have
+	\[1=ff_0+pp_0\]
+	which means
+	\[g=fgf_0+gpp_0\]
+	and then $p$ divides $g$.
+\end{proof}
+\begin{coro}
+	If $p$ is a prime and divides the product $f_1f_2\cdots f_n$,then $p$ divides one of the polynomials $f_1,\dots,f_n$.
+\end{coro}
+\begin{thm}
+	If $F$ is a field,a non-scalar monic polynomial in $F[x]$ can be factored as a product of monic primes in $F[x]$ in one and,except for order,only one way. 
+\end{thm}
+\begin{proof}
+	There is nothing to do when $\deg f=1$.Suppose $\deg f=n$,we can use induction to prove it easily.If there exits two product such that
+	\[p_1\cdots p_n=q_1\cdots q_m\]
+	Use the corollary above we have that there exists $q_i$ such that $p_n$ divides $q_i$.Because $p_n,q_i$ are monic primes,we have
+	\[p_n=q_i\]
+	Rearrange them and cancel them we have
+	\[p_1\cdots p_{n-1}=q_1\cdots q_{m-1}\]
+	Continue this process we have done the proof.
+\end{proof}
+Combine the same monic polynomials we have
+\[f=p_1^{n_1}p_2^{n_2}\cdots p_r^{n_r}\]
+which is called the \textbf{primary decomposition} of $f$.It is easy to see that each monic divisor of $f$ has the form
+\[p_1^{m_1}p_2^{m_2}\cdots p_r^{m_r},0\le m_i\le n_i\]
+\begin{thm}
+	Let $f$ be a non-scalar monic polynomials over $F$ and let
+	\[f=p_1^{n_1}p_2^{n_2}\cdots p_r^{n_r}\]
+	\[f_i=\frac{f}{p_i^{n_i}}\]
+	Then $f_1,f_2,\dots,f_r$ are relatively prime.
+\end{thm}
+\begin{thm}
+	Let $f$ be an element in $F^\infty$,define $Df$ as
+	\[Df=\sum\limits_{i=1}^\infty ia_ix^{i-1}\]
+	Then we have
+	\[D(fg)=(Df)g+f(Dg)\]
+\end{thm}
+\begin{proof}
+	\begin{align*}
+		(D(fg))_n&=(n+1)(fg)_{n+1}\\
+		&=(n+1)\sum\limits_{k=0}^{n+1}f_kg_{n+1-k}
+	\end{align*}
+	\begin{align*}
+		((Df)g)_n&=\sum\limits_{k=0}^n(Df)_kg_{n-k}\\
+		&=\sum\limits_{k=0}^n(k+1)f_{k+1}g_{n-k}\\
+		&=\sum\limits_{k=1}^{n+1}kf_kg_{n+1-k}
+	\end{align*}
+	\begin{align*}
+		(f(Dg))_n&=\sum\limits_{k=0}^nf_{k}(Dg)_{n-k}\\
+		&=\sum\limits_{k=0}^n(n+1-k)f_{k}g_{n+1-k}\\
+	\end{align*}
+	Obviously we have
+	\[(D(fg))_n=((Df)g)_n+(f(Dg))_n\]
+\end{proof}
+\begin{thm}
+	Let $f$ be a monic polynomial over $F$ with derivative $Df$.Then $f$ is a product of distinct irreducible polynomials over $F$ if and only if $f$ and $Df$ are relatively prime. 
+\end{thm}
+\begin{proof}
+	If some prime polynomial $p$ is repeated in the product,then $f=p^2h$ and 
+	\[Df=p^2(Dh)+2p(Dp)h\]
+	which means $Df$ and $f$ are not relatively prime.\\
+	If $f$ is a product of distinct irreducible polynomials,then we have
+	\[Df=(Dp_1)f_1+(Dp_2)f_2+\cdots+(Dp_r)f_r\]
+	If there exists $p_i$ divides $f$ and $Df$,and because $p_i$ divides $f_j$ for every $j\neq i$,we have $p_i$ divides $f_i(Dp_i)$,which means $p_i$ divides $Dp_i$.But this is impossible because the degree of $Dp_i$ is less than the degree of $p_i$.
+\end{proof}
+\begin{dde}
+	The field $F$ is called \textbf{algebraically closed} if every prime polynomials over $F$ has degree $1$.
+\end{dde}
+The definition means that every polynomials in $F[x]$ can be expressed in the form
+\[f=c(x-c_1)^{n_1}\cdots(x-c_r)^{n_r}\]
+The field $C$ of complex numbers is algebraically closed,which is called the Fundamental Theorem of Algebra,and this also implies that every prime over $R$ has degree $1$ or $2$.\\
+\indent In next section we will introduce an important concept:eigenvalue.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{channel1}
+\end{figure}
 \end{document}
-
 
 
 
