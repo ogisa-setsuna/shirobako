@@ -1,0 +1,72 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业6}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent77.1\\
+\begin{align*}
+	i\hbar\dot{a}&=-\mu B\cos\theta a-\mu B\sin\theta e^{i\omega t}b\\
+	i\hbar\dot{b}&=-\mu B\sin\theta e^{-i\omega t}a+\mu B\cos\theta b
+\end{align*}
+The zero order:
+\begin{align*}
+	i\hbar\dot{a_0}&=-\mu Ba_0\\
+	i\hbar\dot{b_0}&=\mu Bb_0
+\end{align*}
+we have
+\[a_0=e^{i\frac{\mu B}{\hbar}t},b_0=0\]
+Then we consider the first order. We notice that the first equation has no first order.
+\[i\hbar\dot{b}=-\mu B\sin\theta e^{-i\omega t}e^{i\frac{\mu B}{\hbar}t}+\mu Bb\]
+we have
+\[b=\frac{\frac{\mu B}{\hbar}\sin\theta}{\frac{2\mu B}{\hbar}-\omega}(e^{i(\frac{\mu B}{\hbar}-\omega)t}-e^{-i\frac{\mu B}{\hbar}t})\]
+Obviously, $\omega$ must be $\dfrac{2\mu B}{\hbar}$ for resonance. Then we have
+\[b=i\frac{\mu B}{\hbar}te^{-i\frac{\mu B}{\hbar}t}\sin\theta\]
+\[P_{-z}=|b|^2=\frac{\mu^2B^2}{\hbar^2}t^2\sin^2\theta\]
+77.2\\
+Like 77.1, let $z$-axis along $B_0$, we have
+\[a_0=0,b_0=e^{-i\frac{\mu B_0}{\hbar}t}\]
+\[i\hbar\dot{a}=-\mu B_n(e^{i\omega t}+e^{-i\omega t})e^{i\frac{\mu B_0}{\hbar}t}-\mu B_0a\]
+If $\omega\neq\frac{2\mu B_0}{\hbar},-\frac{2\mu B_0}{\hbar}$, we have
+\[a=\frac{\frac{\mu B_n}{\hbar}}{\omega-\frac{2\mu B_0}{\hbar}}e^{i(\omega-\frac{\mu B_0}{\hbar})t}-\frac{\frac{\mu B_n}{\hbar}}{\omega+\frac{2\mu B_0}{\hbar}}e^{-i(\omega+\frac{\mu B_0}{\hbar})t}-\frac{\frac{4\mu^2 B_0B_n}{\hbar^2}}{\omega^2-\frac{4\mu^2 B_0^2}{\hbar^2}}e^{i\frac{\mu B_0}{\hbar}t}\]
+\begin{align*}
+	P_{||}&=|a|^2\\
+	&=(\frac{\frac{\mu B_n}{\hbar}}{\omega-\frac{2\mu B_0}{\hbar}})^2+(\frac{\frac{\mu B_n}{\hbar}}{\omega+\frac{2\mu B_0}{\hbar}})^2+(\frac{\frac{4\mu^2 B_0B_n}{\hbar^2}}{\omega^2-\frac{4\mu^2 B_0^2}{\hbar^2}})^2\\
+	&-\frac{\frac{2\mu^2 B_n^2}{\hbar^2}}{\omega^2-\frac{4\mu^2 B_0^2}{\hbar^2}}\cos2\omega t-2\frac{\frac{\mu B_n}{\hbar}}{\omega-\frac{2\mu B_0}{\hbar}}\frac{\frac{4\mu^2 B_0B_n}{\hbar^2}}{\omega^2-\frac{4\mu^2 B_0^2}{\hbar^2}}\cos(\omega-\frac{2\mu B_0}{\hbar})t\\
+	&+2\frac{\frac{\mu B_n}{\hbar}}{\omega+\frac{2\mu B_0}{\hbar}}\frac{\frac{4\mu^2 B_0B_n}{\hbar^2}}{\omega^2-\frac{4\mu^2 B_0^2}{\hbar^2}}\cos(\omega+\frac{2\mu B_0}{\hbar})t
+\end{align*}
+If $\omega=\frac{2\mu B_0}{\hbar}\text{ or }-\frac{2\mu B_0}{\hbar}$, we have
+\[a\approx i\frac{\mu B_n}{\hbar}te^{i\frac{\mu B_0}{\hbar}t}\]
+\[P_{||}=|a|^2=\frac{\mu^2B_n^2}{\hbar^2}t^2\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
