@@ -1,0 +1,89 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业6}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)因为$f$处处可导，因而连续。显然$f(x)\neq0$。设$f(x)>0$，则在$x$的一个邻域内有
+\[\ln|f(x)|=\ln f(x)\]
+因此导函数为
+\[\frac{f'(x)}{f(x)}\]
+若$f(x)<0$，则在$x$的一个邻域内有
+\[\ln|f(x)|=\ln(-f(x))\]
+因此导函数为
+\[\frac{-f'(x)}{-f(x)}=\frac{f'(x)}{f(x)}\]
+综上，导函数为
+\[\frac{f'(x)}{f(x)}\]
+(2)显然$f(x)=1,-1$时不可导。设$f(x)\neq1,-1$，有
+\[(\arcsin(f(x)))'=\frac{f'(x)}{\sqrt{1-f(x)^2}}\]
+(3)显然$u(x)^{v(x)}$默认了$u(x)>0,u(x)^{v(x)}>0$，因此设$f(x)=u(x)^{v(x)}$并两边取对数有
+\[\ln f(x)=v(x)\ln u(x)\]
+两边求导有
+\[\frac{f'(x)}{f(x)}=v'(x)\ln u(x)+\frac{u'(x)}{u(x)}v(x)\]
+因此我们有
+\[(u(x)^{v(x)})'=(v'(x)\ln u(x)+\frac{u'(x)}{u(x)}v(x))u(x)^{v(x)}\]
+2.\\
+(1)在$x_0$的一个邻域内存在一个线性变换$A:R\rightarrow R$使得
+\[f(x_0+h)=f(x_0)+Ah+\alpha(h),\lim\limits_{h\rightarrow0}\frac{\alpha(h)}{h}=0\]
+那么称$f$在$x_0$处可微。\\
+(2)设$f$在$x_0$处可导，令
+\[f(x_0+h)-f(x_0)=f'(x_0)h+\alpha(h)\]
+根据导数定义有
+\[\lim\limits_{h\rightarrow0}\frac{\alpha(h)}{h}=\lim\limits_{h\rightarrow0}\frac{f(x_0+h)-f(x_0)}{h}-f'(x_0)=0\]
+因此可微，证毕。\\
+(3)由定义可得
+\[g'(0)=\lim\limits_{x\rightarrow0}\frac{g(x)-g(0)}{x}=\lim\limits_{x\rightarrow0}\frac{g(x)}{x},h'(0)=\lim\limits_{x\rightarrow0}\frac{h(x)}{x}\]
+利用复合函数极限定理，绝对值函数显然连续，因此根据条件可得
+\[|g'(0)|=\lim\limits_{x\rightarrow0}|\frac{g(x)}{x}|\le\lim\limits_{x\rightarrow0}|\frac{h(x)}{x}|=|h'(0)|\]
+证毕。\\
+3.\\
+(1)\[\lim\limits_{n\rightarrow\infty}n(\ln|f(a+\frac{1}{n})|-\ln|f(a)|)=\lim\limits_{n\rightarrow\infty}\frac{\ln|f(a+\frac{1}{n})|-\ln|f(a)|}{\frac{1}{n}}=(\ln|f(a)|)'=\frac{L}{f(a)}\]
+(2)显然$\dfrac{f(a+\frac{1}{n})}{f(a)}$在$n$很大时为正数，我们有
+\[\lim\limits_{n\rightarrow\infty}n\ln\frac{f(a+\frac{1}{n})}{f(a)}=\lim\limits_{n\rightarrow\infty}\frac{\ln|f(a+\frac{1}{n})|-\ln|f(a)|}{\frac{1}{n}}=(\ln|f(a)|)'=\frac{L}{f(a)}\]
+利用复合函数极限定理，且对数函数连续，我们有
+\[\lim\limits_{n\rightarrow\infty}(\frac{f(a+\frac{1}{n})}{f(a)})^n=e^{\frac{L}{f(a)}}\]
+4.\\
+(1)不一定。因为$f'(x)=0$时$f^{-1}$不可导。此时有
+\[\lim\limits_{y\rightarrow y_0}\frac{f^{-1}(y)-f^{-1}(y_0)}{y-y_0}=\lim\limits_{x\rightarrow x_0}\frac{x-x_0}{f(x)-f(x_0)}\rightarrow\infty\]
+(2)
+\[h'(x)=\frac{g'(f^{-1}(x))}{f'(x)}\]
+\[h''(x)=\frac{g''(f^{-1}(x))-f''(x)g'(f^{-1}(x))}{(f'(x))^2}\]
+5.\\
+(1)利用复合函数高阶导数求导法则可得
+\[f^{(n)}(x)=\sum_{\substack{all\,division\\i_1+\cdots+i_k=n}}g^{(k)}(h(x))h^{(i_1)}(x)\cdots h^{(i_k)}(x)\]
+令$g(x)=e^x,h(x)=-\dfrac{1}{x}$，显然前者的任意阶导数仍然不变，而后者的导数是$\dfrac{1}{x}$的倍数乘上一个常数，于是我们显然有
+\[f^{(n)}(x)=P_n(\frac{1}{x})e^{-\frac{1}{x}}\]
+(2)利用归纳法。显然左导数任一多阶为$0$，因此以下皆讨论右导数。先求一阶导
+\[f'(0)=\lim\limits_{x\rightarrow0}\frac{e^{-\frac{1}{x}}}{x}=\lim\limits_{t\rightarrow\infty}te^{-t}=0\]
+下设$k-1$阶导为$0$，我们有
+\[f^{(k)}(0)=\lim\limits_{x\rightarrow0}\frac{P_{k-1}(\frac{1}{x})e^{-\frac{1}{x}}}{x}=\lim\limits_{t\rightarrow\infty}tP_{k-1}(t)e^{-t}=0\]
+利用归纳，我们有
+\[f^{(n)}(0)=0\]
+6.\\
+Attention is all you need.
+\[f(x)=\frac{x^2+1}{x^3-x}=\frac{1}{x-1}+\frac{1}{x+1}-\frac{1}{x}\]
+因此显然有
+\[f^{(n)}(x)=(-1)^nn!(\frac{1}{(x-1)^{n+1}}+\frac{1}{(x+1)^{n+1}}-\frac{1}{x^{n+1}})\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
