@@ -1,0 +1,116 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业7}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+令$a_1<a_2<\cdots<a_n$为$f(x)$的不同零点，根据罗尔定理，有
+\[\exists a'_i\in(a_i,a_{i+1}),f'(a'_i)=0\]
+因此至少有$n-1$个不同零点。以此类推显然有$f^{(k)}(x),1\le k\le n-1$至少有$n-k$个不同零点。\\
+2.\\
+根据拉格朗日中值定理，有
+\[\frac{y^\alpha-x^\alpha}{y-x}=\alpha\xi^{\alpha-1},\xi\in(x,y)\]
+(1)对于$\alpha>1$或$\alpha<0$，我们有
+\[\alpha x^{\alpha-1}<\alpha\xi^{\alpha-1}<\alpha y^{\alpha-1}\]
+因此有
+\[\alpha x^{\alpha-1}(y-x)<y^\alpha-x^\alpha<\alpha y^{\alpha-1}(y-x)\]
+(2)对于$0<\alpha<1$，我们显然有
+\[\alpha y^{\alpha-1}<\alpha\xi^{\alpha-1}<\alpha x^{\alpha-1}\]
+因此有
+\[\alpha y^{\alpha-1}(y-x)<y^\alpha-x^\alpha<\alpha x^{\alpha-1}(y-x)\]
+(3)根据拉格朗日中值定理，我们有
+\[\frac{\ln\frac{y}{x}}{y-x}=\frac{1}{\xi},\xi\in(x,y)\]
+且显然有
+\[\frac{1}{y}<\frac{1}{\xi}<\frac{1}{x}\]
+因此有
+\[\frac{y-x}{y}<\ln\frac{y}{x}<\frac{y-x}{x}\]
+3.\\
+这是一个$\dfrac{?}{\infty}$型洛必达法则，我们有
+\[\lim\limits_{x\rightarrow+\infty}\frac{f(x)}{x^n}=\lim\limits_{x\rightarrow+\infty}\frac{f'(x)}{nx^{n-1}}=\cdots=\lim\limits_{x\rightarrow+\infty}\frac{f^{(n)}(x)}{n!}=\frac{A}{n!}\]
+4.\\
+\[f'(0)=\lim\limits_{x\rightarrow0}\frac{(1+x)^\frac{1}{x}-e}{x}\]
+我们知道$\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}=e$，因此这是一个$\dfrac{0}{0}$型洛必达法则。我们知道
+\[f'(x)=(1+x)^\frac{1}{x}(-\frac{1}{x^2}\ln(1+x)+\frac{1}{x(x+1)}),x\neq0\]
+因此有
+\[\lim\limits_{x\rightarrow0}\frac{(1+x)^\frac{1}{x}-e}{x}=\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}(-\frac{1}{x^2}\ln(1+x)+\frac{1}{x(x+1)})\]
+利用皮亚诺余项的泰勒公式，我们有
+\[\ln(1+x)=x-\frac{x^2}{2}+o(x^2)\]
+\[\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}(-\frac{1}{x^2}\ln(1+x)+\frac{1}{x(x+1)})=\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}(\frac{1}{2}-\frac{1}{1+x}-\frac{o(x^2)}{x^2})=-\frac{e}{2}\]
+因此
+\[f'(0)=-\frac{e}{2}\]
+显然上式中第二个等号告诉了我们$f'(x)$是连续的。二阶导是类似的
+\begin{align*}
+	f''(0)&=\lim\limits_{x\rightarrow0}\frac{(1+x)^\frac{1}{x}(\frac{1}{2}-\frac{1}{1+x}-\frac{o(x^2)}{x^2})+\frac{e}{2}}{x}\\
+	&=\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}((-\frac{1}{x^2}\ln(1+x)+\frac{1}{x(1+x)})^2+\frac{2}{x^3}\ln(1+x)-\frac{2}{x^2(1+x)}-\frac{1}{x(1+x)^2})
+\end{align*}
+利用皮亚诺余项的泰勒公式，我们有
+\[\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)\]
+因此有
+\begin{align*}
+	&\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}((-\frac{1}{x^2}\ln(1+x)+\frac{1}{x(1+x)})^2+\frac{2}{x^3}\ln(1+x)-\frac{2}{x^2(1+x)}-\frac{1}{x(1+x)^2})\\
+	&=\frac{e}{4}+\lim\limits_{x\rightarrow0}(1+x)^\frac{1}{x}(\frac{2}{3}-\frac{x}{1+x}+2\frac{o(x^3)}{x^3})\\
+	&=\frac{11}{12}e
+\end{align*}
+所以
+\[f''(0)=\frac{11}{12}e\]
+5.\\
+\[(\tan x)'=\frac{1}{\cos^2x}\]
+\[(\tan x)''=\frac{2\sin x}{\cos^3x}\]
+\[(\tan x)'''=\frac{2}{\cos^2x}+\frac{6\sin^2x}{\cos^4x}\]
+\[(\tan x)^{(4)}=\frac{4\sin x}{\cos^3x}+\frac{12\sin x}{\cos^3x}+\frac{24\sin^3x}{\cos^5x}\]
+\[(\tan x)^{(5)}=\frac{4}{\cos^2x}+\frac{12\sin^2x}{\cos^4x}+\frac{12}{\cos^2x}+\frac{36\sin^2x}{\cos^4x}+\frac{72\sin^2x}{\cos^4x}+\frac{120\sin^4x}{\cos^6x}\]
+所以$x=0$处五阶皮亚诺余项泰勒公式为
+\[\tan x=x+\frac{x^3}{3}+\frac{2}{15}x^5+o(x^5)\]
+6.\\
+\[(\arcsin x)'=\frac{1}{\sqrt{1-x^2}}\]
+令$g(x)=\frac{1}{\sqrt{x}},f(x)=1-x^2$。显然$x=0$处$1-x^2$只有二阶导存在，等于$-2$。根据复合函数求导定理我们有
+\[(\frac{1}{\sqrt{1-x^2}})^{(k)}|_{x=0}=\begin{cases}
+	((k-1)!!)^2&k=2m\\
+	0&k=2m-1
+\end{cases}\]
+因此我们有
+\[\arcsin x=x+\sum_{m=1}^{[\frac{n-1}{2}]}((2m-1)!!)^2\frac{x^{2m+1}}{(2m+1)!}+o(x^n)\]
+7.\\
+类似上一题，我们有
+\[(\arctan x)'=\frac{1}{1+x^2}\]
+令$g(x)=\frac{1}{x},f(x)=1+x^2$。显然$x=0$处$1+x^2$只有二阶导存在，等于$2$。根据复合函数求导定理我们有
+\[(\frac{1}{1+x^2})^{(k)}|_{x=0}=\begin{cases}
+	(-1)^{\frac{k}{2}}k!&k=2m\\
+	0&k=2m-1
+\end{cases}\]
+因此我们有
+\[(\arctan x)^{(n)}|_{x=0}=\begin{cases}
+	(-1)^m(2m)!&n=2m+1,m=1,2,\dots\\
+	0&n=2m,m=1,2,\dots\\
+	1&n=1
+\end{cases}\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
