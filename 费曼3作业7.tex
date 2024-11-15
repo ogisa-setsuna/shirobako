@@ -1,0 +1,102 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{bm}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业6}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent78.1\\
+(a)
+\[\bm{\sigma}\times\bm{\sigma}=\begin{bmatrix}
+	\sigma_y\sigma_z-\sigma_z\sigma_y\\
+	\sigma_z\sigma_x-\sigma_x\sigma_z\\
+	\sigma_x\sigma_y-\sigma_y\sigma_x
+\end{bmatrix}\]
+We have
+\[[\sigma_i,\sigma_j]=2i\epsilon_{ijk}\sigma_k\]
+\[\sigma^2_i=\begin{bmatrix}
+	1&0\\
+	0&1
+\end{bmatrix}\]
+Thus
+\[\bm{\sigma}\times\bm{\sigma}=2i\bm{\sigma}\]
+\[\bm{\sigma}\cdot\bm{\sigma}=
+3\begin{bmatrix}
+	1&0\\
+	0&1
+\end{bmatrix}\]
+(b)
+\[\sigma_x=\begin{bmatrix}
+	0&1\\
+	1&0
+\end{bmatrix},\sigma_y=\begin{bmatrix}
+0&-i\\
+i&0
+\end{bmatrix},\sigma_z=\begin{bmatrix}
+1&0\\
+0&-1
+\end{bmatrix}\]
+78.2\\
+(a)\begin{align*}
+	i\hbar\frac{dC_1}{dt}&=E_OC_1-AC_2\\
+	i\hbar\frac{dC_2}{dt}&=-AC_1+E_CC_2-AC_3\\
+	i\hbar\frac{dC_3}{dt}&=-AC_2+E_OC_3
+\end{align*}
+We have the characteristic polynomial
+\[\begin{vmatrix}
+	\lambda-E_O&A&0\\
+	A&\lambda-E_C&A\\
+	0&A&\lambda-E_O
+\end{vmatrix}=(\lambda-E_O)(\lambda^2-(E_O+E_C)\lambda+E_OE_C-2A^2)\]
+And thus the energy levels are
+\[E=E_O,\frac{E_O+E_C\pm\sqrt{(E_O-E_C)^2+8A^2}}{2}\]
+(b)If $E_O=E_C$, we have
+\[E=E_O,E_O+\sqrt{2}A,E_O-\sqrt{2}A\]
+\indent The first one caused by the stationary state that is symmetrical about carbon atom and has the opposite symbol on each oxygen atom, and thus make the probability amplitude on the carbon atom be $0$.\\
+\indent The second and third one are caused by the exchange force because of the chance for the electron to jump between an oxygen atom and the carbon atom.\\
+78.4\\
+(a)(b)\begin{align*}
+	i\hbar\frac{dC_1}{dt}&=E_0C_1+AC_2+AC_6\\
+	i\hbar\frac{dC_2}{dt}&=E_0C_2+AC_1+AC_3\\
+	i\hbar\frac{dC_3}{dt}&=E_0C_3+AC_2+AC_4\\
+	i\hbar\frac{dC_4}{dt}&=E_0C_4+AC_3+AC_5\\
+	i\hbar\frac{dC_5}{dt}&=E_0C_5+AC_4+AC_6\\
+	i\hbar\frac{dC_6}{dt}&=E_0C_6+AC_5+AC_1
+\end{align*}
+If $C_k=\frac{1}{\sqrt{6}}e^{-\frac{i}{\hbar}E_It}$, then the equations is simply satisfied if 
+\[E_I=E_0+2A\]
+(c)(d)
+The second to fourth equations give that
+\[i\hbar\frac{C_1}{dt}=(E_0+2A\cos\delta)C_1\]
+which means
+\[C_1=Ce^{-\frac{i}{\hbar}(E_0+2A\cos\delta)t}\]
+Use the first and last equation, we have
+\[e^{i6\delta}=1,\rightarrow\delta=\frac{i\pi}{3},i=0,1,\dots,5\]
+Normalizing the result, we have
+\[C_k=\frac{1}{\sqrt{6}}e^{-\frac{i}{\hbar}Et+i(k-1)\delta},E=E_0+2A\cos\delta,\delta=\frac{i\pi}{3},i=0,1,\dots,5\]
+The energy levels are
+\[E_0+2A,E_0+A,E_0-A,E_0-2A,E_0-A,E_0+A\]
+Thus the spacings are $A,2A,A,A,2A,A$.
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
