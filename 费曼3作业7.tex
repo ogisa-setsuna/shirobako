@@ -34,6 +34,36 @@ Thus
 	0&1
 \end{bmatrix}\]
 (b)
+First, form $\bm{\sigma}\times\bm{\sigma}=2i\bm{\sigma}$ we have
+\[Tr(\sigma_i)=0\]
+According to the symmetry, we have
+\[Tr(\sigma^2_i)=2\]
+We know that we can always choose a basis to make $\sigma_z$ be like
+\[\begin{bmatrix}
+	c&1\\
+	0&c
+\end{bmatrix}\]
+or
+\[\begin{bmatrix}
+	c_1&0\\
+	0&c_2
+\end{bmatrix}\]
+and form the conditions above we have $c_1=-c_2=\pm1$. Choose $c_1=1$, then we have
+\[\sigma_z=\begin{bmatrix}
+	1&0\\
+	0&-1
+\end{bmatrix}\]
+Let
+\[\sigma_y=\begin{bmatrix}
+	c_1&c_2\\
+	c_3&c_4
+\end{bmatrix}\]
+Use the conditions we have $c_1=-c_4,c_1^2+c_2c_3=1$. We can then calculate $\sigma_x$, which is
+\[\begin{bmatrix}
+	0&ic_2\\
+	-ic_3&0
+\end{bmatrix}\]
+Use $Tr(\sigma_x^2)=1$ we have $c_2c_3=1,c_1=0$. We can always choose a basis to make $c_2=-i,c_3=i$, because multiplying a complex number on a base vector makes $c_2\rightarrow zc_2,c_3\rightarrow \dfrac{c_3}{z}$. Then we have
 \[\sigma_x=\begin{bmatrix}
 	0&1\\
 	1&0
