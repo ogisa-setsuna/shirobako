@@ -1,0 +1,62 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{线代作业10}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.
+(a)显然，对于$J_m(0)$，每乘自己一次，整体就往右平移一列，因而有
+\[J_m(0)^m=0\]
+因此$N$足够大时，我们有
+\[J_m(\lambda)^N=\sum_{k=0}^NJ_m(0)^k\lambda^{N-k}=\sum_{k=0}^{m-1}J_m(0)^k\lambda^{N-k}\]
+或者显式地写出来
+\[\begin{bmatrix}
+	\lambda^N&\lambda^{N-1}&\cdots&\lambda^{N-m+2}&\lambda^{N-m+1}\\
+	0&\lambda^N&\cdots&\lambda^{N-m+3}&\lambda^{N-m+2}\\
+	\vdots&\vdots&\ddots&\vdots&\vdots\\
+	0&0&\cdots&\lambda^N&\lambda^{N-1}\\
+	0&0&\cdots&0&\lambda^N
+\end{bmatrix}\]
+由于$|\lambda|<1$，显然每一项在$N\rightarrow\infty$时都趋于零。因此有
+\[\lim_{N\rightarrow\infty}J_m(\lambda)^N=0\]
+(b)每个方阵都相似于约当标准型，因此有
+\[A^N=P\begin{bmatrix}
+	J_{m_{11}}(\lambda_1)^N&0&\cdots&0\\
+	0&J_{m_{12}}(\lambda_1)^N&\cdots&0\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&0&\cdots&J_{m_{kn_k}}(\lambda_k)^N
+\end{bmatrix}P^{-1}\]
+显然每一项趋于$0$。\\
+2.\\
+(a)设存在，为$\alpha$，则有
+\[\sum_{j=1}^n\hat{m_{ij}}a_j=-a_i\]
+因而
+\[\sum_{i=1}^n\sum_{j=1}^n\hat{m_{ij}}a_j=\sum_{j=1}^n\sum_{i=1}^n\hat{m_{ij}}a_j=\sum_{j=1}^na_j=-\sum_{i=1}^na_i\]
+因此
+\[\sum_{i=1}^na_i=0\]
+同时若存在$a_i$不同号，我们有
+\[|a_i|=|\sum_{j=1}^n\hat{m_{ij}}a_j|<\sum_{j=1}^n\hat{m_{ij}}|a_j|\]
+因而
+\[\sum_{j=1}^n|a_j|>\sum_{i=1}^n|a_i|\]
+这显然不可能，因此$a_i$同号，由于其和为$0$，因此必为零向量，于是不存在该特征值。\\
+(b)如果根子空间与特征子空间不一致，显然我们可以找到一个向量使得$(\widehat{M}-I)^m\alpha=0,(\widehat{M}-I)^{m-1}\alpha\neq0$。于是我们总可以写成
+\[(\widehat{M}-I)^2\alpha=0,(\widehat{M}-I)\alpha\neq0,\alpha\neq0\]
+由于前一题所证性质，$\beta=(\widehat{M}-I)\alpha$各分量同号。又有
+\[\sum_{i=1}^nb_i=\sum_{i=1}^n(\sum_{j=1}^n\hat{m_{ij}}a_j-a_i)=0\]
+因此$\beta=0$，矛盾。于是代数重数也为$1$。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
