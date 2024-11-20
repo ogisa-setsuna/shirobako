@@ -1,0 +1,101 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{siunitx}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业8}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent79.1\\
+Because we have
+\[f=\frac{4A}{h}=\frac{c}{\lambda},\lambda\approx21\unit{cm}\]
+then
+\[A\sim 10^{-25}\unit{J}\]
+We also know that
+\[\mu\approx\mu'\sim\frac{e\hbar}{m_{e}}\sim10^{-23}\unit{J.T^{-1}}\]
+(a)If $B=10^{-5}\unit{Gs}=10^{-9}\unit{T}$, we have $\mu B\ll A$, then
+\[E_\Rmnum{1}=A+\mu B,E_{\Rmnum{2}}=A-\mu B,E_{\Rmnum{3}}=A\]
+and we have
+\begin{align*}
+	f_1=\frac{\mu B}{h}&,\lambda_1=\frac{hc}{\mu B}\\
+	f_2=\frac{\mu B}{h}&,\lambda_2=\frac{hc}{\mu B}\\
+	f_3=\frac{2\mu B}{h}&,\lambda_3=\frac{hc}{2\mu B}
+\end{align*}
+(b)If $B=0.5\unit{Gs}=0.5\times10^{-4}\unit{T}$, we also have $\mu B\ll A$, then we have the same result:
+\begin{align*}
+	f_1=\frac{\mu B}{h}&,\lambda_1=\frac{hc}{\mu B}\\
+	f_2=\frac{\mu B}{h}&,\lambda_2=\frac{hc}{\mu B}\\
+	f_3=\frac{2\mu B}{h}&,\lambda_3=\frac{hc}{2\mu B}
+\end{align*}
+(c)If $B=10^5\unit{Gs}=10\unit{T}$, we have $\mu B\gg A$, thus
+\[E_\Rmnum{1}=A+\mu B,E_{\Rmnum{2}}=A-\mu B,E_{\Rmnum{3}}=-A+\mu' B\approx-A+\mu B\]
+and we have
+\begin{align*}
+	f_1=\frac{2A}{h}&,\lambda_1=\frac{hc}{2A}\\
+	f_2=\frac{2\mu B}{h}&,\lambda_2=\frac{hc}{2\mu B}\\
+	f_3=\frac{2\mu B-2A}{h}&,\lambda_3=\frac{hc}{2\mu B-2A}
+\end{align*}
+80.1\\
+(a)The Schrodinger equations are
+\begin{align*}
+	i\hbar\frac{\mathrm{d}C_{n,i}}{\mathrm{d}t}&=E_iC_{n,i}+AC_{n+1,j}+AC_{n-1,j}+BC_{n+1,i}+BC_{n-1,i}\\
+	i\hbar\frac{\mathrm{d}C_{n,j}}{\mathrm{d}t}&=E_iC_{n,j}+AC_{n+1,i}+AC_{n-1,i}+BC_{n+1,j}+BC_{n-1,j}
+\end{align*}
+Let 
+\[C_{n.i}=C_ie^{ikx_n-i\frac{E}{h}t},C_{n.j}=C_je^{ikx_n-i\frac{E}{h}t}\]
+we have
+\[\frac{E-E_i-2B\cos kb}{2A\cos kb}=\frac{2A\cos kb}{E-E_j-2B\cos kb}\]
+Thus
+\[E=\frac{E_i+E_j+4B\cos kb\pm\sqrt{(E_i-E_j)^2+16A^2\cos kb}}{2}\]
+(b)If $|E_i-E_j|\ll 2B$, we have
+\[E\approx\frac{E_i+E_j+4(B\pm A)\cos kb}{2}\]
+Thus
+\[E_1=\frac{E_i+E_j}{2}+2(B+A)\cos kb,E_2=\frac{E_i+E_j}{2}+2(B-A)\cos kb\]
+Just like two energy bands which have the same center and have the width $4(B+A),4(B-A)$ respectively.\\
+If $|E_i-E_j|\gg 2B$, we have
+\[E\approx\frac{E_i+E_j+4B\cos kb\pm(E_i-E_j)}{2}\]
+Thus
+\[E_1=E_i+2B\cos kb,E_2=E_j+2B\cos kb\]
+Just like two energy bands which have the same width $4B$ and have the center $E_i,E_j$ respectively. Each is the same as energy band with just one state on an atom.\\
+80.3\\
+\begin{align*}
+	i\hbar\frac{\mathrm{d}C_{-1}}{\mathrm{d}t}&=E_0C_{-1}-AC_{-2}-BC_0\\
+	i\hbar\frac{\mathrm{d}C_{0}}{\mathrm{d}t}&=E_0C_{0}-BC_{-1}-BC_1\\
+	i\hbar\frac{\mathrm{d}C_{1}}{\mathrm{d}t}&=E_0C_{1}-AC_{2}-BC_0\\
+\end{align*}
+Let 
+\begin{align*}
+	C_n&=e^{ikx_n-i\frac{E}{h}t}+\beta e^{-ikx_n-i\frac{E}{h}t},n<0\\
+	C_n&=\gamma e^{ikx_n-i\frac{E}{h}t},n>0\\
+	C_0&=ae^{-i\frac{E}{h}t}
+\end{align*}
+which satisfy the other equations when $E=E_0-2A\cos kb$. Use the three equations above, we have
+\begin{align*}
+	a&=\frac{iAB\sin kb}{B^2e^{ikb}-A^2\cos kb}\\
+	\beta&=\frac{(A^2-B^2)\cos kb}{B^2e^{ikb}-A^2\cos kb}\\
+	\gamma&=\frac{iB^2\sin kb}{B^2e^{ikb}-A^2\cos kb}
+\end{align*}
+(b)
+\[|\beta|^2=\frac{(A^2-B^2)^2\cos^2kb}{(A^2-B^2)^2\cos^2kb+B^4\sin^2kb}\]
+\[|\gamma|^2=\frac{B^4\sin^2kb}{(A^2-B^2)^2\cos^2kb+B^4\sin^2kb}\]
+Obviously we have
+\[|\beta|^2+|\gamma|^2=1\] 
+\end{document}
+
+
+
+
+
+
+
+
+
+
