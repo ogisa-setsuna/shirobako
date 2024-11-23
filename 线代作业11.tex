@@ -1,0 +1,155 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\title{线代作业11}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+\[\braket{A,B}=Tr(A^TB)=\sum_{j=1}^n\sum_{i=1}^ma_{ij}b_{ij}=Tr(B^TA)=\braket{B,A}\]
+\[\braket{A,cB+C}=Tr(A^T(cB+C))=cTr(A^TB)+Tr(A^TC)=c\braket{A,B}+\braket{A,C}\]
+\[\braket{A,A}=Tr(A^TA)=\sum_{j=1}^n\sum_{i=1}^ma^2_{ij}>0,\text{ if }A\neq0\]
+2.\\
+\[\braket{x,y}=X^TGY\]
+\[X=PX',Y=PY'\]
+\[\therefore\braket{x,y}=X^TGY=X'^TP^TGPY'\rightarrow G'=P^TGP\]
+3.\\
+若$\alpha_1,\dots,\alpha_n$线性相关，那么$G$存在一列向量是其他列向量的线性组合，这是因为若
+\[\alpha_k=c_1\alpha_1+\cdots+c_{k-1}\alpha_{k-1}+c_{k+1}\alpha_{k+1}+\cdots+c_n\alpha_n\]
+那么
+\[\braket{\alpha_i,\alpha_k}=c_1\braket{\alpha_i,\alpha_1}+\cdots+c_{k-1}\braket{\alpha_i,\alpha_{k-1}}+c_{k+1}\braket{\alpha_i,\alpha_{k+1}}+\cdots+c_n\braket{\alpha_i,\alpha_{n}}\]
+即
+\[g_k=c_1g_1+\cdots+c_{k-1}g_{k-1}+c_{k+1}g_{k+1}+\cdots+c_ng_n\]
+显然此时$G$不可逆。若$\alpha_1,\dots,\alpha_n$线性无关而$G$不可逆，那么存在一列向量是其他列向量的线性组合，我们有
+\[g_k=c_1g_1+\cdots+c_{k-1}g_{k-1}+c_{k+1}g_{k+1}+\cdots+c_ng_n\]
+\[\braket{\alpha_i,\alpha_k}=c_1\braket{\alpha_i,\alpha_1}+\cdots+c_{k-1}\braket{\alpha_i,\alpha_{k-1}}+c_{k+1}\braket{\alpha_i,\alpha_{k+1}}+\cdots+c_n\braket{\alpha_i,\alpha_{n}}\]
+于是
+\[\braket{\alpha_i,\alpha_k}=\braket{\alpha_i,c_1\alpha_1+\cdots+c_{k-1}\alpha_{k-1}+c_{k+1}\alpha_{k+1}+\cdots+c_n\alpha_{n}}\]
+由于此时$\alpha_1,\dots,\alpha_n$线性无关，形成一组基，那么上式表明$\alpha_k$与$c_1\alpha_1+\cdots+c_{k-1}\alpha_{k-1}+c_{k+1}\alpha_{k+1}+\cdots+c_n\alpha_{n}$对任何向量做的内积都相同，于是两者相同，与线性无关矛盾。因而$G$可逆，证毕。\\
+4.\\
+设$A$为
+\[\begin{bmatrix}
+	a&b\\
+	b&c
+\end{bmatrix}\]
+我们有
+\[X^TAX=ax^2+2bxy+cy^2\]
+固定$y\neq0$，我们有$\Delta=4y^2(b^2-ac)<0$，要求了$\det A>0$。同理固定$x\neq0$也要求$\det A>0$。由于$X^TAX>0,X\neq0$，因此一定有$a,c>0$，于是$TrA=a+c>0$。\\
+若已有$TrA>0,\det A>0$，那么显然由于$\det A=ac-b^2>0\rightarrow ac>0$，我们有$a>0,c>0$，根据上述讨论这显然满足$X^TAX>0,X\neq0$。证毕。\\
+5.\\
+\[\Vert x+y\Vert^2=\Vert x\Vert^2+\Vert y\Vert^2+2\braket{x,y}\]
+因此满足勾股定理当且仅当$\braket{x,y}=0$，即$x,y$正交。\\
+6.\\
+\begin{align*}
+	\braket{x,y}&=\sum_{i=1}^n\sum_{j=1}^nx_iy_j\braket{\alpha_i,\alpha_j}\\
+	&=\sum_{i=1}^n\sum_{j=1}^nx_iy_j\delta_{ij}\\
+	&=\sum_{i=1}^nx_iy_i
+\end{align*}
+又由于
+\[x_i=\sum_{j=1}^nx_j\braket{\alpha_i,\alpha_j}=\braket{\alpha_i,x_i},y_i=\braket{\alpha_i,y_i}\]
+所以
+\[\braket{x,y}=\sum_{i=1}^n\braket{x,\alpha_i}\braket{\alpha_i,y}\]
+7.\\
+利用Gram-Schmidt正交化，我们有
+\[\alpha_1=1\]
+\[\alpha_2=x-\frac{1}{2}\]
+\[\alpha_3=x^2-x+\frac{1}{6}\]
+\[\alpha_4=x^3-\frac{3}{2}x+\frac{3}{5}x-\frac{1}{20}\]
+归一化得
+\[e_1=1,e_2=2\sqrt{3}(x-\frac{1}{2}),e_3=6\sqrt{5}(x^2-x+\frac{1}{6}),e_4=20\sqrt{7}(x^3-\frac{3}{2}x+\frac{3}{5}x-\frac{1}{20})\]
+8.\\
+令
+\[A=\begin{bmatrix}
+	0&1&1\\
+	0&1&-1\\
+	0&0&1
+\end{bmatrix}\]
+显然满足题设条件。\\
+9.\\
+显然
+\[\begin{bmatrix}
+	-2\\
+	1\\
+	0
+\end{bmatrix},\begin{bmatrix}
+-2\\
+0\\
+1
+\end{bmatrix}\]
+是$U$的一组基。将其正交归一为
+\[\frac{1}{\sqrt{5}}\begin{bmatrix}
+	-2\\
+	1\\
+	0
+\end{bmatrix},\frac{1}{3\sqrt{5}}\begin{bmatrix}
+-2\\
+-4\\
+5
+\end{bmatrix}\]
+因此$p'$为
+\[p'=\sum_{i=1}^2\braket{\alpha_i,p}\alpha_i=\frac{1}{9}\begin{bmatrix}
+	-2\\
+	-4\\
+	5
+\end{bmatrix}\]
+10.\\
+(a)基矢为$\dfrac{1}{\sqrt{n}}I_n$。因此
+\[cTr(I_n^TA)=0\rightarrow TrA=0\Rightarrow U^\bot=\{A|TrA=0\}\]
+\[p_{U}A=\frac{1}{n}(Tr(I_n^TA))I_n=\frac{TrA}{n}I_n\]
+(b)显然正交归一基矢为
+\[(e_i)_{jk}=\delta_{ij}\delta_{jk}\]
+因此有
+\[\sum_{i=1}^nc_iTr(e_i^TA)e_i=0\rightarrow a_{ii}=0\Rightarrow U^\bot=\{A|a_{ii}=0\}\]
+\[p_{U}A=\sum_{i=1}^nTr(e_i^TA)e_i=\sum_{i=1}^na_{ii}e_i\]
+(c)显然正交归一基矢为仅在上三角区域有一个分量为$1$其余为$0$的矩阵。显然有
+\[U^\bot=\{A|a_{ij}=0,j\ge i\}\]
+\[(p_{U}A)_{ij}=\begin{cases}
+	0&j<i\\
+	a_{ij}&j\ge i
+\end{cases}\]
+11.\\
+令$p_U$为$U$的正交投影。令$\alpha\in (U^\bot)^\bot$，那么
+\[\braket{\alpha-p_U\alpha,\beta}=0,\forall\beta\in U^\bot\]
+又由于$\alpha-p_U\alpha\in U^\bot$，那么
+\[\alpha-p_U\alpha=0\rightarrow\alpha=p_U\alpha\in U\Rightarrow (U^\bot)^\bot\subseteq U\]
+又有
+\[\braket{\alpha,\beta}=0,\forall\alpha\in U,\beta\in U^\bot\Rightarrow U\subseteq (U^\bot)^\bot\]
+因此
+\[U=(U^\bot)^\bot\]
+12.\\
+显然我们有
+\[\braket{\alpha_1+\alpha_2,\beta}=\braket{\alpha_1,\beta}+\braket{\alpha_2,\beta}=0,\forall\alpha_i\in U_i,\beta\in U_1^\bot\cap U_2^\bot\]
+因此
+\[U_1^\bot\cap U_2^\bot\subseteq(U_1+U_2)^\bot\]
+又有
+\[\braket{\alpha_1+\alpha_2,\beta}=0,\forall\alpha_i\in U_i,\beta\in (U_1+U_2)^\bot\]
+分别令$\alpha_1=0,\alpha_2=0$我们得到
+\[\braket{\alpha_i,\beta}=0,\forall\alpha_i\in U_i,\beta\in (U_1+U_2)^\bot\]
+这意味着
+\[\beta\in U_1^\bot\cap U_2^\bot\Rightarrow (U_1+U_2)^\bot\subseteq U_1^\bot\cap U_2^\bot\]
+于是
+\[(U_1+U_2)^\bot=U_1^\bot\cap U_2^\bot\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
