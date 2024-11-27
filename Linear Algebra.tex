@@ -4,6 +4,8 @@
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{float}
+\usepackage{braket}
+\usepackage{amssymb}
 \usepackage[hidelinks,CJKbookmarks]{hyperref}
 \makeatletter
 \newcommand{\rmnum}[1]{\romannumeral #1}
@@ -2221,7 +2223,767 @@ In the next section, we will discuss the inner product, which endows vector spac
 \thispagestyle{empty}
 \newpage
 \section{Inner Product Space}
+\subsection{Inner Product}
+In this section, we will write a vector as $\ket{v}$, and write a functional as $\bra{v}$. The reason will be explained after.
+\begin{dde}
+	Let $V$ be a vector space over $F=\mathbb{R}$ or $F=\mathbb{C}$. An \textbf{inner product} on $V$ is a function $\braket{ | }:V\times V\rightarrow F$ with the following properties for all $\ket{u},\ket{v},\ket{w}\in V$ and $c\in F$:
+	\begin{enumerate}
+		\item [(a)]$\braket{u+v|w}=\braket{u|w}+\braket{v|w}$
+		\item [(b)]$\braket{u|cv}=c\braket{u|v}$
+		\item [(c)]$\braket{u|v}=\overline{\braket{v|u}}$
+		\item [(d)]$\braket{u|u}>0$ if $\ket{u}\neq0$
+	\end{enumerate}
+	You may notice that we also have $\braket{cu|v}=\bar{c}\braket{u|v}$ and $\braket{u|v+w}=\braket{u|v}+\braket{u|w}$.
+\end{dde}
+If $V=F^n$, we often define the \textbf{standard inner product}:
+\[\braket{x|y}=\sum_{i=1}^{n}\overline{x_i}y_i\]
+\indent Let's introduce the \textbf{conjugate transpose} matrix $A^\dagger$ of a matrix $A$, where $A^\dagger_{ij}=\overline{A_{ji}}$. Then we can define an inner product on $F^{n\times n}$:
+\[\braket{A|B}=tr(A^\dagger B)=tr(BA^\dagger)\]
+\indent Let $V,W$ be vector spaces over the field $F$ and let $\braket{}$ be an inner product on $W$. If $T$ is a non-singular linear transformation from $V$ to $W$, then we can define an inner product on $V$ by
+\[\braket{u|v}_T=\braket{Tu|Tv}\]
+Then any vector space $V$ with dimension $n$ can define an inner product under an ordered basis, which is just
+\[\braket{u|v}=\sum_{i=1}^n\overline{x_i}y_i\]
+Obviously, this inner product depends the basis.\\
+\indent We call $V$ an \textbf{inner product space} if $V$ is a vector space together with an inner product.
+\begin{dde}
+	If $V$ is an inner product space, the \textbf{norm} of $\ket{v}\in V$ is 
+	\[\Vert v \Vert=\sqrt{\braket{v|v}}\]
+\end{dde}
+Then we have the following identities
+\[\Vert u\pm v\Vert^2=\Vert u\Vert^2\pm2Re(\braket{u|v})+\Vert v\Vert^2\]
+and
+\[\braket{u|v}=\frac{1}{4}(\Vert u+v\Vert^2-\Vert u-v\Vert^2)\text{ if }F=\mathbb{R}\]
+\[\braket{u|v}=\frac{1}{4}(\Vert u+v\Vert^2-\Vert u-v\Vert^2-i(\Vert u+iv\Vert^2-\Vert u-iv\Vert^2))\text{ if }F=\mathbb{C}\]
+The two identities above are called the \textbf{polarization identities}.
+\begin{thm}
+	If $V$ is an inner product space, we have
+	\begin{enumerate}
+		\item $\Vert cv\Vert=|c|\Vert v\Vert$
+		\item $\Vert v\Vert>0$ for $\ket{v}\neq0$
+		\item $|\braket{u|v}|\le\Vert u\Vert\Vert v\Vert$
+		\item $\Vert u+v\Vert\le \Vert u\Vert+\Vert v\Vert$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	We just prove the third property. If $\ket{u}=0$, then it is correct automatically. If $\ket{u}\neq0$, let
+	\[\ket{w}=\ket{v}-\frac{\braket{u|v}}{\braket{u|u}}\ket{u}\]
+	then
+	\[0\le\braket{w|w}=\braket{v|v}-\frac{|\braket{u|v}|^2}{\braket{u|u}}\]
+	thus
+	\[|\braket{u|v}|\le\Vert u\Vert\Vert v\Vert\]
+	This is called the \textbf{Cauchy-Schwarz inequality}.
+\end{proof}
+Before we go further, let's point out two useful lemma.
+\begin{lem}
+	Let $V$ be an inner product space. If $\braket{u|x}=\braket{v|x}$ for all $\ket{x}\in V$, then $\ket{u}=\ket{v}$.
+\end{lem}
+\begin{lem}
+	Let $V$ be an inner product space and let $T$ be a linear operator on $V$.
+	\begin{enumerate}
+		\item 
+		\[\braket{u|Tv}=0,\forall \ket{u},\ket{v}\in V\Rightarrow T=0\]
+		\item If $V$ is a complex inner product space, then
+		\[\braket{v|Tv}=0,\forall \ket{v}\in V\Rightarrow T=0\]
+	\end{enumerate}
+\end{lem}
+\begin{proof}
+	The first one is obviously right. Let's prove the second one. We have
+	\[0=\braket{au+v|T(au+v)}=\overline{a}\braket{u|Tv}+a\braket{v|Tu}\]
+	Let $a=1,i$, we have
+	\[\braket{u|Tv}=0,\forall \ket{u},\ket{v}\in V\Rightarrow T=0\]
+\end{proof}
+Let's first study the construction of subspaces of an inner product space.
+\begin{dde}
+	Let $V$ be an inner product space.\\
+	\begin{enumerate}
+		\item Let $\ket{u},\ket{v}$ be vectors in $V$, then we call $\ket{u}$ is \textbf{orthogonal} to $\ket{v}$, written $u\bot v$, if $\braket{u|v}=0$.
+		\item If $S$ is a subset of $V$, we call $S$ an \textbf{orthogonal set} if
+		 \[\braket{u|v}=0,\forall \ket{u},\ket{v}\in S\]
+		\item An \textbf{orthonormal set} is an orthogonal set S with $\Vert v\Vert=1,\forall \ket{v}\in S$.
+		\item Two subsets$S,U$ are \textbf{orthogonal}, written $S\bot U$, if 
+		\[\braket{u|v}=0,\forall \ket{u}\in S,\ket{v}\in U\]
+		\item The \textbf{orthogonal complement} of a subset $S$ is the set
+		\[S^\bot=\{\ket{v}\in V|\ket{v}\bot S\}\] 
+	\end{enumerate}
+\end{dde}
+\begin{thm}
+	Let $V$ be an inner product space.
+	\begin{enumerate}
+		\item The orthogonal complement $S^\bot$ of any subset $S$ is a subspace
+		\item For any subspace $S$ of $V$,
+		\[S\cap S^\bot=\{0\}\] 
+	\end{enumerate}
+\end{thm}
+\begin{dde}
+	Let $V$ be an inner space and let $V_1,V_2$ be the subspaces of $V$. We call the sum of $V_1,V_2$ the \textbf{orthogonal direct sum} if 
+	\[V_1+V_2=V_1\oplus V_2,V_1\bot V_2\]
+	and we write
+	\[V_1+V_2=V_1\odot V_2\]
+	Generally, we call the sum of $V_1,V_2,\dots,V_n$ the \textbf{orthogonal direct sum}, written
+	\[V_1+V_2+\cdots+V_n=V_1\odot V_2\cdots\odot V_n\]
+	if 
+	\[V_1+V_2+\cdots+V_n=V_1\oplus V_2\cdots\oplus V_n,V_i\bot V_j,i\neq j\]
+\end{dde}
+\begin{thm}
+	Any orthogonal set of nonzero vectors in $V$ is linearly independent.
+\end{thm}
+\begin{proof}
+	Let $S$ be an orthogonal set of $V$, we have
+	\[\lambda_1\ket{v_1}+\cdots+\lambda_k\ket{v_k}=0,\ket{v_i}\in S\]
+	and
+	\[\sum_{i=1}^k\lambda_i\braket{v_j|v_i}=\lambda_j\braket{v_j|v_j}=0\Rightarrow\lambda_j=0\]
+	Hence, $S$ is linearly independent.
+\end{proof}
+\begin{thm}[Gram-Schmidt Orthogonalization Process]
+	Let $V$ be an inner space and let $\ket{v_1},\dots,\ket{v_n}$ be any independent vectors in $V$. Then one can construct orthogonal vectors $\ket{u_1},\dots,\ket{u_n}$ in $V$ such that for $k=1,2,\dots,n$ the set
+	\[\{\ket{u_1},\dots,\ket{u_k}\}\]
+	is a basis for the subspace spanned by $\ket{v_1},\dots,\ket{v_k}$.
+\end{thm}
+\begin{proof}
+	Let's use the induction. First let $\ket{u_1}=\ket{v_1}$. Suppose $\ket{u_1},\dots,\ket{u_m}$ have been chosen so that for $k=1,2,\dots,m$ the set
+	\[\{\ket{u_1},\dots,\ket{u_k}\}\]
+	is an orthogonal basis for the subspace spanned by $\ket{v_1},\dots,\ket{v_k}$.\\
+	To construct the next vector, let
+	\[\ket{u_{m+1}}=\ket{v_{m+1}}-\sum_{i=1}^m\frac{\braket{u_i|v_{m+1}}}{\braket{u_i|u_i}}\ket{u_i}\]
+	Obviously $\braket{u_{m+1}|u_i}=0,1\le i\le m$ and $\ket{u_{m+1}}$ is not zero because the linearly independence. Thus $\ket{u_1},\dots,\ket{u_{m+1}}$ is a basis for the subspace spanned by $\ket{v_1},\dots,\ket{v_{m+1}}$.\\
+	You may also notice that if $\ket{v_1},\dots,\ket{v_n}$ are linearly dependent, then we must have $\ket{v_j}$ which is a linear combination of $\ket{v_1},\dots,\ket{v_{j-1}}$, and therefore we have $\ket{u_j}=0$. If you arrange the vectors to let the first $r$ vectors be the maximal linearly independent system, then we know that we will stop our orthogonalization process at $\ket{u_{k+1}}$. 
+\end{proof}
+\begin{coro}
+	Every finite-dimensional vector spaces has an orthonormal basis.
+\end{coro}
+Once we have found the orthonormal basis, then the calculation of the coordinate and inner product will be simplified if you notice that
+\[x_i=\braket{u_i|x},\braket{x|y}=\sum_{i=1}^n\overline{x_i}y_i\]
+\begin{lem}
+	Let $W$ be a subspace of an inner product space $V$. $\ket{w_0}\in W$ is called the \textbf{best approximation} to a vector $\ket{v}\in V$ if we have
+	\[\Vert v-w_0\Vert\le\Vert v-w\Vert,\forall \ket{w}\in W\]
+	If the best approximation to $\ket{v}$ from within $W$ exists, then we have
+	\begin{enumerate}
+		\item $\ket{w_0}$ is a best approximation to $\ket{v}$ if and only if $\ket{v-w_0}\bot W$
+		\item $\ket{w_0}$ is unique
+	\end{enumerate}
+	We also call $\ket{w_0}$ the \textbf{orthogonal projection} of $\ket{v}$ on $W$.
+\end{lem}
+\begin{proof}
+	Let $\ket{w}$ be any vector in $W$, we have
+	\[\Vert v-w\Vert^2=\Vert v-w_0\Vert^2+\Vert w_0-w\Vert^2+2Re(\braket{v-w_0|w_0-w})\]
+	If $\ket{v-w_0}\bot W$, we have
+	\[\Vert v-w\Vert^2=\Vert v-w_0\Vert^2+\Vert w_0-w\Vert^2>\Vert v-w_0\Vert\text{ if }\ket{w}\neq\ket{w_0}\]
+	Conversely, suppose $\Vert v-w_0\Vert\le\Vert v-w\Vert$, we have
+	\[\Vert w_0-w\Vert^2+2Re(\braket{v-w_0|w_0-w})\ge0,\forall\ket{w}\in W\]
+	Notice that $w_0-w$ can be any vector in $W$, then we have
+	\[\Vert s\Vert^2+2Re(\braket{v-w_0|s})\ge0,\forall\ket{s}\in W\]
+	Suppose $\ket{w}\neq\ket{w_0}$, let
+	\[\ket{s}=-\frac{\braket{w_0-w|v-w_0}}{\Vert w_0-w\Vert^2}(\ket{w_0}-\ket{w})\]
+	and we have
+	\[-\frac{|\braket{v-w_0|w_0-w}|^2}{\Vert w_0-w\Vert^2}\ge0\]
+	This implies that $\ket{v-w_0}\bot W$. The uniqueness is transparent.
+\end{proof}
+\begin{thm}
+	Let $W$ be a subspace of an inner product space $V$ with an orthonormal basis $\{\ket{u_1},\dots,\ket{u_m}\}$. Let $\ket{v}$ be a vector in $V$. The \textbf{Fourier expansion} with respect to $W$ of $\ket{v}$ is
+	\[\ket{\hat{v}}=\sum_{i=1}^m\braket{u_i|v}\ket{u_i}\]
+	where $\braket{u_i|v}$ is called the \textbf{Fourier coefficient} of $\ket{v}$ with respect to $W$. The vector $\ket{\hat{v}}$ can be characterized as follows:
+	\begin{enumerate}
+		\item $\ket{\hat{v}}$ is the unique vector $\ket{w}\in W$ for which $\ket{v-w}\bot W$.
+		\item $\ket{\hat{v}}$ is the best approximation to $\ket{v}$ from within $W$.
+		\item The \textbf{Bessel inequality} holds for all $\ket{v}\in V$
+		\[\Vert\hat{v}\Vert\le\Vert v\Vert\]
+	\end{enumerate}
+\end{thm}
+\begin{coro}
+	Let $\ket{Ev}=\ket{\hat{v}}$, then $E$ is a projection on $V$. We call $E$ the \textbf{orthogonal projection} of $V$ on $W$.
+\end{coro}
+\begin{coro}
+	The mapping $\ket{v}\rightarrow\ket{v-Ev}$ is an orthogonal projection of $V$ on $W^\bot$.
+\end{coro}
+\begin{proof}
+	Obviously we have $\ket{v-Ev}\in W^\bot$, then we have
+	\[\Vert v-s\Vert^2=\Vert Ev\Vert^2+\Vert v-Ev-s\Vert^2\ge \Vert v-(v-Ev)\Vert^2,\forall \ket{s}\in W^\bot\]
+\end{proof}
+\begin{thm}
+	If $W$ is a finite-dimensional subspace of an inner product space $V$, then
+	\[V=W\odot W^\bot\]
+\end{thm}
+Actually, $W$ can not be finite-dimensional, as long as there exists the orthogonal projection of every $\ket{v}\in V$ on $W$.\\
+\indent Before we turn to study the properties for linear transformations on an inner product space, let's study linear functionals first.
+\begin{thm}[The Riesz Representation Theorem]
+	Let $V$ be a finite-dimensional inner product space, and let $f$ be a linear functional on $V$. Then there exists a unique vector $\ket{u}\in V$ such that
+	\[f\ket{v}=\braket{u|v},\forall \ket{v}\in V\]
+	We call $\ket{u}$ the \textbf{Riesz vector} for $f$ and denote $f$ by $\bra{u}$.
+\end{thm}
+\begin{proof}
+	Let $\{v_1,\dots,v_n\}$ be an orthogonal basis for $V$. Let
+	\[\ket{u}=\sum_{i=1}^n\overline{f\ket{v_i}}\ket{v_i}\]
+	Obviously we have
+	\[\braket{u|v}=\sum_{i=1}^nf\ket{v_i}\braket{v_i|v}=f\ket{v}\]
+	If $\ket{w}$ is another vector satisfy the property, then $\braket{w|v}=\braket{u|v},\forall \ket{v}\in V$, which implies $\ket{w}=\ket{u}$.
+\end{proof}
+You may notice that $\ket{u}$ is just a vector in the orthogonal complement of the null space of $f$. Let $W$ be the null space of $f$, we know that the dimension of $W$ is $n-1$, then the orthogonal complement $W^\bot$ has the dimension $1$. Let $P$ be the orthogonal projection of $V$ on $W^\bot$, we have
+\[f\ket{v}=f\ket{Pv+v-Pv}=f\ket{Pv}\]
+Let $\ket{w}$ be a nonzero vector in $W^\bot$, then we have
+\[f\ket{v}=f(\frac{\braket{w|v}}{\Vert w\Vert^2}\ket{w})=\braket{\frac{\overline{f\ket{w}}}{\Vert w\Vert^2}w|v}\]
+which implies $\ket{u}=\dfrac{\overline{f\ket{w}}}{\Vert w\Vert^2}\ket{w}$.
+\subsection{Linear Operators on Inner Product Space}
+For convenience, the field $F$ is either $\mathbb{R}$ or $\mathbb{C}$.
+\begin{thm}
+	Let $T$ be a linear operator on a finite-dimensional inner product space $V$. Then there exists a unique linear operator $T^\dagger$ such that
+	\[\braket{Tu|v}=\braket{u|T^\dagger v},\forall\ket{u},\ket{v}\in V\]
+\end{thm}
+\begin{proof}
+	Fix the vector $\ket{v}$, we notice that $\ket{u}\rightarrow\braket{v|Tu}$ is just a linear functional on $V$, then there exists a unique vector $\ket{v'}$ such that $\braket{v|Tu}=\braket{v'|u}$ for every $\ket{u}$ in $V$. Let $T^\dagger$ denote the mapping $\ket{v}\rightarrow \ket{v'}$:
+	\[\ket{v'}=\ket{T^\dagger v}\]
+	Obviously, $T^\dagger$ is a linear operator, because we have
+	\begin{align*}
+		\braket{u|T^\dagger(cv+w)}&=\braket{T(cv+w)|u}\\
+		&=c\braket{Tv|u}+\braket{Tw|u}\\
+		&=c\braket{u|T^\dagger v}+\braket{u|T^\dagger w}\\
+		&=\braket{u|cT^\dagger v+T^\dagger w}
+	\end{align*}
+	for all $\ket{u}\in V$, which implies $T^\dagger(cv+w)=cT^\dagger v+T^\dagger w$ and $T^\dagger$ is linear.\\
+	The uniqueness is clear because we have $\braket{u|T^\dagger v}=\braket{u|Uv}$ for all $\ket{u},\ket{v}$ in $V$, which implies $T^\dagger=U$. 
+\end{proof}
+\begin{thm}
+	Let $T$ be a linear operator on a finite-dimensional inner product space $V$ with an orthonormal basis $\{\ket{v_1},\dots,\ket{v_n}\}$. Let $A$ be the matrix of $T$ under the basis. Then
+	\[A_{ij}=\braket{v_i|Tv_j}\]
+\end{thm}
+\begin{coro}
+	Let $T$ be a linear operator on a finite-dimensional inner product space $V$. In any orthonormal basis for $V$, the matrix of $T^\dagger$ is the conjugate transpose of the matrix of $T$.
+\end{coro}
+\begin{proof}
+	Obviously we have
+	\[B_{ij}=\braket{v_i|T^\dagger v_j}=\braket{Tv_i|v_j}=\overline{A_{ji}}\]
+\end{proof}
+You may notice that the orthogonal projection has the properties $E=E^\dagger$, because
+\[\braket{Eu|v}=\braket{Eu|(I-E)v}+\braket{Eu|Ev}=\braket{Eu+(I-E)u|Ev}=\braket{u|Ev}\]
+\indent Actually, if $E$ is a projection that $E=E^\dagger$, then we have
+\[\braket{Eu|v}=\braket{E^2u|v}=\braket{Eu|Ev}\]
+and
+\[\braket{Eu|v}=\braket{u|Ev}=\braket{E+(I-E)u|Ev}=\braket{Eu|Ev}+\braket{(I-E)u|v}\]
+which implies
+\[\braket{(I-E)u|v}=0,\forall\ket{u},\ket{v}\in V\]
+this just means $E$ is an orthogonal projection. 
+\begin{dde}
+	Let $T$ be a linear operator on an inner product space $V$. Then we say $T$ \textbf{has an adjoint on} $V$ if there exists a linear operator $T^\dagger$ such that $\braket{Tu|v}=\braket{u|T^\dagger v}$ for all $\ket{u},\ket{v}$ in $V$. We call $T^\dagger$ the \textbf{adjoint} of $T$. 
+\end{dde}
+\begin{thm}
+	Let $T,U$ be linear operators on a finite-dimensional inner product space $V$, then we have
+	\begin{enumerate}
+		\item $(T+U)^\dagger=T^\dagger+U^\dagger$
+		\item $(TU)^\dagger=U^\dagger T^\dagger$
+		\item $(T^\dagger)^\dagger=T$
+		\item $(cT)^\dagger=\overline{c}T^\dagger$
+	\end{enumerate}
+\end{thm}
+You may notice that we can always write a linear operator $T$ as
+\[T=U_1+iU_2\]
+where
+\[U_1=\frac{T+T^\dagger}{2},U_2=\frac{T-T^\dagger}{2i}\]
+which satisfy
+\[U_1=U_1^\dagger,U_2=U_2^\dagger\]
+\indent A linear operator $T$ such that $T=T^\dagger$ is called \textbf{self-adjoint} (or \textbf{Hermitian}). Numerous properties of Hermitian operators will be discussed soon.
+\begin{dde}
+	Let $V,W$ be inner product spaces and let $T\in\mathcal{L}(V,W)$.
+	\begin{enumerate}
+		\item $T$ is \textbf{isometry} if $\braket{Tu|Tv}=\braket{u|v},\forall\ket{u},\ket{v}\in V$
+		\item A bijective isometry is called an \textbf{isometric isomorphism}. When $T:V\rightarrow W$ is an isometric isomorphism, we say that $V$ and $W$ are \textbf{isometrically isomorphic}
+	\end{enumerate}
+\end{dde}
+\begin{thm}
+	Let $V,W$ be finite-dimensional inner product spaces and let $T\in\mathcal{L}(V,W)$. If $T$ transforms some orthonormal basis for $V$ into an orthonormal basis for $W$, then $T$ is an isometric isomorphism.
+\end{thm}
+\begin{coro}
+	Let $V,W$ be finite-dimensional inner product spaces, then $T$ and $W$ are isometrically isomorphic if and only if they have the same dimension.
+\end{coro}
+\begin{thm}
+	A linear transformation $T\in\mathcal{L}(V,W)$ is an isometric isomorphism if and only if 
+	\[\Vert Tv\Vert=\Vert v\Vert,\forall\ket{v}\in V\]
+\end{thm}
+\begin{proof}
+	Use the polarization identities.
+\end{proof}
+\begin{dde}
+	A \textbf{unitary operator} on an inner product space is an isometric isomorphism of the space onto itself.
+\end{dde}
+\begin{thm}
+	Let $U$ be a linear operator on an inner product space $V$. Then $U$ is unitary if and only if the adjoint $U^\dagger$ of $U$ exists and $U^\dagger U=UU^\dagger=I$.
+\end{thm}
+\begin{proof}
+	If $U$ is unitary, then $U$ is invertible and we have
+	\[\braket{Ua|b}=\braket{Ua|U^{-1}Ub}=\braket{a|U^{-1}b},\forall\ket{a},\ket{b}\in V\]
+	Hence $U^\dagger=U^{-1}$. If there exits $U^\dagger$ and satisfies $U^\dagger U=UU^\dagger=I$, then $U^\dagger=U^{-1}$ and we have
+	\[\braket{Ua|Ub}=\braket{a|U^\dagger Ub}=\braket{a|b},\forall\ket{a},\ket{b}\in V\]
+\end{proof}
+\begin{dde}
+	A complex $n\times n$ matrix $A$ is called \textbf{unitary} if $A^\dagger A=I$.
+\end{dde}
+\begin{thm}
+	Let $U$ be a linear operator on a finite-dimensional inner product space $V$. Then $U$ is unitary if and only if the matrix of $U$ under some orthonormal basis for $V$ is unitary.
+\end{thm}
+You may notice that we have
+\[\sum_{k=1}^n\overline{A_{ki}}A_{kj}=\delta_{ij},\sum_{k=1}^nA_{ik}\overline{A_{jk}}=\delta_{ij}\]
+which means that the row vectors and column vectors of $A$ are orthogonal to each other. This implies that $A$ is unitary if and only if the rows and columns of $A$ are orthonormal sets.
+\begin{dde}
+	A real or complex $n\times n$ matrix $A$ is called \textbf{orthogonal} if $A^TA=I$.
+\end{dde}
+You may notice that if $A$ is unitary, then we have
+\[(A^{-1})^{-1}=A=(A^\dagger)^{-1}=(A^{-1})^\dagger\]
+and
+\[(AB)^{-1}=B^{-1}A^{-1}=B^\dagger A^\dagger=(AB)^\dagger\]
+Thus the set $U(n)$ of all $n\times n$ unitary matrices is a group.
+\begin{thm}
+	Let $A\in F^{m\times n}$. There exists a matrix $Q\in F^{m\times n}$ with orthonormal columns (except some zero vectors) and an upper-triangular matrix $R\in F^{n\times n}$ with non-negative real entries on the diagonal for which
+	\[A=QR\]
+	Moreover, if $m=n$, then $Q$ is unitary. If $A$ is non-singular, then $R$ can be chosen to have positive entries on the diagonal, in which case the factors $Q,R$ are unique. The factorization is called the \textbf{QR factorization} of the matrix $A$. If $A$ is real, then $Q,R$ may be taken to be real. 
+\end{thm}
+\begin{proof}
+	If we write $A$ as $(\ket{v_1},\ket{v_2},\dots,\ket{v_n})$, then use the Gram-Schmidt orthogonalization process, we can construct $\{\ket{u_i}\}$ such that
+	\[\ket{v_i}=\ket{u_i}-\sum_{k=1}^{i-1}r_{ki}\ket{u_k}\]
+	where
+	\[r_{ki}=\begin{cases}
+		0&\text{ if }\ket{u_k}=0\\
+		\braket{u_k|v_i}&\text{ if }\ket{u_k}\neq0
+	\end{cases}\]
+	then we have
+	\[A=Q\begin{bmatrix}
+		1&r_{12}&r_{13}&\cdots&r_{in}\\
+		0&1&r_{22}&\cdots&r_{2n}\\
+		0&0&1&\cdots&r_{3n}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		0&0&0&\cdots&1
+	\end{bmatrix}\]
+	where the columns of $Q$ are orthogonal to each other. Divide each column by the norm of $\ket{u_i}$ and if $\ket{u_i}=0$ then divide $1$, we have
+	\[A=Q\begin{bmatrix}
+		a_1&a_1r_{12}&a_1r_{13}&\cdots&a_1r_{in}\\
+		0&a_2a_2&r_{22}&\cdots&a_2r_{2n}\\
+		0&0&a_3&\cdots&a_3r_{3n}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		0&0&0&\cdots&a_n
+	\end{bmatrix}\]
+	Obviously, if $A$ is not invertible, there exist some $\ket{u_i}=0$, we just let $a_i=0$, then we can replace $\ket{u_i}$ by any vectors we want. If $m=n$, we can then let $Q$ be unitary.\\
+	If $A$ is invertible, we have proven the existence of $Q,R$. As for the uniqueness, suppose we have $A=QR=Q'R'$, then we have
+	\[QQ'^{-1}=R'R^{-1}\]
+	because an upper-triangular matrix with positive entries on the diagonal is invertible, and the inverse is still an upper-triangular matrix. We know that $QQ'^{-1}$ is still unitary, which implies that the upper-triangular matrix $R'R^{-1}$ is also unitary, and therefore is the identity. Finally, if $A$ is real, then all the operations can only happen in the real field, and then $Q,R$ are real.
+\end{proof}
+The set of all the invertible $n\times n$ matrices is a group as well, and is called the \textbf{general linear group}, written $GL(n)$. This theorem then tells us that any matrix in $GL(n)$ can be written as a product of two matrices in $U(n)$ and $T^+(n)$ respectively, where $T^+(n)$ is the set of all upper-triangular matrix with positive entries on the diagonal and is also a group.\\
+\indent Before we turn to the topic of normal operator, let's study the change of orthonormal basis first. Let $\{\ket{u_i}\},\{\ket{v_i}\}$ be two orthonormal bases for $V$. We write
+\[\ket{v_j}=\sum_{i=1}^nP_{ij}\ket{u_i}\]
+then $P$ is just a matrix of a linear operator transform an orthonormal basis to another, which is thus unitary. Then we have the familiar result
+\[A'=P^{-1}AP\]
+However, this time we have $P^{-1}=P^\dagger$, then
+\[A'=P^\dagger AP\]
+\begin{dde}
+	Let $A$ and $B$ be complex $n\times n$ matrices. We say that $B$ is \textbf{unitarily equivalent to} $A$ if there exits an $n\times n$ unitary matrix $P$ such that $B=P^{-1}AP$. We say that $B$ is \textbf{orthogonally equivalent to} $A$ if there exits an $n\times n$ orthogonal matrix $P$ such that $B=P^{-1}AP$
+\end{dde}
+\begin{dde}
+	A linear operator $T\in\mathcal{L}(V)$ is \textbf{unitarily diagonalizable} (when $V$ is complex) and \textbf{orthogonally diagonalizable} (when $V$ is real) if there is an ordered orthonormal basis $\{\ket{u_i}\}$ for $V$ for which the matrix of $T$ is diagonal.
+\end{dde}
+\begin{thm}
+	Let $V$ be a finite-dimensional inner product space and let $T$ be a linear operator on $V$. The following are equivalent:
+	\begin{enumerate}
+		\item $T$ is unitarily(orthogonally) diagonalizable
+		\item $V$ has an orthonormal basis that consists entirely of eigenvectors of $T$.
+		\item $V$ has the form
+		\[V=W_1\odot W_2\odot\cdots\odot W_k\]
+		where $W_i$ is the null space of $T-\lambda_iI$
+	\end{enumerate}
+\end{thm}
+An important thing is that if $T$ is unitarily\footnote{We won't write orthogonally anymore.} diagonalizable, then we have
+\[TT^\dagger=T^\dagger T\]
+Then we can define this kind of linear operators.
+\begin{dde}
+	A linear operator $T$ on a finite-dimensional inner product space is called \textbf{normal}, if it commutes with its adjoint.
+\end{dde}
+The matrix version can be defined similarly.
+\begin{thm}
+	Let $T$ be a linear operator on a finite-dimensional inner product space $V$. Suppose $W$ is a $T$-invariant subspace of $V$, then the orthogonal complement of $W$ is invariant under $T^\dagger$.
+\end{thm}
+\begin{proof}
+	We have
+	\[\braket{Tu|v}=\braket{u|T^\dagger v}=0,\forall\ket{u}\in W,\ket{v}\in W^\bot\]
+	which implies that $T^\dagger\ket{v}$ is a vector in $W^\bot$.
+\end{proof}
+\begin{coro}
+	If $T$ is a linear operator on a finite-dimensional inner product space $V$ and suppose $W,W^\bot$ are $T$-invariant subspaces of $V$. Then $W,W^\bot$ are also invariant under $T^\dagger$.
+\end{coro}
+\begin{thm}\label{ThepropertyofNormalOperator}
+	Let $T$ be a normal operator on a finite-dimensional inner product space $V$.
+	\begin{enumerate}
+		\item The following are also normal:
+		\begin{enumerate}
+			\item $T|_W$, when $T$ reduces $W,W^\bot$, where $T|_W$ is the operator induced by $T$ on $W$
+			\item $T^\dagger$
+			\item $T^{-1}$, if $T$ is invertible
+			\item $p(T)$, for any $p\in F[x]$
+		\end{enumerate}
+		\item For any $\ket{u},\ket{v}\in V$,
+		\[\braket{Tu|Tv}=\braket{T^\dagger u|T^\dagger v}\]
+		in particular,
+		\[\Vert Tu\Vert=\Vert T^\dagger u\Vert\]
+		and so,
+		\[\ker T=\ker T^\dagger\footnotemark[11]\]
+		\footnotetext[11]{Sometimes we denote the null space of a linear operator by $\ker$}
+		\item For any integer $k\ge1$,
+		\[\ker T^k=\ker T\]
+		\item The minimal polynomial $p$ for $T$ is a product of distinct prime polynomials
+		\item $T\ket{v}=\lambda\ket{v}\Leftrightarrow T^\dagger\ket{v}=\overline{\lambda}\ket{v}$
+		\item Let $p,q$ be the annihilators of $W_1,W_2$. If $p,q$ are relatively prime, then $W_1\bot W_2$
+		\item If $\lambda_1,\lambda_2$ are distinct eigenvalues of $T$, then $W_1\bot W_2$, where $W_i$ is the characteristic space of $\lambda_i$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	(1) is easy to prove.\\
+	(2): we have
+	\[\braket{Tu|Tv}=\braket{u|T^\dagger Tv}=\braket{u|TT^\dagger v}=\braket{T^\dagger u|T^\dagger v}\]
+	(3): Let $U=T^\dagger T$, we have
+	\[U^\dagger=(T^\dagger T)^\dagger=T^\dagger T=U\]
+	which implies that $U$ is self-adjoint. If $U^k\ket{v}=0$, we have
+	\[0=\braket{U^kv|U^{k-2}v}=\braket{U^{k-1}v|U^{k-1}v}\]
+	which means $U^{k-1}\ket{v}=0$. Continue this process, we have $U\ket{v}=0$. Now suppose $T^k\ket{v}=0$, we have
+	\[U^k\ket{v}=(T^\dagger T)^k\ket{v}=(T^{\dagger})^kT^k\ket{v}=0\]
+	then $U\ket{v}=0$, hence
+	\[0=\braket{Uv|v}=\braket{T^\dagger Tv|v}=\braket{Tv|Tv}\]
+	and then $T\ket{v}=0$. Therefore, $\ker T^k=\ker T$.\\
+	(4): If $p=p_1^rq$, then we have
+	\[p_1^r(T)[q(T)\ket{v}]=0,\forall\ket{v}\in V\]
+	because $p_1(T)$ is also a normal operaor, use (3) we know that
+	\[p_1(T)[q(T)\ket{v}]=0,\forall \ket{v}\in V\]
+	then according to the definition of $p$ we have $r=1$.\\
+	(5): \[\ker(T-\lambda I)=\ker(T-\lambda I)^\dagger=\ker(T^\dagger-\overline{\lambda}I)\]
+	(6): We have $ap+bq=1$ for some $a,b\in F[x]$. Because $ap(T),bq(T)$ are also normal operators, we have
+	\[\braket{u|v}=\braket{(ap(T)+bq(T))u|v}=\braket{bq(T)u|v}=\braket{u|(bq(T))^\dagger v}=0\]
+	for all $\ket{u}\in W_1,\ket{v}\in W_2$. Then $W_1\bot W_2$.\\
+	(7): Let $\ket{u}\in W_1,\ket{v}\in W_2$, we have
+	\[\lambda_1\braket{u|v}=\braket{T^\dagger u|v}=\braket{u|Tv}=\lambda_2\braket{u|v}\]
+	which implies $\braket{u|v}=0$ for all $\ket{u}\in W_1,\ket{v}\in W_2$.
+\end{proof}
+\begin{coro}
+	If $T$ is a normal operator on a finite-dimensional inner product space $V$ and suppose $W$ is a $T$-invariant subspace of $V$. Then $W$ is also invariant under $T^\dagger$, so as $W^\bot$.
+\end{coro}
+\begin{proof}
+	Let $\ket{u_i}$ be an orthonormal basis for $W$ and extend it to a basis for $V$. Then we know the matrix of $T$ under this basis has the form
+	\[\begin{bmatrix}
+		A&B\\
+		0&C
+	\end{bmatrix}\]
+	And the matrix of $T^\dagger$ has the form
+	\[\begin{bmatrix}
+		A^\dagger&0\\
+		B^\dagger&C^\dagger
+	\end{bmatrix}\]
+	Because $\sum\limits_{i=1}^m\Vert Tu_i\Vert$ is just the sum of the square of the absolute value of each entries of the first $m$ columns, so as $\sum\limits_{i=1}^m\Vert T^\dagger u_i\Vert$, and we have
+	\[\Vert Tu\Vert=\Vert T^\dagger u\Vert\]
+	then we know that $B$ must be zero.
+\end{proof}
+According to (4)(7), we now know that a normal operator is unitarily diagonalizable over the complex field.
+\begin{thm}[Complex Spectral Theorem]
+	Let $T$ be a linear operator on a finite-dimensional inner product space $V$. The followings are equivalent:
+	\begin{enumerate}
+		\item $T$ is normal
+		\item $T$ is unitarily diagonalizable
+		\item $T$ has an \textbf{orthogonal spectral resolution}
+		\[T=\lambda_1E_1+\cdots+\lambda_kE_k\]
+		where $E_1+\cdots+E_k=I$ and $E_i$ is orthogonal projection.
+	\end{enumerate}
+\end{thm}
+Before we discuss the real version of the spectral theorem, we will first introduce the complexification of a linear operator.\\
+\indent Recall that we have said long ago that the minimal polynomial do not change in the complex field and real field. However, we have only proven the matrix version, which is easily to be generalized from the real field to complex field. Hence, we need the concept of the complexification of a vector space.\\
+\begin{dde}
+	A \textbf{complexification} of a real vector space $V$, denoted $V_C$, is just $V\times V$ equipped with the addition and scalar multiplication defined following:
+	\begin{enumerate}
+		\item Addition:
+		\[(\ket{u_1},\ket{v_1})+(\ket{u_2},\ket{v_2})=\ket{u_1+u_2},\ket{v_1+v_2}\]
+		\item Scalar multiplication:
+		\[(a+ib)(\ket{u},\ket{v})=(\ket{au-bv},\ket{bu+av})\]
+		where $a,b\in \mathbb{R}$
+	\end{enumerate}
+	Therefore, $V_C$ is a vector space over $\mathbb{C}$.
+\end{dde}
+We will denote $(\ket{u},\ket{v})$ as $\ket{u+iv}$. A vector $\ket{u}$ in $V$ is just $(\ket{v},0)$, written $\ket{v}$ for convenience.
+\begin{thm}
+	The basis for $V$ is also a basis for $V_C$, and therefore $\dim V=\dim V_C$.
+\end{thm}
+\begin{proof}
+	Let $\{\ket{v_i}\}$ be a basis for $V$. First we know that $\{\ket{v_i}\}$ obviously span $V_C$. We have
+	\[\lambda_1\ket{v_1}+\cdots+\lambda_n\ket{v_n}=0\]
+	The real part and imaginary part of the left side of the equation is zero respectively, according to the linearly independence of $\{\ket{v_i}\}$ in $V$ we know that $\lambda_i=0$, and thus $\{\ket{v_i}\}$ are also linearly independent in $V_C$.
+\end{proof}
+\begin{dde}
+	Let $T$ be a linear operator on a real vector space $V$. The \textbf{complexification} of $T$, denoted $T_C$, is a linear operator on $V_C$ defined by
+	\[T_C(\ket{u+iv})=T\ket{u}+iT\ket{v}\]
+\end{dde}
+\begin{dde}
+	Let $V$ be a real inner product space and let $V_C$ be the complexification of $V$. Then we can define the inner product on $V_C$ by 
+	\[\braket{u_1+iv_1|u_2+iv_2}=\braket{u_1|u_2}_V+\braket{v_1|v_2}_V+i\braket{u_1|v_2}_V-i\braket{v_1|u_2}_V\]
+	We find that if $v_1=v_2=0$, we have the same result. So we won't add $V$ after.
+\end{dde}
+Apparently we have $T_C^n\ket{u+iv}=T^n\ket{u}+iT^n\ket{v}$. Then we have the theorem we want.
+\begin{thm}
+	Let $T$ be a linear operator on a real vector space $V$. Then the minimal polynomial for $T_C$ equals the minimal polynomial for $T$.
+\end{thm}
+\begin{proof}
+	Let $p$ be the minimal polynomial for $T$, use the identity above, we have $p(T_C)=0$.\\
+	Now suppose $q$ is the minimal polynomial for $T_C$. Denote the real part of the polynomial by $r$, then we have
+	\[q(T)=0\rightarrow r(T)=0\]
+	and we have $\deg q=\deg r\ge \deg p$. Thus $p=q$.
+\end{proof}
+You may notice that this theorem implies that the minimal polynomial for $T_C$ will have conjugate roots. Then we can prove the real version of the spectral theorem
+\begin{thm}[Real Spectral Theorem]
+	Let $T$ be a linear operator on a finite-dimensional real inner product space $v$, then $T$ is normal if and only if 
+	\[V=V_1\odot\cdots\odot V_k\odot W_1\odot\cdots W_r\]
+	where $V_1$ is the characteristic space of $\lambda_i$ and $W_i$ is the null space of $T^2+\alpha_iT+\beta_i$. We can find an orthonormal basis for $V$ in which the matrix of $T|_{W_i}$ has the form
+	\[\begin{bmatrix}
+		a_i&-b_i\\
+		b_i&a_i
+	\end{bmatrix}\]
+\end{thm}
+\begin{proof}
+	The first part of the theorem can easily be proven by (4)(6) of Theorem \ref{ThepropertyofNormalOperator}. We just need to prove that the matrix of a normal operator $T$ on two-dimension vector space $V$ can be
+	\[\begin{bmatrix}
+		a&-b\\
+		b&a
+	\end{bmatrix}\]
+	under an orthonormal basis. First we know that $T_C$ is also a normal operator on $V_C$, which can be justified simply. Then there exists an orthonormal basis for $V$ such that the matrix of $T_C$ under this basis is
+	\[\begin{bmatrix}
+		ce^{i\theta}&0\\
+		0&ce^{-i\theta}
+	\end{bmatrix}\]
+	Suppose $\ket{e_1}=\ket{u+iv}$, then we have
+	\[T\ket{u-iv}=ae^{-i\theta}\]
+	which means $\ket{u-iv}$ is a eigenvalue of $ae^{-i\theta}$. We know that $\Vert u+iv\Vert^2=\Vert u\Vert^2+\Vert v\Vert^2$, therefore $\ket{u-iv}$ is just $\ket{e_2}$. Now we have
+	\[\braket{e_1|e_2}=\braket{u|u}-\braket{v|v}-2i\braket{u|v}=0\]
+	which implies $\Vert u\Vert=\Vert v\Vert,\braket{u|v}=0$. Normalizing $\ket{u},\ket{v}$ we have an orthonormal basis for $V$, and then
+	\[T\ket{u}=\frac{T_C\ket{e_1}+T_C\ket{e_2}}{2}=c\cos\theta\ket{u}-c\sin\theta\ket{v}\]
+	\[T\ket{v}=\frac{T_C\ket{e_1}-T_C\ket{e_2}}{2i}=c\sin\theta\ket{u}+c\cos\theta\ket{v}\]
+	Therefore the matrix of $T$ under the orthonormal basis will have the form
+	\[\begin{bmatrix}
+		a&-b\\
+		b&a
+	\end{bmatrix}\]
+	In fact we can calculate $a,b$ from the discussion above.
+	\[a=-\frac{\alpha}{2},b=-\frac{\sqrt{4\beta-\alpha^2}}{2},c=\sqrt{\beta}\]
+	If we have
+	\[V=V_1\odot\cdots\odot V_k\odot W_1\odot\cdots W_r\]
+	then we know $T$ is normal, because
+	\[AA^\dagger=\begin{bmatrix}
+		a&-b\\
+		b&a
+	\end{bmatrix}\begin{bmatrix}
+	a&b\\
+	-b&a
+	\end{bmatrix}=(a^2+b^2)I=A^\dagger A\]
+\end{proof}
+Now we can delve into some special normal operator.
+\begin{dde}
+	Let $T$ be a linear operator on an inner product space $V$. The \textbf{quadratic form} associated with $T$ is a function $Q_T:V\rightarrow F$ defined by
+	\[Q_T(\ket{v})=\braket{v|Tv}\]
+\end{dde}
+\begin{thm}
+	Let $T,U$ be linear operators on a finite-dimensional inner product space $V$.
+	\begin{enumerate}
+		\item If $T,U$ are self-adjoint, then so are the following:
+		\begin{enumerate}
+			\item $T+U$
+			\item $T^{-1}$, if $T$ is invertible
+			\item $p(T)$, for any real polynomial $p\in\mathbb{R}[x]$
+		\end{enumerate}
+		\item A complex operator $T$ is Hermitian if and only if $Q_T(\ket{v})$ is real for all $\ket{v}\in V$
+		\item If $T$ is a complex operator or a real symmetric operator, then
+		\[T=0\Leftrightarrow Q_T=0\]
+		\item All complex roots of the characteristic polynomial for a self-adjoint operator are real. Hence, the minimal polynomial for $T$ is a product of distinct linear factors over $\mathbb{R}$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	(1) is simple to prove.\\
+	(2): If $T$ is Hermitian, we have
+	\[Q_T(\ket{v})=\braket{v|Tv}=\overline{\braket{Tv|v}}=\overline{\braket{v|Tv}}=\overline{Q_T(\Ket{v})}\]
+	Conversely, if $\braket{Tv|v}=\braket{Tv|v}$, we have
+	\[\braket{v|T^\dagger v}=\braket{Tv|v}=\braket{v|Tv}\]
+	and so $T=T^\dagger$.\\
+	(3): We need only prove $Q_T=0$ implies $T=0$ for $F=\mathbb{R}$.
+	\begin{align*}
+		0&=\braket{x+y|T(x+y)}\\
+		&=\braket{x|Ty}+\braket{y|Tx}\\
+		&=\braket{x|Ty}+\braket{Tx|y}\\
+		&=\braket{x|Ty}+\braket{x|Ty}\\
+		&=2\braket{x|Ty}
+	\end{align*}
+	and therefore $T=0$.\\
+	(4): If $T$ is Hermitian($F=\mathbb{C}$) and $T\ket{v}=\lambda\ket{v}$, we have
+	\[\lambda\ket{v}=T\ket{v}=T^\dagger\ket{v}=\overline{\lambda}\ket{v}\]
+	and so $\lambda$ is real. If $F=\mathbb{R}$, then we consider the matrix of $T$ under an orthonormal basis and then it can be seen as a complex Hermitian matrix. Use the conclusion above, we know that the characteristic polynomial for $T$ has only real roots as well. 
+\end{proof}
+Then let's turn to unitary operators.
+\begin{thm}
+	If $T$ is a unitary operator on a finite-dimensional inner product space, then the absolute values of the eigenvalues are $1$. Therefore, we can find an orthonormal basis for $V$ in which the matrix of $T$ has the form
+	\[\begin{bmatrix}
+		1& & & & &\\
+		 &\ddots& & & &\\
+		 & &-1& & &\\
+		 & & &\ddots& &\\
+		 & & & &\begin{bmatrix}
+		 	\cos\theta_1&-\sin\theta_1\\
+		 	\sin\theta_1&\cos\theta_1
+		 \end{bmatrix}&\\
+		 & & & & &\ddots
+	\end{bmatrix}\]
+\end{thm}
+\begin{proof}
+	\[\braket{Tv|Tv}=\lambda\overline{\lambda}\braket{v|v}=\braket{v|v}\rightarrow|\lambda|=1\]
+\end{proof}
+The following defines a special type of unitary operator.
+\begin{dde}
+	For a nonzero vector $\ket{v}\in V$, the unique operator $H_v$ for which
+	\[H_v\ket{v}=-\ket{v},H_v\ket{u}=\ket{u},\forall\ket{u}\in\{\ket{v}\}^\bot\]
+	is called a \textbf{reflection} or a \textbf{Householder transformation}.
+\end{dde}
+Obviously the unique operator is 
+\[H_v\ket{w}=\ket{w}-\frac{2\braket{v|w}}{\braket{v|v}}\ket{v}\]
+\indent Extend $\ket{v}$ to an orthonormal basis for $V$, then the matrix of $H_v$ has the form
+\[\begin{bmatrix}
+	-1&&&\\
+	&1&&\\
+	&&\ddots&\\
+	&&&1
+\end{bmatrix}\]
+Hence $H_v$ is both unitary and Hermitian,
+\[H_v^\dagger=H_v^{-1}=H_v\]
+\indent Moreover, $H_v\ket{u}=-\ket{u}$ if and only if $\ket{u}=c\ket{v}$, and we know that $H_v=H_{cv}$ for any nonzero vector $\ket{v}\in V$
+\begin{thm}
+	Let $\ket{v},\ket{w}\in V$ be distinct nonzero vector with equal length. Then $H_{v-w}$ is the unique reflection sending $\ket{v}$ to $\ket{w}$ and $\ket{w}$ to $\ket{v}$.
+\end{thm}
+\begin{proof}
+	If $\Vert v\Vert=\Vert w\Vert$, then $\ket{v-w}\bot\ket{v+w}$, hence
+	\[H_{v-w}\ket{v-w}=\ket{w-v}\]
+	\[H_{v-w}\ket{v+w}=\ket{v+w}\]
+	and therefore $H_{v-w}\ket{v}=\ket{w}$ and $H_{v-w}\ket{w}=\ket{v}$. If $H_x\ket{v}=\ket{w}$, because $H_x=H_x^{-1}$, we have $H_x\ket{w}=\ket{v}$, therefore 
+	\[H_x\ket{v-w}=-\ket{v-w}\]
+	and we have $H_x=H_{v-w}$.
+\end{proof}
+\begin{thm}
+	Let $V$ be a finite-dimensional inner product space. The following are equivalent for a linear operator $T$ on $V$:
+	\begin{enumerate}
+		\item $T$ is unitary/orthogonal
+		\item $T$ is a product of reflections
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	(2) to (1) is obvious. Suppose $T$ is unitary/orthogonal. Let $\{\ket{u_i}\}$ be an orthonormal basis for $V$, we have
+	\[H_{Tu_1-u_1}\ket{Tu_1}=\ket{u_1}\]
+	then let $T_1=H_{Tu_1-u_1}T$, we have $T_1\ket{u_1}=\ket{u_1}$. Suppose we have found reflections $H_{x_1},\dots,H_{x_{k-1}}$ for which $T_{k-1}=H_{x_{k-1}}\cdots H_{x_{1}}T$ that $T_{k-1}\ket{u_{i}}=\ket{u_{i}}$, for all $i<k$. Then
+	\[H_{T_{k-1}u_k-u_k}\ket{T_{k-1}u_k}=\ket{u_k}\]
+	and for $i<k$, we have
+	\[\braket{T_{k-1}u_k-u_k|u_i}=\braket{H_{x_{k-1}}\cdots H_{x_{1}}Tu_k|u_i}=\braket{Tu_k|H_{x_{1}}\cdots H_{x_{k-1}}u_i}=\braket{Tu_k|Tu_i}=0\] 
+	Hence let $\ket{x_k}=\ket{T_{k-1}u_k-u_k}$ and let $T_k=H_{x_k}\cdots H_{x_1}T$, we have $T_k\ket{u_i}=\ket{u_i}$, for all $i<k+1$. Continue this process until $k=n$, we then have
+	\[H_{x_n}\cdots H_{x_1}T\ket{u_i}=\ket{u_i}\]
+	for all $\ket{u_i}$, and therefore is an identity. Thus we have
+	\[T=H_{x_1}\cdots H_{x_n}\]
+\end{proof}
+Before we study positive operators, let's study the function of operators first.
+\begin{dde}
+	Let $T$ be a normal operator on a finite-dimensional inner product space. Let $f$ be a function form $\{\lambda_i\}$ to $F$, then we can define the function of $T$ as
+	\[f(T)=f(\lambda_1)E_1+\cdots+f(\lambda_k)E_k\]
+	where $\lambda_i$ is the eigenvalue of $T$ and $E_i$ is the orthogonal projection.
+\end{dde}
+In fact, because this expression is just a finite sum, any function of $T$ is just a polynomial of $T$, as we can always find a polynomial satisfies $p(\lambda_i)=f(\lambda_i)$.
+\begin{dde}
+	A self-adjoint $T\in\mathcal{L}(V)$ is
+	\begin{enumerate}
+		\item \textbf{positive} if $Q_T(\ket{v})\ge0,\forall\ket{v}\in V$
+		\item \textbf{positive definite} if $Q_T(\ket{v})>0,\forall\ket{v}\neq0$
+	\end{enumerate}
+\end{dde}
+\begin{thm}
+	A self-adjoint $T$ on a finite-dimensional inner product space is
+	\begin{enumerate}
+		\item positive if and only if all its eigenvalues are non-negative
+		\item positive definite if and only if all its eigenvalues are positive
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	If $T$ is positive, then for $\ket{Tv}=\lambda\ket{v}$, we have
+	\[Q_T(\ket{v})=\braket{v|Tv}=\lambda\braket{v|v}\ge0\rightarrow\lambda\ge0\]
+	If $\lambda_i=0$, then
+	\[Q_T(\ket{v})=\sum_{i=1}^k\lambda_i\braket{E_iv|E_iv}\ge0\]
+	(2) is proved similarly.
+\end{proof}
+Then we can define the \textbf{positive square root} of a positive operator $T$:
+\[\sqrt{T}=\sqrt{\lambda_1}E_1+\cdots+\sqrt{\lambda_k}E_k\]
+It is clear that $(\sqrt{T})^2=T$, and it is not hard to see that $\sqrt{T}$ is the unique positive operator whose square is $T$. Hence, an operator $T$ is positive if and only if it has a positive square root.\\
+\indent If $T$ is positive, then $\sqrt{T}$ is self-adjoint, and we have
+\[(\sqrt{T})^\dagger\sqrt{T}=T\]
+Conversely, if $T=U^\dagger U$ for some operator $U$, then
+\[Q_T(\ket{v})=\braket{U^\dagger Uv|v}=\braket{Uv|Uv}\ge0\]
+Hence, $T$ is positive if and only if $T=U^\dagger U$ for some operator $U$.
+\begin{thm}
+	If $T,U$ are positive operators on a finite-dimensional inner product space and $TU=UT$, then $TU$ is also positive.
+\end{thm}
+\begin{proof}
+	As we know that a function of $T$ is a polynomial of $T$, $\sqrt{T},\sqrt{U}$ are polynomials of $T,U$ respectively, and therefore are commutative. Then
+	\[(\sqrt{T}\sqrt{U})^2=(\sqrt{T})^2(\sqrt{U})^2=TU\]
+	Since $\sqrt{T},\sqrt{U}$ are self-adjoint and commutative, then $\sqrt{T}\sqrt{U}$ is also self-adjoint, and so $TU$ is positive.
+\end{proof}
+Let's now prove the final decomposition of the basic part of this article.
+\begin{thm}
+	Let $T$ be a nonzero linear operator on a finite-dimensional inner product space $V$.
+	\begin{enumerate}
+		\item There exist a positive operator $R$ and a unitary operator $U$ for which $T=UR$. Moreover $R$ is unique and if $T$ is invertible, then $U$ is unique
+		\item There exist a positive operator $R'$ and a unitary operator $U'$ for which $T=R'U'$. Moreover $R'$ is unique and if $T$ is invertible, then $U'$ is unique
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	First we know $T^\dagger T$ is a positive operator, and then we define
+	\[R=\sqrt{T^\dagger T}\]
+	and we have
+	\[\Vert Rv\Vert^2=\braket{Rv|Rv}=\braket{R^2v|v}=\braket{Tv|Tv}=\Vert Tv\Vert^2\]
+	Define $U$ on the range of $R$ by
+	\[U(R\ket{v})=T\ket{v},\forall\ket{v}\in V\]
+	This definition is legitimate, because we have $R\ket{x}=R\ket{y}\rightarrow T\ket{x}=T\ket{y}$.\\
+	Moreover, we have
+	\[\Vert URv\Vert=\Vert Tv\Vert=\Vert Rv\Vert\]
+	which implies that $U$ is a isometry on the range of $R$. Thus, if $\{\ket{v_i}\}$ is an orthonormal basis for the range of $R$, then $\{\ket{Uv_i}\}$ is an orthonormal basis for the range of $T$. Extend both orthonormal bases to orthonormal bases for $V$ and extend the definition of $U$.\\
+	Obviously $U$ is not unique if the range of $R\neq V$, because the way we extend the basis is not unique. If $T$ is invertible, then $R$ is invertible because now the range of $R$ is just $V$, and we have $U=TR^{-1}$, which is unique.\\
+	(2) can be proven when we apply (1) to $T^\dagger$.
+	\[T=(T^\dagger)^\dagger=(UR')^\dagger=R'U^{-1}=R'U'\]
+	and we have $R'=TT^\dagger$. 
+\end{proof}
+\begin{thm}
+	A unitary operator $U$ on a finite-dimensional complex inner product space $V$ has the form $U=e^{iH}$, where $H$ is an Hermitian operator on $V$ and is unique in some sense.
+\end{thm}
+\begin{proof}
+	We know the spectral decomposition of $U$ is
+	\[U=E^{i\theta_1}E_1+\cdots+e^{i\theta_k}E_k,\theta_i\in\mathbb{R}\]
+	and we define
+	\[H=\theta_1E_1+\cdots+\theta_kE_k\]
+	which is obviously self-adjoint. We know that $\theta_i$ can be changed by $2\pi$, hence $H$ is unique only when we choose $-\pi<\theta_i\le\pi$.
+\end{proof}
+\begin{thm}[Polar Decomposition]
+	Let $T$ be a nonzero linear operator on a finite-dimensional complex inner product space. Then there is a positive operator $R$ and a self-adjoint operator $H$ for which $T$ has the \textbf{polar decomposition}
+	\[T=Re^{iH}\]
+	Moreover, $R$ is unique and if $T$ is invertible, then $H$ is unique.
+\end{thm}
+\begin{thm}
+	Let $T=Re^{iH}$ be a polar decomposition of a nonzero linear operator $T$. Then $T$ is normal if and only if $RH=HR$.
+\end{thm}
+\begin{proof}
+	\[TT^\dagger=R^2\]
+	\[T^\dagger T=e^{-iH}R^2e^{iH}\]
+	Therefore $T$ is normal if and only if 
+	\[R^2e^{iH}=R^2e^{iH}\]
+	Because $R^2,e^{iH}$ are polynomials of $R,H$ respectively, this equals
+	\[RH=HR\]
+	where we use a simple conclusion that two normal operators are commutative if and only if some functions of them are commutative.
+\end{proof}
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{hiten6}
+\end{figure}
+\newpage
+\section{Advanced Topics}
 \end{document}
+
+
+
+
 
 
 
