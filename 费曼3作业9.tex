@@ -1,0 +1,90 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{float}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业9}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent82.1\\
+(a)Neglect the interaction between the electrons, then we just need solve the one-electron Schrodinger equations, where the matrix of Hamiltonian is
+\[\begin{bmatrix}
+	E_0&-A&0&0\\
+	-A&E_0&-A&0\\
+	0&-A&E_0&-A\\
+	0&0&-A&E_0
+\end{bmatrix}\]
+Solve the characteristic equation we have
+\[E=E_0\pm\sqrt{\frac{3+\sqrt{5}}{2}}A,E_0\pm\sqrt{\frac{3-\sqrt{5}}{2}}A\]
+The energy gap between the first excited state and the ground state is just $2\sqrt{\dfrac{3-\sqrt{5}}{2}}A\approx1.236\unit{eV}$, and therefore the wavelength $\lambda$ is
+\[\lambda\approx1003\unit{nm}\]
+(b)Solve the equations, we know that the distribution is just $C\sin kx$. The two low energies correspond to $k=\dfrac{\pi}{5},\dfrac{2\pi}{5}$. Thus Two electrons will have the same distribution which spreads like a wave packet, and the rest electron will spread symmetrically about the center of the molecule.\\
+83.1\\
+(a)If not, the left side of the Schrodinger equation
+\[-\frac{\hbar^2}{2m}\frac{\mathrm{d^2}u_0(x)}{\mathrm{d}x^2}+V_0u_0(x)=Eu_0(x)\]
+will diverge. Hence we need $u_0(x)=0$ for $x<0,x>a$.\\
+(b)We have
+\[u(x)=C_1\cos kx+C_2\sin kx,k=\sqrt{\frac{2mE}{\hbar^2}}\]
+according to the condition above and the normalization condition, we have
+\[u(x)=\sqrt{\frac{2}{a}}\sin kx,k=\frac{n\pi}{a},n=1,2,\dots\]
+(c)
+\[E_0=\frac{\pi^2\hbar^2}{2ma^2},u_0=\sqrt{\frac{2}{a}}\sin\frac{\pi}{a}x\]
+$u_0(x)$ is just like a wave packet.\\
+(d)
+\[\Delta E=E_1-E_0=\frac{3\pi^2\hbar^2}{2ma^2}\]
+(e)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{9.jpg}
+\end{figure}
+83.2\\
+(a)Solve the Schrodinger equation, we have
+\begin{align*}
+	\psi(x)&=Ae^{\beta x}+B^{-\beta x},x>a\\
+	\psi(x)&=C_1\cos\alpha x+C_2\sin\alpha x,-a<x<a\\
+	\psi(x)&=Ce^{\beta x}+De^{-\beta x}
+\end{align*}
+According to the boundary conditions, we have
+\[A=D=0\]
+\[C_1\cos\alpha a+C_2\sin\alpha a=Be^{-\beta a},-\alpha C_1\sin\alpha a+\alpha C_2\cos\alpha a=-\beta Be^{-\beta a}\]
+\[C_1\cos\alpha a-C_2\sin\alpha a=Ce^{-\beta a},\alpha C_1\sin\alpha a+\alpha C_2\cos\alpha a=\beta Ce^{-\beta a}\]
+Then we have
+\[\alpha\tan\alpha a=\beta\]
+or
+\[\alpha\cot\alpha a=-\beta\]
+(b)
+The equation now is
+\[y\tan y=\sqrt{4-y^2},y=\alpha a\]
+or
+\[y\cot y=-\sqrt{4-y^2}\]
+Therefore we have
+\[E_0\approx1.03\frac{\hbar^2}{2ma},E_1\approx1.90\frac{\hbar^2}{2ma}\]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{99.jpg}
+\end{figure}
+(c)Only one. Because $\sqrt{\dfrac{1}{4}-y^2}$ will be zero before $\dfrac{\pi}{2}$.
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
