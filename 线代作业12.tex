@@ -1,0 +1,101 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\title{线代作业12}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+定义
+\[Tv=v-2\frac{\braket{\alpha-\beta,v}}{\Vert\alpha-\beta\Vert^2}(\alpha-\beta)\]
+我们显然有
+\[T(\alpha-\beta)=-(\alpha-\beta)\]
+\[T(\alpha+\beta)=\alpha+\beta\]
+这是由于$T$是一个反射，且$\Vert\alpha\Vert=\Vert\beta\Vert$导致
+\[\braket{\alpha+\beta,\alpha-\beta}=\Vert\alpha\Vert^2-\Vert\beta\Vert^2=0\]
+因而$\alpha+\beta$垂直于$\alpha-\beta$。由上面两个方程立刻得到
+\[T\alpha=\beta\]
+2.\\
+(a)\[A=\begin{bmatrix}
+	0&1&0\\
+	1&0&0\\
+	0&0&1
+\end{bmatrix}\]
+(b)\[A=\begin{bmatrix}
+	0&0&1\\
+	0&1&0\\
+	1&0&0
+\end{bmatrix}\]
+3.\\
+(1)将$A$视为复数域上的矩阵，令$x$为对应的特征向量，我们有
+\[\overline{(Ax)^T}Ax=\overline{x^T}A^TAx=\overline{x^T}x=|\lambda_0|^2\overline{x^T}x\]
+由于$\overline{x^T}x=\sum\limits_{i=1}^n|x_i|^2$，显然不为零，我们有
+\[|\lambda_0|=1\]
+(2)显然由于$Az=\lambda_0z$，我们有$A\overline{z}=\overline{\lambda_0}\overline{z}$，于是
+\[\lambda_0\overline{\overline{z}^T}=\overline{\overline{z}^T}Az=\overline{(A\overline{z})^T}z=\overline{\lambda_0}\overline{\overline{z}^T}z\]
+由于$\lambda_0$不是实数，因此我们有$\overline{\overline{z}^T}z=z^Tz=0$，于是
+\[z^Tz=x^Tx-y^Ty+iy^Tx+ix^Ty=0\]
+且我们有$x^Ty=y^Tx$，于是
+\[\Vert x\Vert=\Vert y\Vert,x\bot y\]
+4.\\
+(a)特征值为
+\[\lambda=0,5,10\]
+因而是半正定的。\\
+(b)特征值为
+\[\lambda=1,1+\sqrt{2},1-\sqrt{2}\]
+因而啥都不是。\\
+(c)特征值为
+\[\lambda=\frac{3\pm\sqrt{3}}{2},\frac{5\pm\sqrt{5}}{2}\]
+因而是正定矩阵。\\
+5.\\
+由于我们知道反对称方阵属于正规方阵，于是根据谱定理我们知道任何矩阵函数都是多项式，因而函数的转置就是转置矩阵的函数。于是我们有
+\[(e^A)^T=e^{A^T}=e^{-A}\]
+且由于$A,-A$可交换，因此我们有
+\[e^{A}(e^A)^T=e^Ae^{-A}=I\]
+而且
+\[\det e^A=e^{TrA}=e^0=1\]
+因此$A\in SO(n)$。\\
+6.\\
+显然我们要求
+\[(\lambda I-AB)x=0\]
+所以我们有
+\[\braket{Bx|\lambda I-ABx}=0,x\neq0\]
+\[\lambda\braket{x|Bx}-\braket{B|ABx}=0\]
+因为$A,B$正定，因此$\braket{x|Bx},\braket{Bx|ABx}>0$，所以
+\[\lambda=\frac{\braket{Bx|ABx}}{\braket{x|Bx}}>0\]
+7.\\
+(a)\[s=3\sqrt{5},\sqrt{5}\]
+(b)\[s=3\sqrt{2}\]
+8.\\
+将$A$视作一个线性映射的矩阵，因而奇异值分解相当于从一组正交归一基对角映射到另一组正交归一基，并且我们有
+\[\sigma_1e_1'=Ae_1,\sigma_2e_2'=Ae_2\]
+因此相应的坐标有
+\[x_1'=\sigma_1x_1,x_2'=\sigma_2x_2\]
+于是显然
+\[\frac{(x'_1)^2}{\sigma_1^2}+\frac{(x'_2)^2}{\sigma_2^2}=1\]
+相当于旋转一个角度后的正椭圆。证毕。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
