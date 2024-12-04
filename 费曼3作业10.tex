@@ -1,0 +1,69 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{float}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业10}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent80.4\\
+(a)Suppose $\beta=a+ib$, use $|\beta|^2+|1+\beta|^2=1$ we have
+\[b^2=-a(1+a)\]
+and we also have
+\[\frac{\beta}{1+\beta}=\frac{a+ib}{1+a+ib}=\frac{a(1+a)+b^2+ib}{(1+a)^2+b^2}\]
+and therefore
+\[\mathrm{Re}\{\frac{\beta}{1+\beta}\}=\frac{a(1+a)+b^2}{(1+a)^2+b^2}=0\]
+(b)Let $\dfrac{\beta}{1+\beta}=i\tan\eta$, we have
+\[\beta=\frac{i\tan\eta}{1-i\tan\eta}=\frac{i\sin\eta}{\cos\eta-i\sin\eta}=i(\cos\eta+\sin\eta)\sin\eta=ie^{i\eta}\sin\eta\]
+83.4\\
+(a)Use the Schrodinger equation, we have
+\[i\hbar(-\frac{\mathrm{d}a}{\mathrm{d}t}x^2-\frac{\mathrm{d}c}{\mathrm{d}t})=-\frac{\hbar^2}{2m}(4a^2x^2-2a)\]
+and then
+\[(i\hbar\frac{\mathrm{d}a}{\mathrm{d}t}-\frac{2\hbar^2}{m}a^2)x^2+i\hbar\frac{\mathrm{d}c}{\mathrm{d}t}+\frac{\hbar^2}{m}a=0\]
+Because this equation should be correct for all $x$, we have
+\[\frac{\mathrm{d}a}{\mathrm{d}t}=-\frac{2i\hbar}{m}a^2\]
+and
+\[\frac{1}{a(t)}=\frac{1}{a_0}+\frac{2i\hbar}{m}t\]
+(b)Use the equation above, we also have
+\[c(t)=\frac{1}{2}\ln(1+\frac{2i\hbar a_0}{m}t)+c_0\]
+(c)We have
+\[\mathrm{Re}\{a(t)\}=\frac{a_0}{1+\frac{4\hbar^2a_0^2}{m^2}t^2}\]
+Let $\dfrac{1}{\sqrt{a_0}}=1\unit{\mathring{A}},t=1\unit{s}$, we have
+\[d=\frac{1}{\sqrt{\mathrm{Re}\{a(t)\}}}=2.3\times 10^{6}\unit{m}\]
+(d)We have
+\[\phi(p)=\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi\hbar}}e^{-i\frac{p}{\hbar}x}\psi(x)\mathrm{d}x=\frac{K}{\sqrt{2a\hbar}}e^{-(\frac{p^2}{4a\hbar^2}+c)}\]
+(e)We have
+\[\Delta p=\sqrt{4\mathrm{Re}\{a(t)\}\hbar^2}=\sqrt{\frac{4a_0\hbar^2}{1+\frac{4\hbar^2a_0^2}{m^2}t^2}}\]
+(f)Obviously we have
+\[\frac{\mathrm{d}\frac{1}{\sqrt{a(t)}}}{\mathrm{d}t}=i\hbar\sqrt{a(t)}\]
+Then
+\[2|i\hbar\sqrt{a(t)}|=2\sqrt{|a(t)|}\hbar=\Delta p\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
