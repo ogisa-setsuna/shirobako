@@ -19,15 +19,39 @@
 因而$\alpha+\beta$垂直于$\alpha-\beta$。由上面两个方程立刻得到
 \[T\alpha=\beta\]
 2.\\
-(a)\[A=\begin{bmatrix}
+(a)事实上，有三种情况：一个反射，一个旋转，一个反射加旋转。前两种显然只有一个可能，最后一种的话，因为我们总能写作
+\[A=RH\]
+而$H$是使$H\alpha=\beta$的反射，因此我们有：
+\[A_1=\begin{bmatrix}
 	0&1&0\\
 	1&0&0\\
 	0&0&1
 \end{bmatrix}\]
-(b)\[A=\begin{bmatrix}
+\[A_2=\begin{bmatrix}
+	0&-1&0\\
+	1&0&0\\
+	0&0&1
+\end{bmatrix}\]
+\[A_3=\begin{bmatrix}
+	0&\cos\theta&-\sin\theta\\
+	1&0&0\\
+	0&\sin\theta&\cos\theta
+\end{bmatrix}\]
+(b)同理我们有
+\[A_1=\begin{bmatrix}
 	0&0&1\\
 	0&1&0\\
 	1&0&0
+\end{bmatrix}\]
+\[A_2=\begin{bmatrix}
+	\dfrac{28}{33}&-\dfrac{7}{33}&-\dfrac{16}{33}\\[8pt]
+	\dfrac{4}{33}&\dfrac{32}{33}&-\dfrac{7}{33}\\[8pt]
+	\dfrac{17}{33}&\dfrac{4}{33}&\dfrac{28}{33}
+\end{bmatrix}\]
+\[A_3=\begin{bmatrix}
+	\dfrac{1}{6}(2-2\cos\theta+\sqrt{6}\sin\theta)&\dfrac{1}{6}(1-\cos\theta-2\sqrt{6}\sin\theta)&\dfrac{1}{6}(1+5\cos\theta)\\[8pt]
+	\dfrac{1}{6}(2-2\cos\theta-\sqrt{6}\sin\theta)&\dfrac{1}{6}(1+5\cos\theta)&\dfrac{1}{6}(1-\cos\theta+2\sqrt{6}\sin\theta)\\[8pt]
+	\dfrac{1}{3}(2+\cos\theta)&\dfrac{1}{6}(2-2\cos\theta+\sqrt{6}\sin\theta)&\dfrac{1}{6}(2-2\cos\theta-\sqrt{6}\sin\theta)
 \end{bmatrix}\]
 3.\\
 (1)将$A$视为复数域上的矩阵，令$x$为对应的特征向量，我们有
