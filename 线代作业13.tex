@@ -1,0 +1,70 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\title{线代作业13}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(a)\[\begin{bmatrix}
+	-\dfrac{1}{\sqrt{2}}&\dfrac{1}{\sqrt{2}}\\[8pt]
+	\dfrac{1}{\sqrt{2}}&\dfrac{1}{\sqrt{2}}
+\end{bmatrix}\begin{bmatrix}
+\sqrt{2}&\sqrt{2}\\
+0&4\sqrt{2}
+\end{bmatrix}\]
+(b)
+\[\begin{bmatrix}
+	\dfrac{1}{\sqrt{2}}&\dfrac{1}{\sqrt{6}}&-\dfrac{1}{\sqrt{3}}\\[8pt]
+	\dfrac{1}{\sqrt{2}}&-\dfrac{1}{\sqrt{6}}&\dfrac{1}{\sqrt{3}}\\[8pt]
+	0&\dfrac{2}{\sqrt{6}}&\dfrac{1}{\sqrt{3}}
+\end{bmatrix}\begin{bmatrix}
+\sqrt{2}&\dfrac{1}{\sqrt{2}}&\dfrac{1}{\sqrt{2}}\\[8pt]
+0&\dfrac{\sqrt{6}}{2}&\dfrac{1}{\sqrt{6}}\\[8pt]
+0&0&\dfrac{2}{\sqrt{3}}
+\end{bmatrix}\]
+2.\\
+我们有
+\[A^TAx=A^Ty\rightarrow a=-\frac{36}{35},b=\frac{61}{35}\]
+3.\\
+(a)根据向量范数的三角不等式，我们有
+\[\Vert(A+B)x\Vert\le\Vert Ax\Vert+\Vert Bx\Vert\]
+因此
+\[\Vert A+B\Vert=\max_{|x|=1}\Vert (A+B)x\Vert\le\max_{|x|=1}(\Vert Ax\Vert+\Vert Bx\Vert)\le\Vert A\Vert+\Vert B\Vert\]
+(b)由于$Bx$的值域小于等于全空间，因此有
+\[\frac{\Vert ABx\Vert}{\Vert Bx\Vert}\le\Vert A\Vert\]
+于是
+\[\Vert AB\Vert=\max_{|x|=1}\Vert ABx\Vert\le\max_{|x|=1}\Vert A\Vert\Vert Bx\Vert=\Vert A\Vert\Vert B\Vert\]
+4.\\
+由于正定方阵可对角化，因此我们有
+\[e^{-tA}=e^{-tU\Sigma U^{-1}}=\sum_{k=0}^\infty\frac{(-tU\Sigma U^{-1})^k}{k!}=U\sum_{k=0}^\infty\frac{-t\Sigma^k}{k!}U^{-1}=Ue^{-t\Sigma}U^{-1}\]
+鉴于正定方阵特征值为正，因而我们有
+\[\lim_{t\rightarrow+\infty}e^{-tA}=\lim_{t\rightarrow+\infty}U\begin{bmatrix}
+	e^{-t\lambda_1}&&&\\
+	&e^{-t\lambda_2}&&\\
+	&&\ddots&\\
+	&&&e^{-t\lambda_k}
+\end{bmatrix}U^{-1}=0\]
+5.\\
+显然其解为
+\[Y=e^{tA}Y_0,A=\begin{bmatrix}
+	-4&1\\
+	-2&-1
+\end{bmatrix}\]
+显然$A$的特征值为$-2,-3$，于是直接由上题知
+\[\lim_{t\rightarrow+\infty}x(t)=\lim_{t\rightarrow+\infty}y(t)=0\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
