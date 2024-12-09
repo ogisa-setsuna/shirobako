@@ -1,0 +1,98 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业8}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)设$f$在$x_0$处存在$n$阶导数，则
+\[f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+o((x-x_0)^n),\text{当}x\rightarrow x_0\text{时}\]
+(2)设$f$在开区间$I$上处处存在$n$阶导数，则对于$I$内任意两点$a,b$，存在$\xi$介于$a,b$之间，使得
+\[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{f^{(n)}(\xi)}{n!}(b-a)^n\]
+2.\\
+鉴于连续函数，我们有
+\[f(0)=\lim_{x\rightarrow0}\frac{x}{e^x-1}=\lim_{x\rightarrow0}\frac{1}{e^x}=1\]
+\begin{align*}
+	f'(0)&=\lim_{x\rightarrow0}\frac{\frac{x}{e^x-1}-1}{x}\\
+	&=\lim_{x\rightarrow0}\frac{1+x-e^x}{x(e^x-1)}\\
+	&=\lim_{x\rightarrow0}\frac{1-e^x}{xe^x+e^x-1}\\
+	&=\lim_{x\rightarrow0}\frac{-e^x}{2e^x+xe^x}\\
+	&=-\frac{1}{2}
+\end{align*}
+\begin{align*}
+	f''(0)&=\lim_{x\rightarrow0}\frac{\frac{(1-x)e^x-1}{(e^x-1)^2}+\frac{1}{2}}{x}\\
+	&=\lim_{x\rightarrow0}\frac{2[(1-x)e^x-1]+(e^x-1)^2}{2x(e^x-1)^2}\\
+	&=\lim_{x\rightarrow0}\frac{e^x(e^x-1-x)}{(e^x-1)^2+2x(e^x-1)e^x}\\
+	&=\lim_{x\rightarrow0}\frac{2e^x-2-x}{4(e^x-1)+2x(2e^x-1)}\\
+	&=\lim_{x\rightarrow0}\frac{2e^x-1}{8e^x-2+4xe^x}\\
+	&=\frac{1}{6}
+\end{align*}
+因此我们有
+\[\frac{x}{e^x-1}=1-\frac{x}{2}+\frac{x^2}{12}+o(x^2)\]
+3.\\
+鉴于$\dfrac{1}{4^3}<0.01$，将函数展到$3$阶即可。
+\[\sqrt{1-x}=1-\frac{1}{2}x-\frac{1}{8}x^2-\frac{1}{16}\frac{1}{(1-\xi)^{\frac{5}{2}}}x^3\]
+因此取$P(x)$为
+\[P(x)=1-\frac{1}{2}x-\frac{1}{8}x^2\]即可，此时有
+\[|f(x)-P(x)|=\frac{1}{16}\frac{1}{(1-\xi)^{\frac{5}{2}}}x^3\le\frac{1}{16}\frac{1}{(1-0.25)^{\frac{5}{2}}}(0.25)^3<0.01\]
+4.\\
+(1)
+\[F'(x)=f'(x)+\sum_{k=1}^n[\frac{f^{(k+1)}(x)}{k!}(b-x)^k-\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}]=\frac{f^{(n+1)}(x)}{n!}(b-x)^n\]
+(2)根据拉格朗日中值定理直接得到存在$\xi$介于$a,b$之间使得
+\[F(b)-F(a)=(b-a)F'(\xi)=(b-a)\frac{f^{(n+1)}(\xi)}{n!}(b-\xi)^n\]
+5.\\
+(1)
+\[f(y)=f(x)+\frac{f'(x)}{1!}(y-x)+\frac{f''(x)}{2!}(y-x)^2+\frac{f'''(x)}{3!}(y-x)^3+o((y-x)^3)\]
+(2)将该式视作$h$的函数，即可得
+\begin{align*}
+	&\lim_{h\rightarrow0}\frac{f(x+3h)-3f(x+2h)+3f(x+h)-f(x)}{h^3}\\
+	&=\lim_{h\rightarrow0}\frac{f'(x+3h)-2f'(x+2h)+f'(x+h)}{h^2}\\
+	&=\lim_{h\rightarrow0}\frac{3f''(x+3h)-4f''(x+2h)+f''(x+h)}{2h}\\
+	&=\lim_{h\rightarrow0}\frac{9f'''(x+3h)-8f'''(x+2h)+f'''(x+h)}{2}\\
+	&=f'''(x)
+\end{align*}
+6.\\
+(1)鉴于我们知道
+\[\lim_{x\rightarrow0^+}\frac{\ln x}{x^\alpha}\rightarrow-\infty,\lim_{x\rightarrow+\infty}\frac{\ln x}{x^\alpha}=0\]
+\[(\frac{\ln x}{x^\alpha})'=\frac{1-\alpha\ln x}{x^{\alpha+1}}\]
+极大值点为
+\[x=e^\frac{1}{\alpha}\]
+此时有
+\[f(x)=\frac{1}{\alpha e}>0\]
+因此最大值为$\dfrac{1}{\alpha e}$。\\
+(2)我们先来看$x^\frac{1}{x}$的最大值，即$\dfrac{\ln x}{x}$，由上题可知$x=e$时最大，最大值为$\dfrac{1}{e}$。除此之外我们知道导数
+\[(\frac{\ln x}{x})'=\frac{1-\ln x}{x^2}\]
+在$(0,e)$上大于$0$，$(e,+\infty)$上小于$0$，因而在这两个区间分别单调递增递减。于是只需要取$n=2,3$进行比较，此时我们有
+\[3>2\sqrt{2}\rightarrow\sqrt[3]{3}>\sqrt{2}\]
+因此最大元素为$\sqrt[3]{3}$。\\
+7.\\
+我们有以下方程
+\[\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\]
+\[C=4x+4y,S=4xy\]
+将$y$视作$x$的函数，对第一个方程求导得
+\[y'=-\frac{b^2}{a^2}\frac{x}{y}\]
+对第二个方程求导得
+\[C'=4(1-\frac{b^2}{a^2}\frac{x}{y})\]
+显然在$\dfrac{y}{x}=\dfrac{b^2}{a^2}$取到最大值
+\[C_{max}=4\sqrt{a^2+b^2}\]
+对第三个方程求导得
+\[S'=4y(1-\frac{b^2}{a^2}\frac{x^2}{y^2})\]
+显然在$\dfrac{y}{x}=\dfrac{b}{a}$时取到最大值
+\[S_{max}=2ab\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
