@@ -1,0 +1,75 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{float}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{费曼3作业11}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent84.1\\
+According to the conservation of angular momentum, $A(\theta)$ is just proportional to the possibility amplitude of $\ket{-\hat{n}}$. Because the symmetry, we can only consider the rotation along $y$-axis. We know that
+\[\ket{1,0}=\frac{\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow}}{\sqrt{2}}\]
+and
+\[R_y(\theta)=\begin{bmatrix}
+	\cos\dfrac{\theta}{2}&\sin\dfrac{\theta}{2}\\[8pt]
+	-\sin\dfrac{\theta}{2}&\cos\dfrac{\theta}{2}
+\end{bmatrix}\]
+hence
+\[\ket{1,0}=\frac{1}{\sqrt{2}}\sin\theta\ket{1,1}'+\cos\theta\ket{1,0}'-\frac{1}{\sqrt{2}}\sin\theta\ket{1,-1}'\]
+Then we have
+\[A(\theta)\propto\sin\theta\]
+84.3\\
+(a)Because of the conservation of angular momentum, the angular momentum along $+z$ direction of $p^*$ need be the same as the sum of the angular momentum of the right hand circularly photon and the initial proton, which is $1+\dfrac{1}{2}$ or $1-\dfrac{1}{2}$. Thus only $m=\dfrac{3}{2},\dfrac{1}{2}$ are allowed. The total angular momentum of the final state is $j=\dfrac{1}{2}$, thus only $m'=\dfrac{1}{2},-\dfrac{1}{2}$ are allowed.\\
+(b)Because the parity is conserved, we have $c=d$.\\
+For the $\ket{\dfrac{3}{2},\dfrac{1}{2}}$, we have
+\[\ket{\frac{3}{2},\frac{1}{2}}=\frac{\ket{\uparrow,\uparrow,\downarrow}+\ket{\uparrow,\downarrow,\uparrow}+\ket{\downarrow,\uparrow,\uparrow}}{\sqrt{3}}\]
+and then 
+\begin{align*}
+	\ket{\frac{3}{2},\frac{1}{2}}&=-\sqrt{3}\sin\frac{\theta}{2}\cos^2\frac{\theta}{2}\ket{\frac{3}{2},\frac{3}{2}}'+(\cos^3\frac{\theta}{2}-2\cos\frac{\theta}{2}\sin^2\frac{\theta}{2})\ket{\frac{3}{2},\frac{1}{2}}'\\
+	&+(-\sin^3\frac{\theta}{2}+2\cos^2\frac{\theta}{2}\sin\frac{\theta}{2})\ket{\frac{3}{2},-\frac{1}{2}}'+\sqrt{3}\sin^2\frac{\theta}{2}\cos\frac{\theta}{2}\ket{\frac{3}{2},-\frac{3}{2}}'
+\end{align*}
+also we have
+\begin{align*}
+	\ket{\frac{3}{2},\frac{3}{2}}&=\cos^3\frac{\theta}{2}\ket{\frac{3}{2},\frac{3}{2}}'+\sqrt{3}\cos^2\frac{\theta}{2}\sin\frac{\theta}{2}\ket{\frac{3}{2},\frac{1}{2}}'\\
+	&+\sqrt{3}\cos\frac{\theta}{2}\sin^2\frac{\theta}{2}\ket{\frac{3}{2},-\frac{1}{2}}'+\sin^3\frac{\theta}{2}\ket{\frac{3}{2},\frac{3}{2}}'
+\end{align*}
+Thus the $f(\theta)$ is
+\begin{align*}
+	f(\theta)&=(|\cos^3\frac{\theta}{2}-2\cos\frac{\theta}{2}\sin^2\frac{\theta}{2}|^2+|-\sin^3\frac{\theta}{2}+2\cos^2\frac{\theta}{2}\sin\frac{\theta}{2}|^2)|a|^2|c|^2\\
+	&+(|\sqrt{3}\cos^2\frac{\theta}{2}\sin\frac{\theta}{2}|^2+|\sqrt{3}\cos\frac{\theta}{2}\sin^2\frac{\theta}{2}|^2)|b|^2|c|^2\\
+	&=|c|^2((1-\frac{3}{4}\sin^2\theta)|a|^2+\frac{3}{4}\sin^2\theta|b|^2)
+\end{align*}
+84.5\\
+We know
+\[\ket{1,1}=\frac{1}{\sqrt{2}}(1+\cos\theta)\ket{1,1}'-\frac{1}{\sqrt{2}}\sin\theta\ket{1,0}'+\frac{1}{\sqrt{2}}\ket{1,-1}'\]
+If the excited state has even parity, which means the state of photons has even parity, then the possibility amplitude of $+z$-axis photon is the same one of $-z$-axis photon. Conversely, it will differ a signal.\\
+(a)If photons are detected regardless of polarization, then the possibility distribution is always proportion to
+\[1+\cos^2\theta\]
+(b)Detect the $x'$-polarized photon, if even, we have
+\[f(\theta)\propto|\frac{1}{\sqrt{2}}(1+\cos\theta)+\frac{1}{\sqrt{2}}(1-\cos\theta)|^2=2\]
+and then is uniform. Conversely, we have
+\[f(\theta)\propto|\frac{1}{\sqrt{2}}(1+\cos\theta)-\frac{1}{\sqrt{2}}(1-\cos\theta)|^2=2\cos^2\theta\]
+hence we can distinguish the two case form the angular distribution of $x'$-polarized photons. 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
