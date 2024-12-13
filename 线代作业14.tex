@@ -1,0 +1,147 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\title{线代作业14}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+\[\braket{a\alpha+b\beta|a\alpha+b\beta}=\|a\alpha\|^2+\|b\beta\|^2+2\mathbb{Re}\{\overline{a}b\braket{\alpha|\beta}\}\]
+若$\alpha,\beta$正交，显然有
+\[\braket{a\alpha+b\beta|a\alpha+b\beta}=\|a\alpha\|^2+\|b\beta\|^2\]
+反之，上式成立，我们有
+\[\mathbb{Re}\{\overline{a}b\braket{\alpha|\beta}\}=0\]
+令$\braket{\alpha|\beta}=u+iv$。令$a=b=1$，我们有$u=0$，令$a=1,b=i$，我们有$v=0$，因此$\alpha,\beta$正交。\\
+2.\\
+利用爱因斯坦求和约定，我们有
+\[\braket{A|B}=Tr(\overline{A}^TB)=\overline{a}_{ki}b_{ki}\]
+显然满足准线性条件和共轭对称性，$A=B$时，恰是每个矩阵元的模方，因而满足正定性。\\
+3.\\
+我们有
+\[Tr(AB)^2=a_{ik}b_{kl}a_{lk'}b_{k'i},Tr(A^2B^2)=a_{ik}a_{kl}b_{lk'}b_{k'i}\]
+取共轭并利用厄米性得到
+\[\overline{Tr(AB)^2}=a_{ki}b_{ik'}a_{k'l}b_{lk},\overline{Tr(A^2B^2)}=a_{lk}a_{ki}b_{ik'}b_{k'l}\]
+更换哑指标名称可见其相同，因而都是实数。鉴于求迹的可交换性以及转置不变性加之迹为实数，我们有
+\begin{align*}
+	Tr(A^2B^2)-Tr(AB)^2&=Tr(BA(AB-BA))\\
+	&=-Tr(AB(AB-BA))\\
+	&=\frac{1}{2}Tr[(BA-AB)(AB-BA)]\\
+	&=\frac{1}{2}Tr[(AB-BA)^\dagger(AB-BA)]\ge0
+\end{align*}
+等号成立当且仅当$AB=BA$。\\
+4.\\
+我们知道$\det U=e^{i\theta}$，因此总有
+\[U=\begin{bmatrix}
+	a&b\\
+	c&d
+\end{bmatrix}\begin{bmatrix}
+e^{i\frac{\theta}{2}}&\\
+&e^{i\frac{\theta}{2}}
+\end{bmatrix}\]
+其中$\begin{vmatrix}
+	a&b\\
+	c&d
+\end{vmatrix}=1$且是酉矩阵。因此我们有
+\[ad-bc=1,a\overline{a}+c\overline{c}=1,a\overline{b}+c\overline{d}=0\]
+可以解得
+\[c=-\overline{b},d=\overline{a}\]
+于是我们有
+\[U=\begin{bmatrix}
+	a&b\\
+	-\overline{b}&\overline{a}
+\end{bmatrix}\begin{bmatrix}
+e^{i\frac{\theta}{2}}&\\
+&e^{i\frac{\theta}{2}}
+\end{bmatrix}\]
+令$a=a'e^{i\alpha_1},b=b'e^{i\alpha_2}$。
+令
+\[\theta_1=\alpha_1+\frac{\theta}{2},\theta_2=-\alpha_2+\frac{\theta}{2},\theta_3=0,\theta_4=\alpha_2-\alpha_1\]
+我们总可以将一个酉矩阵写成
+\[U=\begin{bmatrix}
+e^{i\theta_1}&\\
+&e^{i\theta_2}
+\end{bmatrix}\begin{bmatrix}
+a'&b'\\
+-b'&a'
+\end{bmatrix}\begin{bmatrix}
+e^{i\theta_3}&\\
+&e^{i\theta_4}
+\end{bmatrix}\]
+显然中间矩阵为实正交矩阵，因而可以写作
+\[U=\begin{bmatrix}
+	e^{i\theta_1}&\\
+	&e^{i\theta_2}
+\end{bmatrix}\begin{bmatrix}
+	\cos\theta&-\sin\theta\\
+	\sin\theta&\cos\theta
+\end{bmatrix}\begin{bmatrix}
+	e^{i\theta_3}&\\
+	&e^{i\theta_4}
+\end{bmatrix}\]
+5.\\
+(a)根据分块矩阵的性质，我们显然有
+\[\varphi(A_1)\varphi(A_2)=\begin{bmatrix}
+	B_1B_2-C_1C_2&B_1C_2+C_1B_2\\
+	-B_1C_2-C_1B_2&B_1B_2-C_1C_2
+\end{bmatrix}\]
+同时我们有
+\[A_1A_2=B_1B_2-C_1C_2+i(B_1C_2+C_1B_2)\]
+因此$\varphi(A_1A_2)=\varphi(A_1)\varphi(A_2)$。显然我们有
+\[\overline{A}^T=B^T-iC^T\]
+因此
+\[\varphi(\overline{A}^T)=\begin{bmatrix}
+	B&-C\\
+	C&B
+\end{bmatrix}=\varphi(A)^T\]
+(b)若$A$是厄米矩阵，则有$\varphi(A^\dagger)=\varphi(A)=\varphi(A)^T$，因而$\varphi(A)$对称。反之我们有$\varphi(A^\dagger)=\varphi(A)$，显然$\varphi(A)=\varphi(A')$当且仅当$A=A'$，因此$A=A^\dagger$，$A$为厄米矩阵。\\
+(c)若$A$是酉矩阵，则$\varphi(I)=\varphi(AA^\dagger)=\varphi(A)\varphi(A^\dagger)=\varphi(A)\varphi(A)^T=I$，于是$\varphi(A)$为正交矩阵。反之我们有$\varphi(AA^\dagger)=I$，显然有$AA^\dagger=I$，因此$A$为酉矩阵。\\
+6.\\
+若$B,D$是酉矩阵，$C=0$，那么$A$显然是酉矩阵，因为我们有
+\[AA^\dagger=\begin{bmatrix}
+	BB^\dagger+CC^\dagger&CD^\dagger\\
+	DC^\dagger&DD^\dagger
+\end{bmatrix}=I\]
+反之，根据行列式不为$0$我们知道$B,D$可逆，因此一定有$C=0$，紧接着$BB^\dagger=I,DD^\dagger=I$，因而都是酉矩阵。\\
+7.\\
+应用我们曾经证明过的结论，任何一个复方阵酉相似于一个上三角矩阵，显然其对角线正是其特征值。显然我们有
+\[Tr(A^TA)=|\lambda_1|^2+|a_{12}|^2+|\lambda_2|^2+\cdots+|a_{1n}|^2+\cdots+|\lambda_n|^2\ge\sum_{i=1}^n|\lambda_i|^2\]
+等式成立当且仅当上三角矩阵是对角矩阵，因而$A$可对角化，于是$A$是正规矩阵。\\
+8.\\
+若$A$正定，定义$P=\sqrt{A}$，显然有$A=P^\dagger P$，且由于特征值非零$P$一定可逆。反之显然有
+\[\braket{x|Ax}=\braket{Px|Px}\ge0\]
+且等于零当且仅当$Px=0$，由于$P$可逆，一定有$x=0$，因而正定。\\
+9.\\
+\[\begin{bmatrix}
+	1&1&1\\
+	1&1&-1\\
+	-2&1&0
+\end{bmatrix}=\begin{bmatrix}
+\dfrac{1}{\sqrt{6}}&1&\dfrac{1}{\sqrt{2}}\\[8pt]
+\dfrac{1}{\sqrt{6}}&1&-\dfrac{1}{\sqrt{2}}\\[8pt]
+-\dfrac{2}{\sqrt{6}}&1&0\\
+\end{bmatrix}\begin{bmatrix}
+\sqrt{6}&&\\
+&1&\\
+&&\sqrt{2}
+\end{bmatrix}\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
