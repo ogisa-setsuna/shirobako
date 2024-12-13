@@ -58,8 +58,10 @@
 \[\overline{(Ax)^T}Ax=\overline{x^T}A^TAx=\overline{x^T}x=|\lambda_0|^2\overline{x^T}x\]
 由于$\overline{x^T}x=\sum\limits_{i=1}^n|x_i|^2$，显然不为零，我们有
 \[|\lambda_0|=1\]
-(2)显然由于$Az=\lambda_0z$，我们有$A\overline{z}=\overline{\lambda_0}\overline{z}$，于是
-\[\lambda_0\overline{\overline{z}^T}=\overline{\overline{z}^T}Az=\overline{(A\overline{z})^T}z=\overline{\lambda_0}\overline{\overline{z}^T}z\]
+(2)显然由于$Az=\lambda_0z$，我们有$A\overline{z}=\overline{\lambda_0}\overline{z}$，除此之外我们知道
+\[\overline{(A-\lambda I)z}^T(A-\lambda I)z=\overline{z}^T(A-\lambda I)(A^T-\overline{\lambda}I)z=\overline{(A^T-\overline{\lambda}I)z}^T(A^T-\overline{\lambda} I)z\]
+因此我们有$A^Tz=\lambda_0z$于是
+\[\lambda_0\overline{\overline{z}^T}z=\overline{\overline{z}^T}Az=\overline{(A^T\overline{z})^T}z=\overline{\lambda_0}\overline{\overline{z}^T}z\]
 由于$\lambda_0$不是实数，因此我们有$\overline{\overline{z}^T}z=z^Tz=0$，于是
 \[z^Tz=x^Tx-y^Ty+iy^Tx+ix^Ty=0\]
 且我们有$x^Ty=y^Tx$，于是
