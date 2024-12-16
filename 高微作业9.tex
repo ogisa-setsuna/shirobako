@@ -1,0 +1,114 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业9}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+令$f(x)=x^p$，我们有
+\[\forall x>0,f''(x)=p(p-1)x^{p-2}>0,p\ge1\]
+因此$f(x)$下凸。根据Jensen不等式，我们有
+\[(\frac{x_1+\cdots+x_n}{n})^p\le\frac{x_1^p+\cdots+x_n^p}{n}\]
+2.\\
+(1)\[f''(x)=-\sin x\]
+因此拐点为
+\[x=k\pi,k\in\mathbb{Z}\]
+上凸和下凸区间分别为
+\[[2k\pi,(2k+1)\pi],[(2k-1)\pi,2k\pi],k\in\mathbb{Z}\]
+(2)
+\[f''(x)=\frac{e^x(e^x-1)}{(e^x+1)^3}\]
+因此拐点为
+\[x=0\]
+上凸和下凸区间分别为
+\[(-\infty,0],[0,+\infty)\]
+(3)令$x_i=\ln a_i\ge0$并利用Jensen不等式我们有
+\[\frac{1}{1+a_1}+\cdots+\frac{1}{1+a_n}\ge\frac{n}{1+e^{\frac{\ln a_1+\cdots\ln a_n}{n}}}d=\frac{1}{1+\sqrt[n]{a_1\cdots a_n}}\]
+3.\\
+由于$f''(x)\ge0$，于是利用Jensen不等式我们有
+\[f(x)=f(ta+(1-t)b)\le tf(a)+(1-t)f(b)\le\max\{f(a),f(b)\},\forall x\in[a,b],t\in[0,1]\]
+因此显然最大值在端点处取到。\\
+4.\\
+(1)对于区间$[a,b]$上的有界函数$f(x)$，其可积当且仅当其间断点组成的集合测度为零。\\
+(2)首先这两个函数都是显然有界的。显然对于$f$连续的点，我们有
+\[\forall\epsilon>0,\exists\delta>0,\forall |x-x_0|<\delta,|f(x)-f(x_0)|<\epsilon\]
+因此
+\[||f(x)|-|f(x_0)||\le|f(x)-f(x_0)|<\epsilon\]
+因此我们知道$f$连续的点$|f|$必连续，于是有
+\[D(|f|)\subseteq D(f)\]
+因此$D(|f|)$是零测集，因而可积。同理，对于$f$连续的点我们有
+\[\forall\epsilon>0,\exists\delta>0,\forall |x-x_0|<\delta,|f(x)-f(x_0)|<\min\{\frac{\epsilon}{2f(x_0)},f(x_0)\}\]
+因此
+\[|f^2(x)-f^2(x_0)|=|f(x)-f(x_0)||f(x)+f(x_0)|<\epsilon\]
+因此我们知道$f$连续的点$f^2$必连续，于是有
+\[D(f^2)\subseteq D(f)\]
+因此$D(f^2)$是零测集，因而可积。\\
+(3)不一定。因为我们可以令$f$在有理点上取$1$，无理点上取$-1$，因此每一点都是间断点，因而不可积，然而此时$|f|$却是常数$1$，一定可积，这正是反例。\\
+5.\\
+\[G(x)=\int_{a}^{v(x)}f(t)\mathrm{d}t+\int_{u(x)}^{a}f(t)\mathrm{d}t=F_1(v(x))-F_2(a)+F_2(a)-F_2(u(x))\]
+因此我们有
+\[G'(x)=F'_1(v(x))v'(x)-F'_2(u(x))u'(x)=f(v(x))v'(x)-f(u(x))u'(x)\]
+6.\\
+(1)\[\int_{a}^{1}\ln x\mathrm{d}x=x\ln x|_a^{1}-\int_{a}^{1}\mathrm{d}x=a-1-a\ln a\]
+(2)利用洛必达定理，我们有
+\[\lim_{a\rightarrow0^+}a-1-a\ln a=\lim_{x\rightarrow+\infty}\frac{\ln x}{x}-1=\lim_{x\rightarrow+\infty}\frac{1}{x}-1=-1\]
+因此
+\[\lim_{a\rightarrow0^+}\int_{a}^{1}\ln x\mathrm{d}x=-1\]
+(3)鉴于$\ln x$单调递增，显然对于$x\in(\dfrac{i}{n},\dfrac{i+1}{n})$我们有$\ln\dfrac{i}{n}<\ln x<\ln\dfrac{i+1}{n}$。将原积分区间分成这些子区间，分别利用该不等式求和得到
+\[\int_{\frac{1}{n}}^{1}\ln x\mathrm{d}x<\frac{1}{n}(\ln\frac{2}{n}+\cdots+\ln\frac{n}{n}),\int_{\frac{1}{n}}^{1}\ln x\mathrm{d}x>\frac{1}{n}(\ln\frac{1}{n}+\cdots+\ln\frac{n-1}{n})\]
+因此我们有
+\[\int_{\frac{1}{n}}^{1}\ln x\mathrm{d}x+\frac{1}{n}\ln\frac{1}{n}<\frac{1}{n}(\ln\frac{1}{n}+\cdots+\ln\frac{n}{n})<\int_{\frac{1}{n}}^{1}\ln x\mathrm{d}x\]
+(4)令$n\rightarrow+\infty$，左右显然都趋于$-1$，根据夹逼定理我们知道
+\[\lim_{n\rightarrow+\infty}\ln\frac{\sqrt[n]{n!}}{n}=-1\]
+根据$\ln x$的连续性我们知道
+\[\lim_{n\rightarrow+\infty}\frac{\sqrt[n]{n!}}{n}=\frac{1}{e}\]
+7.\\
+(1)鉴于其下凸性，利用Jensen不等式以及下凸的定义，我们有
+\[f(\frac{a+b}{2})+(x-\frac{a+b}{2})f'(\frac{a+b}{2})\le f(x)\le\frac{b-x}{b-a}f(a)+\frac{x-a}{b-a}f(b)\]
+然后利用积分不等式得到
+\[f(\frac{a+b}{2})(b-a)\le\int_{a}^{b}f(x)\mathrm{d}x\le(b-a)\frac{f(a)+f(b)}{2}\]
+(2)若严格大于$0$，则上述关于函数的不等式严格成立。鉴于连续函数的积分不等式取等当且仅当两者相等，因此积分不等式也会严格成立，于是
+\[f(\frac{a+b}{2})(b-a)<\int_{a}^{b}f(x)\mathrm{d}x<(b-a)\frac{f(a)+f(b)}{2}\]
+(3)令$g(x)=f(x)-\dfrac{M}{2}(x-\dfrac{a+b}{2})^2$，显然有
+\[g''(x)=f''(x)-M>0\]
+代入上题不等式得
+\[(b-a)f(\frac{a+b}{2})<\int_{a}^{b}f(x)\mathrm{d}x-\frac{M}{24}(b-a)^3<(b-a)\frac{f(a)+f(b)}{2}-\frac{M}{8}(b-a)^3\]
+因此我们有
+\[(b-a)f(\frac{a+b}{2})+\frac{M}{24}(b-a)^3<\int_{a}^{b}f(x)\mathrm{d}x<(b-a)\frac{f(a)+f(b)}{2}-\frac{M}{12}(b-a)^3\]
+(4)根据最值定理，令$m=\min\{f''(x)\}$，我们有
+\[(b-a)f(\frac{a+b}{2})+\frac{m}{24}(b-a)^3\le\int_{a}^{b}f(x)\mathrm{d}x\]
+令$M=\max\{f''(x)\}$，$g(x)$变上凸，不等式反向，我们有
+\[(b-a)f(\frac{a+b}{2})+\frac{M}{24}(b-a)^3\ge\int_{a}^{b}f(x)\mathrm{d}x\]
+结合两个不等式我们有
+\[\int_{a}^{b}f(x)\mathrm{d}x=(b-a)f(\frac{a+b}{2})+\frac{y}{24}(b-a)^3,y\in[m,M]\]
+再根据介值定理，我们有
+\[\int_{a}^{b}f(x)\mathrm{d}x=(b-a)f(\frac{a+b}{2})+\frac{f''(\xi)}{24}(b-a)^3,\xi\in[a,b]\]
+(5)与上一题同理有
+\[\int_{a}^{b}f(x)\mathrm{d}x\le(b-a)\frac{f(a)+f(b)}{2}-\frac{m}{12}(b-a)^3\]
+\[\int_{a}^{b}f(x)\mathrm{d}x\ge(b-a)\frac{f(a)+f(b)}{2}-\frac{M}{12}(b-a)^3\]
+于是
+\[\int_{a}^{b}f(x)\mathrm{d}x=(b-a)\frac{f(a)+f(b)}{2}-\frac{y}{12}(b-a)^3,y\in[m,M]\]
+再根据介值定理得
+\[\int_{a}^{b}f(x)\mathrm{d}x=(b-a)\frac{f(a)+f(b)}{2}-\frac{f''(\eta)}{12}(b-a)^3,\eta\in[a,b]\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
