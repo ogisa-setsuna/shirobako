@@ -1,0 +1,141 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业10}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)令$x=\sin\theta,\theta=\arcsin x$，我们有
+\begin{align*}
+	&\int\arcsin x\mathrm{d}x\\
+	&=\int\theta\cos\theta\mathrm{d}\theta\\
+	&=\theta\sin\theta-\int\sin\theta\mathrm{d}\theta\\
+	&=\theta\sin\theta+\cos\theta+C\\
+	&=x\arcsin x+\sqrt{1-x^2}+C
+\end{align*}
+(2)令$x=a\sin\theta,\theta=\arcsin\dfrac{x}{a}$，我们有
+\begin{align*}
+	&\int\frac{x^2}{\sqrt{a^2-x^2}}\mathrm{d}x\\
+	&=\int a^2\sin^2\theta\mathrm{d}\theta\\
+	&=\int a^2\frac{1-\cos2\theta}{2}\mathrm{d}\theta\\
+	&=a^2(\frac{\theta}{2}-\frac{\sin2\theta}{4})+C\\
+	&=\frac{1}{2}(a^2\arcsin \frac{x}{a}-x\sqrt{a^2-x^2})+C
+\end{align*}
+(3)令$t=x-2,x=t+2$，我们有
+\begin{align*}
+	&\int\frac{x+1}{\sqrt{x^2-4x}}\mathrm{d}x\\
+	&=\int\frac{t+3}{\sqrt{t^2-4}}\mathrm{d}t\\
+	&=\int\frac{t}{\sqrt{t^2-4}}\mathrm{d}t+\int\frac{3}{\sqrt{t^2-4}}\mathrm{d}t\\
+	&=\sqrt{t^2-4}+\ln(t+\sqrt{t^2-4})+C\\
+	&=\sqrt{x^2-4x}+\ln(x-2+\sqrt{x^2-4x})+C
+\end{align*}
+(4)观察知
+\[\frac{1}{1+x^3}=\frac{1}{3}\frac{1}{1+x}+\frac{-\frac{1}{3}x+\frac{2}{3}}{x^2-x+1}\]
+因此我们有
+\begin{align*}
+	&\int\frac{1}{x^3+1}\mathrm{d}x\\
+	&=\frac{1}{3}\int\frac{1}{1+x}\mathrm{d}x+\frac{-\frac{1}{3}x+\frac{2}{3}}{x^2-x+1}\mathrm{d}x\\
+	&=\frac{1}{3}\ln(1+x)-\frac{1}{6}\int\frac{2x-1}{x^2-x+1}\mathrm{d}x+\frac{1}{2}\int\frac{1}{(x-\frac{1}{2})^2+\frac{3}{4}}\mathrm{d}x\\
+	&=\frac{1}{3}\ln(1+x)-\frac{1}{6}\ln(x^2-x+1)+\frac{1}{\sqrt{3}}\arctan\frac{2x-1}{\sqrt{3}}+C
+\end{align*}
+(5)令$t=\sqrt{x},x=t^2$，我们有
+\begin{align*}
+	&\int\frac{\sqrt{x}}{(1+x)^2}\mathrm{d}x\\
+	&=\int\frac{2t^2}{(1+t^2)^2}\mathrm{d}t\\
+	&=-\frac{t}{1+t^2}+\int\frac{1}{1+t^2}\mathrm{d}t\\
+	&=\arctan t-\frac{t}{1+t^2}+C\\
+	&=\arctan\sqrt{x}-\frac{\sqrt{x}}{1+x}+C
+\end{align*}
+2.\\
+(1)分部积分我们有
+\begin{align*}
+	&\int_{1}^{2}x\ln^2x\mathrm{d}x\\
+	&=\left.\frac{1}{2}x^2\ln^2x\right|_1^2-\int_{1}^{2}x\ln x\mathrm{d}x\\
+	&=2\ln^22-(\left.\frac{1}{2}x^2\ln x\right|_1^2-\int_{1}^{2}\frac{1}{2}x\mathrm{d}x)\\
+	&=2\ln^22-2\ln 2+\frac{3}{4}
+\end{align*}
+(2)令$x=\arctan t$，我们有
+\begin{align*}
+	&\int_{0}^{\frac{\pi}{4}}\frac{\tan x}{\cos^2x}\mathrm{d}x\\
+	&=\int_{0}^{1}t\mathrm{d}t\\
+	&=\frac{1}{2}
+\end{align*}
+(3)利用万能公式，令$x=2\arctan t$，我们有
+\begin{align*}
+	&\int_{0}^{\frac{\pi}{2}}\frac{1}{1+a\cos x}\mathrm{d}x\\
+	&=\int_{0}^{1}\frac{2}{(1-a)t^2+1+a}\mathrm{d}t\\
+	&=\left.\frac{2}{1-a}\sqrt{\frac{1-a}{1+a}}\arctan\sqrt{\frac{1-a}{1+a}t}\right|_0^1\\
+	&=\frac{2}{\sqrt{1-a^2}}\arctan\sqrt{\frac{1-a}{1+a}}
+\end{align*}
+3.\\
+令$t=\cos x$，我们有
+\begin{align*}
+	&\int_{0}^{\pi}\frac{(\cos x-a)\sin x}{(1+a^2-2a\cos x)^\frac{3}{2}}\mathrm{d}x\\
+	&=\int_{-1}^{1}\frac{t-a}{(1+a^2-2at)^\frac{3}{2}}\mathrm{d}t\\
+	&=\left.\frac{1}{a}\frac{t-a}{\sqrt{1+a^2-2at}}\right|_{-1}^1-\int_{-1}^{1}\frac{1}{a}\frac{\mathrm{d}t}{\sqrt{1+a^2-2at}}\\
+	&=\frac{1-a-|1-a|}{a^2|1-a|}
+\end{align*}
+4.\\
+(1)利用万能公式，令$x=2\arctan t$，我们有
+\begin{align*}
+	&\int\frac{1}{a+\sin x}\mathrm{d}x\\
+	&=\int\frac{2\mathrm{d}t}{at^2+2t+a}\\
+	&=\frac{2}{\sqrt{a^2-1}}\arctan\frac{a\tan\frac{x}{2}+1}{\sqrt{a^2-1}}+C
+\end{align*}
+(2)我们先有
+\[\int_{0}^{2\pi}\frac{1}{a^2-\sin^2x}\mathrm{d}x=\int_{0}^{\pi}\frac{1}{a^2-\sin^2x}\mathrm{d}x+\int_{\pi}^{2\pi}\frac{1}{a^2-\sin^2(\pi+x)}\mathrm{d}x=2\int_{0}^{\pi}\frac{1}{a^2-\sin^2x}\mathrm{d}x\]
+因此利用上一题公式并取极限得到
+\begin{align*}
+	&\int_{0}^{2\pi}\frac{1}{a^2-\sin^2x}\mathrm{d}x\\
+	&=\frac{1}{a}(\int_{0}^{\pi}\frac{1}{a-\sin x}\mathrm{d}x+\int_{0}^{\pi}\frac{1}{a+\sin x}\mathrm{d}x)\\
+	&=\frac{1}{a}(\int_{-\pi}^{0}\frac{1}{a+\sin x}\mathrm{d}x+\int_{0}^{\pi}\frac{1}{a+\sin x}\mathrm{d}x)\\
+	&=\frac{2\pi}{a\sqrt{a^2-1}}
+\end{align*}
+5.\\
+(1)观察知
+\[\frac{1}{x^4+1}=\frac{-\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2-\sqrt{2}x+1}+\frac{\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2+\sqrt{2}x+1}\]
+我们有
+\begin{align*}
+	&\int\frac{1}{x^4+1}\mathrm{d}x\\
+	&=\int\frac{-\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2-\sqrt{2}x+1}\mathrm{d}x+\int\frac{\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2+\sqrt{2}x+1}\mathrm{d}x\\
+	&=-\int\frac{\frac{1}{2\sqrt{2}}(-x)+\frac{1}{2}}{(-x)^2+\sqrt{2}(-x)+1}\mathrm{d}(-x)+\int\frac{\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2+\sqrt{2}x+1}\mathrm{d}x
+\end{align*}
+因此只需计算右边积分，我们有
+\begin{align*}
+	&\int\frac{\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2+\sqrt{2}x+1}\mathrm{d}x\\
+	&=\int\frac{1}{4\sqrt{2}}\frac{2x+\sqrt{2}}{x^2+\sqrt{2}x+1}\mathrm{d}x+\frac{1}{4}\int\frac{\mathrm{d}x}{(x+\frac{1}{\sqrt{2}})^2+\frac{1}{2}}\mathrm{d}x\\
+	&=\frac{1}{4\sqrt{2}}\ln(x^2+\sqrt{2}x+1)+\frac{1}{2\sqrt{2}}\arctan(\sqrt{2}x+1)+C
+\end{align*}
+因此原不定积分为
+\[\frac{1}{4\sqrt{2}}(\ln(x^2+\sqrt{2}x+1)-\ln(x^2-\sqrt{2}x+1))+\frac{1}{2\sqrt{2}}(\arctan(\sqrt{2}x+1)-\arctan(-\sqrt{2}x+1))+C\]
+(2)显然我们有
+\begin{align*}
+	&\int_{0}^{+\infty}\frac{1}{x^4+1}\mathrm{d}x\\
+	&=\lim_{A\rightarrow+\infty}\left.\frac{1}{4\sqrt{2}}\ln\frac{x^2+\sqrt{2}x+1}{x^2-\sqrt{2}x+1}\right|_0^{A}+\left.\frac{1}{2\sqrt{2}}(\arctan(\sqrt{2}x+1)-\arctan(1-\sqrt{2}x))\right|_0^A\\
+	&=\frac{\pi}{2\sqrt{2}}
+\end{align*}
+6.\\
+(1)令$t=nx$，原式相当于计算
+\[\lim_{n\rightarrow+\infty}\frac{\int_{0}^{n}f(t)\mathrm{d}t}{n}\]
+鉴于$\lim_{x\rightarrow+\infty}f(x)=L$，我们有
+\[\forall\epsilon,\exists A,L-\epsilon<f(x)<L+\epsilon,x>A\]
+因此
+\[(L-\epsilon)\frac{n-A}{n}+\frac{\int_{0}^{A}f(x)\mathrm{d}x}{n}<\frac{\int_{0}^{n}f(x)\mathrm{d}x}{n}<(L+\epsilon)\frac{n-A}{n}+\frac{\int_{0}^{A}f(x)\mathrm{d}x}{n}\]
+显然两侧极限分别为$L-\epsilon,L+\epsilon$，于是$\forall\epsilon'>0,\exists N$使得$n>N$时
+\[L-\epsilon-\epsilon'<\frac{\int_{0}^{n}f(x)\mathrm{d}x}{n}<L+\epsilon+\epsilon'\]
+鉴于$\epsilon,\epsilon'$是任取的，根据夹逼定理我们有
+\[\lim_{n\rightarrow+\infty}\int_{0}^{1}f(nx)\mathrm{d}x=L\]
+(2)令$t=nx$，我们有
+\[\int_{0}^{T}g(x)h(nx)\mathrm{d}x=\frac{1}{n}\sum_{k=1}^{n}\int_{\frac{(k-1)T}{n}}^{\frac{kT}{n}}g(\frac{t}{n})h(t)\mathrm{d}t\]
+根据$h$的周期性，对于第$k$项进行换元$\xi=t-(k-1)T$，我们有
+\[\int_{0}^{T}(\sum_{k=1}^{n}g(\frac{\xi}{n}+\frac{(k-1)T}{n})\frac{1}{n})h(\xi)\mathrm{d}\xi\]
+鉴于$g$可积，根据黎曼积分定义，$\forall\epsilon>0,\exists N$使得$n>N$时我们有
+\[|\int_{0}^{T}g(x)\mathrm{d}x-\sum_{k=1}^{n}g(\frac{\xi}{n}+\frac{(k-1)T}{n})\frac{T}{n}|<\frac{T\epsilon}{\int_{0}^{T}h(x)\mathrm{d}x}\]
+因此原式有
+\[\frac{1}{T}\int_{0}^{T}g(x)\mathrm{d}x\int_{0}^{T}h(x)\mathrm{d}x-\epsilon<\int_{0}^{T}g(x)h(nx)\mathrm{d}x<\frac{1}{T}\int_{0}^{T}g(x)\mathrm{d}x\int_{0}^{T}h(x)\mathrm{d}x+\epsilon,n>N\]
+于是根据夹逼定理我们有
+\[\lim_{n\rightarrow+\infty}\int_{0}^{T}g(x)h(nx)\mathrm{d}x=\frac{1}{T}\int_{0}^{T}g(x)\mathrm{d}x\int_{0}^{T}h(x)\mathrm{d}x\]
+\end{document}
