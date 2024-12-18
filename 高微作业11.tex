@@ -1,0 +1,91 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{高微作业11}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)鉴于
+\[\lim_{x\rightarrow+\infty}\frac{\frac{x^{a-1}}{1+x}}{x^a}=\lim_{x\rightarrow+\infty}\frac{x}{1+x}=1\]
+因此与$x^a$同敛散。因此我们有
+\[\int_{1}^{+\infty}\frac{x^{a-1}}{1+x}\mathrm{d}x\begin{cases}
+	\text{收敛}&\text{if }a<1\\
+	\text{发散}&\text{if }a\ge1
+\end{cases}\]
+(2)鉴于
+\[\lim_{x\rightarrow0}\frac{\frac{x^{a-1}}{1+x}}{x^{a-1}}=\lim_{x\rightarrow0}\frac{1}{1+x}=1\]
+因此与$x^{a-1}$同敛散。因此我们有
+\[\int_{1}^{+\infty}\frac{x^{a-1}}{1+x}\mathrm{d}x\begin{cases}
+	\text{收敛}&\text{if }a>0\\
+	\text{发散}&\text{if }a\le0
+\end{cases}\]
+(3)令$t=\dfrac{1}{x}$，这个换元显然是单射且光滑，除此之外边界的极限相同，因此可以直接写
+\[\int_{1}^{+\infty}\frac{x^{a-1}}{1+x}\mathrm{d}x=\int_{1}^{0}\frac{t^{1-a}}{1+t^{-1}}\frac{-1}{t^2}\mathrm{d}t=\int_{0}^{1}\frac{x^{-a}}{1+x}\mathrm{d}x\]
+2.\\
+(1)鉴于我们有
+\[\int_{0}^{+\infty}e^{-|x|}\mathrm{d}x=\int_{0}^{+\infty}e^{-x}\mathrm{d}x=1\]
+\[\int_{-\infty}^{0}e^{-|x|}\mathrm{d}x=\int_{-\infty}^{0}e^{x}\mathrm{d}x=1\]
+因此
+\[\int_{-\infty}^{+\infty}e^{-|x|}\mathrm{d}x\]
+收敛。我们还有
+\[\lim_{x\rightarrow\infty}\frac{e^{-ax^2-bx-c}}{e^{-|x|}}=\lim_{x\rightarrow\infty}e^{-x^2(a+\frac{b}{x}+\frac{c}{x^2}-\frac{|x|}{x^2})}=0\]
+因此
+\[\int_{-\infty}^{+\infty}e^{-ax^2-bx-c}\mathrm{d}x\]
+收敛。\\
+(2)鉴于无穷积分收敛，因此柯西主值与其相等，我们有
+\begin{align*}
+	&\int_{-\infty}^{+\infty}e^{-ax^2-bx-c}\mathrm{d}x\\
+	&=\lim_{M\rightarrow+\infty}\int_{-M}^{M}e^{-ax^2-bx-c}\mathrm{d}x\\
+	&=e^{\frac{b^2}{4a}-c}\lim_{M\rightarrow+\infty}\int_{-M}^{M}e^{-a(x+\frac{b}{2a})^2}\mathrm{d}x\\
+	&=\frac{1}{\sqrt{a}}e^{\frac{b^2}{4a}-c}\lim_{M\rightarrow+\infty}\int_{-M\sqrt{a}+\frac{b}{2\sqrt{a}}}^{M\sqrt{a}+\frac{b}{2\sqrt{a}}}e^{-u^2}\mathrm{d}u\\
+	&=\frac{e^{\frac{b^2}{4a}-c}}{\sqrt{a}}I
+\end{align*}
+3.\\
+(1)由于
+\[|\sum_{n=1}^n\sin n\theta|=|\frac{\sin\frac{n\theta}{2}\theta\sin\frac{(n+1)\theta}{2}}{\sin\frac{\theta}{2}}|\le\frac{1}{|\sin\frac{\theta}{2}|}\]
+同时$\dfrac{1}{n^2}$单调收敛于$0$。因此利用狄利克雷判别法我们知道该级数收敛。\\
+(2)我们知道
+\[\lim_{n\rightarrow+\infty}\sqrt[n]{\frac{n!}{n^n}}=\frac{1}{e}<1\]
+因此根据比值判别法该级数收敛。\\
+(3)同上题，此时有
+\[\lim_{n\rightarrow+\infty}\sqrt[n]{\frac{n!a^n}{n^n}}=\frac{a}{e}\]
+因此$a>e$时发散，$a<e$时收敛。当$a=e$时，我们有
+\[\frac{a_{n+1}}{a_n}=\frac{e}{(1+\frac{1}{n})^n}>1\]
+因此$a_n$并不趋于$0$，于是发散。\\
+(4)我们有
+\[\sqrt[n]{\frac{n^{\ln n}}{(\ln n)^n}}=\frac{n^{\frac{\ln n}{n}}}{\ln n}\]
+取对数得
+\[\frac{(\ln n)^2}{n}-\ln\ln n\]
+显然当$n$趋于无穷时上式趋于负无穷，因此原式趋于$0$。因此该级数收敛。\\
+(5)显然我们有
+\[\lim_{n\rightarrow+\infty}\frac{n^{\frac{3}{2}}(\ln n)^p}{1+n^2}=\lim_{n\rightarrow+\infty}\frac{(\ln n)^p}{\frac{1}{n^\frac{3}{2}}+n^\frac{1}{2}}=0\]
+且我们知道级数$\dfrac{1}{n^\frac{3}{2}}$收敛，因此该级数收敛。\\
+(6)对任意正数$\epsilon$，我们有
+\[\lim_{n\rightarrow+\infty}\frac{n^p(\ln n)^q}{n^p}=+\infty,\lim_{n\rightarrow+\infty}\frac{n^{p-\epsilon}(\ln n)^q}{n^p}=0\]
+因此当$p\le1$时，该级数发散，当$p>1$时，该级数收敛。\\
+(7)让$\dfrac{1}{n^\beta}$去除级数项，我们有
+\[n^{\beta-\alpha}-n^\beta\sin\frac{1}{n^\alpha}=\frac{1}{3!}\frac{n^\beta}{n^{3\alpha}}-\frac{1}{5!}\frac{n^\beta}{n^{5\alpha}}+\cdots\]
+当$\alpha>\dfrac{1}{3}$是，取$\beta=1+\epsilon,\epsilon>0$使得$\beta<3\alpha$，显然此时该级数收敛。当$\alpha=\dfrac{1}{3}$时，该极限等于$1$，与调和级数同敛散，因此发散。当$\alpha
+<\dfrac{1}{3}$时，我们知道$x-\sin x$单调递增，且$\dfrac{1}{n^\alpha}>\dfrac{1}{n^\frac{1}{3}}$，因此该级数发散。\\
+综上所述，$\alpha>\dfrac{1}{3}$级数收敛，$\alpha\le\dfrac{1}{3}$级数发散。\\
+(8)显然当$p>1$时，该级数绝对收敛，因为此时有
+\[\frac{1}{1^p}+\frac{1}{2^{2p}}+\cdots<1+\frac{1}{2^p}+\cdots\]
+而右边收敛。当$p=1$是，我们知道
+\[\frac{1}{(2n)^2}<\frac{1}{(2n-1)(2n+1)}=\frac{1}{2}(\frac{1}{2n-1}-\frac{1}{2n+1})\]
+因此我们有
+\begin{align*}
+	&1-\frac{1}{2^2}+\frac{1}{3}-\cdots\\
+	&>\frac{1}{2}+\frac{1}{3}+\frac{1}{5}+\cdots\\
+	&>\frac{1}{2}+\frac{1}{4}+\frac{1}{6}+\cdots\\
+	&=\frac{1}{2}(1+\frac{1}{2}+\frac{1}{3}+\cdots)\rightarrow+\infty
+\end{align*}
+因此该级数发散。鉴于我们有
+\[(\frac{1}{(2n-1)^x}-\frac{1}{(2n)^{2x}})'=\frac{x}{(2n-1)^{x+1}}(\frac{2}{(2n^x)}(\frac{2n-1}{2n})^{x+1}-1)<0\]
+\[\frac{1}{(2n+1)^p}>\frac{1}{(2n+1)},p<1\]
+因此当$p<1$时该级数部分和大于$p=1$的情形，且后者发散，因而$p<1$时发散。\\
+综上所述，$p>1$级数收敛，$p\le1$级数发散。\\
+(9)此即(1)中$\theta$取$1$的情况，根据狄利克雷判别法该级数收敛。
+\end{document}
