@@ -1,0 +1,536 @@
+\documentclass[hyperref,UTF8]{ctexbook}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{braket}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\usepackage{tikz}
+\hypersetup{hidelinks}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+\newcommand*\xoverline[2][0.75]{%
+	\sbox{\myboxA}{$\m@th#2$}%
+	\setbox\myboxB\null% Phantom box
+	\ht\myboxB=\ht\myboxA%
+	\dp\myboxB=\dp\myboxA%
+	\wd\myboxB=#1\wd\myboxA% Scale phantom
+	\sbox\myboxB{$\m@th\overline{\copy\myboxB}$}% Overlined phantom
+	\setlength\mylenA{\the\wd\myboxA}% calc width diff
+	\addtolength\mylenA{-\the\wd\myboxB}%
+	\ifdim\wd\myboxB<\wd\myboxA%
+	\rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+	\else
+	\hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+	\fi}
+\makeatother
+\graphicspath{{C:/Users/18967/Desktop/latex/figure/}}
+\newtcolorbox{fiction}[1][]{enhanced,attach boxed title to top right,boxed title style={colback=BurlyWood},coltitle=black,title={#1},fontupper=\CJKfamily{zhkai}\qquad,fonttitle=\bfseries,colframe=BurlyWood,interior style image=yellowpaper.jpg,breakable}
+\pagecolor{Ivory}
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\title{统计力学笔记}
+\author{haruki}
+\date{\today}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+\chapter{系综理论}
+\section{基本假设}
+\begin{fiction}[\large Day 1]
+	睡觉\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	\\
+	
+\end{fiction}
+\newpage
+热力学是一个唯象理论，通过实验归纳出了热力学三定律（其实有四个呀），而统计力学则是致力于从微观出发，试图通过微观规律推出热力学量。因此，统计力学与热力学紧紧地捆绑在一起，前者为后者的理论验证，后者为前者的实践指导。\\
+\indent 然而，由于微观粒子巨大的数量级$\sim10^{23}$，直接从运动方程开始严格推导是不切实际的，因此需要恰当的近似，系综（Ensemble）理论正是其中之一。为了理解系综的合理性，可以举一个例子。\\
+\\
+\indent{\CJKfamily{zhkai}假设我们有一个骰子，我们想知道它其中一面朝上的概率是多少，我们有两种实验方法：
+	\begin{enumerate}
+		\item 用一个骰子扔10000次，记录下那一面朝上的次数，再除以10000。
+		\item 用10000个完全一样的骰子扔一次，记录下那一面朝上的个数，再除以10000。
+	\end{enumerate}
+可以预期，这两种实验方法得出的结果应当是一样的（当然，结果只是概率的近似），其中第二种方法正是我们将用到的系综法。}\\
+\\
+\indent 鉴于实验设备的限制，我们测量到的一切可观测量应当是一定时间间隔内的平均。由于我们现在仅限于研究平衡态的系统，因此这个时间平均应该是不随测量时刻变化的。上述的例子告诉我们可以通过引入大量相同的系统进行测量以获得时间平均。为了继续关于系综的讨论，我们有必要引入关于密度矩阵的概念。\\
+\indent 在经典力学里我们知道，可以将一个保守系统描述成相空间中的一个相点，沿着由哈密顿方程和初态决定的轨迹运动：
+\begin{align*}
+	\dot{q_i}&=\frac{\partial H}{\partial p_i}\\
+	\dot{p_i}&=-\frac{\partial H}{\partial q_i}\\
+\end{align*}
+其中$i=1,2,\dots,n$，我们用$n$来表示系统的自由度，$N$来表示粒子个数。鉴于解的唯一性，我们知道相轨迹是不会相交的。然而，现实中的系统不可能是完全保守的，因为测量本身就与外界进行了相互作用，因此系统在相空间中的相点随时可能切换轨道。由此亦可知用概率对系统状态进行描述是合理的。\\
+\indent 为了在量子力学中讨论这件事，我们不得不引入密度矩阵。首先，一个系统处于\textbf{纯态}意味着它处在一个普通的量子态$\ket{\psi}$上，测量得到的值为
+\[\bar{A}=\braket{\psi|A|\psi}\]
+而一个系统处在\textbf{混态}意味着它可能处在某一个纯态上，这是一个概率分布，因而测量得到的值要再做一次平均
+\[\bar{\bar{A}}=p_i\braket{\psi_i|A|\psi_i}\footnotemark[1]\]
+\footnotetext[1]{这里我们用到了爱因斯坦求和约定，我们之后将沿袭这一约定。}
+我们可以运用一些数学技巧。首先取$\{\ket{\varphi_j}\}$作为一组正交归一基，并利用$\ket{\varphi_j}\bra{\varphi_j}=1$我们有
+\begin{align*}
+	\xoverline{\xoverline{A}}&=p_i\braket{\psi_i|A|\psi_i}\\
+	&=p_i\braket{\psi_i|\varphi_j}\braket{\varphi_j|A|\varphi_k}\braket{\varphi_k|\psi_i}\\
+	&=\braket{\varphi_k|\psi_i}p_i\braket{\psi_i|\varphi_j}\braket{\varphi_j|A|\varphi_k}\\
+	&=\bra{\varphi_k}(p_i\ket{\psi_i}\bra{\psi_i})A\ket{\varphi_k}\\
+	&=\mathrm{Tr}(\rho A)
+\end{align*}
+其中，我们定义\textbf{密度矩阵}（或叫做密度算符）为$\rho=p_i\ket{\psi_i}\bra{\psi_i}$，并且要求$\sum p_i=1$。至此，我们明白了一个系统的时间平均可以用大量相同系统的系综平均替代，而密度矩阵可以用来描述这一概率分布。因此，我们的目标变成了寻找合适的密度矩阵。\\
+\indent 什么是合适的密度矩阵呢？这个问题比较复杂，因此物理学家选择用基本假设糊弄过去。我们的基本假设是：一个系统的可测量量的测量值可以用系综平均来代替，在进行平均时将每个系统从环境中孤立出来进行测量。假设的前半段是前面讨论过的，后半段则是在一定程度上限制了密度矩阵的形式。
+\indent 将系统孤立出来，这意味着测量时每个系统都当作保守系统进行演化，因而可以用哈密顿量进行刻画，类似经典力学中的刘维尔定理，我们有：
+\[\frac{\partial\rho}{\partial t}+[\rho,H]=0\]
+这是因为
+\begin{align*}
+	i\hbar\frac{\partial\rho}{\partial t}&=p_i(H\ket{\psi_i}\bra{\psi_i}-\ket{\psi_i}\bra{\psi_i}H)\\
+	&=-[\rho,H]
+\end{align*}
+$p_i$不随时间变化是由于我们测量时将每个系统孤立出来，因此不会改变此时所处的纯态。\\
+\indent 由此可见，在我们研究平衡态系统时，上述假设显然要求了$\dfrac{\partial\rho}{\partial t}=0$，因而$[\rho,H]=0$。那么这个假设合理吗？\\
+\indent 实际上，这个假设前半句也存在一定的问题。平衡态的定义是将系统孤立出来后能稳定保持宏观可测量量的状态。但是此时系统一定处在某一个纯态中，这难道不是和系综平均矛盾了吗？之前我们说的时间平均等于系综平均实际上是建立在“遍历性”的前提下，只有当一个随机系统满足“遍历性”时，我们才可以将两者划等号。正是由于这个原因，多年来数学家和物理学家一直致力于研究遍历理论。但是从物理的角度来看，我们不可能将一个系统做到完全孤立，因此上述概念都是近似意义下的。由此观之，近似为保守系统来研究系综似乎也未尝不可。正是由于这些难以说明的不确定性，物理学家选择直接用基本假设搪塞了过去。毕竟只要实验符合就可以了，对吧？\\
+\indent 然而至此，密度矩阵的形式并未完全确定，我们仍需进一步进行假设。一种方法是假设$\rho(H)$，即密度矩阵可写作哈密顿量的函数。将$\rho$对能量本征态$\ket{\psi_i}$展开可得：
+\[\rho_{mn}=\braket{\psi_m|\rho(H)|\psi_n}=\delta_{mn}\rho(E_n)\]
+因此密度矩阵是对角形式的。对于一个孤立系统，能量几乎被确定（鉴于实际上不完全的孤立），因而密度矩阵的每一个对角元都相同。设能量处于$E\sim E+\delta E$的能量本征态总态数为$\Omega$，我们有：
+\[\rho_{mn}=\begin{cases}
+	\delta_{mn}\dfrac{1}{\Omega}&E_n\in[E,E+\delta E]\\[8pt]
+	0&E_n\notin[E,E+\delta E]
+\end{cases}\]
+当然上述假设并不存在证明，因此物理学家用另一个基本假设来确定了这种情况下密度矩阵的形式。其他情况下的密度矩阵将在之后几节中推出，因此只有孤立系统的密度矩阵是必要的。我们的第二个基本假设是：一个孤立系统的密度矩阵是等概率的。\\
+\indent 到目前为止，我们已经建立了系综理论的全部基本假设。乍一看，似乎只有等概率假设才是必要的，那么我们为什么要大费周章地讲第一个假设呢？实际上，第一个假设提供了系综这个工具，我们可以把它推广到非平衡态的情形下。同时，系综这个概念也能更方便地进行数学操作，因此何乐而不为呢？
+\section{微正则系综}
+在这一节中，我们将研究一种特殊的情况以作为接下来几节的基础。我们将孤立系统的系综叫做\textbf{微正则系综}（Microcanonical ensemble）其密度矩阵满足等概率原理。\\
+\indent 首先，我们将两个孤立系统通过一个固定导热板连接在一起。此时总能量恒定为$E_{tot}$，对于不同的能量分配，我们显然有$\Omega(E_1,E_2)=\Omega_1(E_1)\Omega_2(E_2)$。根据等概率原理，出现某个能量分布的概率正比于该分布下的总态数。当我们取热力学极限时，可以估计$\Omega\sim\exp(N)$（例如用理想气体等），因此只有极大项在近似下保留（见附录\ref{A}）。因此当我们将这两个已经处于热平衡的系统分开时，$E_1,E_2$将满足极大条件\footnote[2]{以下偏导意味着以$E,N_i,x_i$作为自变量，其中$N_i,x_i$分别是各组分粒子数和广义位移}：
+\[\frac{\partial\Omega(E_1,E_{tot}-E_1)}{\partial E_1}=0\]
+取对数导数即得：
+\begin{align*}
+	\frac{\partial\ln\Omega(E_1,E_{tot}-E_1)}{\partial E_1}&=\frac{\partial\ln\Omega_1(E_1)}{\partial E_1}+\frac{\partial\ln\Omega_2(E_{tot}-E_1)}{\partial E_1}\\
+	&=\frac{\partial\ln\Omega_1(E_1)}{\partial E_1}-\frac{\partial\ln\Omega_2(E_2)}{\partial E_2}\\
+	&=0
+\end{align*}
+因此我们有
+\[\frac{\partial\ln\Omega_1}{\partial E_1}=\frac{\partial\ln\Omega_2}{\partial E_2}\]
+这意味着我们可以给微正则系综定义一个量，即“温度”：
+\[\frac{1}{kT}=\frac{\partial\ln\Omega}{\partial E}\]
+其中$k$是玻尔兹曼常数。上面的论述同时也证明了热力学第零定律对于微正则系综是成立的。然而，这里定义的温度和我们通常所谓的热力学温度的等同性需要进一步验证。\\
+\indent 同理，如果让导热板可以无摩擦移动（或者解放其他的广义位移），同时还可以交换各组分粒子，出于上述相同原因，我们有
+\[\frac{\partial\ln\Omega_1}{\partial x_{1i}}=\frac{\partial\ln\Omega_2}{\partial x_{2i}},\frac{\partial\ln\Omega_1}{\partial N_{1i}}=\frac{\partial\ln\Omega_2}{\partial N_{2i}}\]
+因此定义“广义力”和“化学势”为：
+\[\frac{J_i}{kT}=-\frac{\partial\ln\Omega}{\partial x_i},\frac{\mu_i}{kT}=-\frac{\partial\ln\Omega}{\partial N_i}\]
+同样的，这里的广义力和化学势与通常定义的相同需要进一步验证。
+\indent 此时，我们可以写出这样的式子：
+\[k\mathrm{d}\ln\Omega=\frac{\mathrm{d}E}{T}-\frac{J_i\mathrm{d}x_i}{T}-\frac{\mu_i\mathrm{d}N_i}{T}\]
+定义“熵”为$S=k\ln\Omega$，我们得到
+\begin{equation}\label{FundamentalEquation}
+	\mathrm{d}E=T\mathrm{d}S+J_i\mathrm{d}x_i+\mu_i\mathrm{d}N_i
+\end{equation}
+我们似乎得到了热力学基本方程。当然，我们这里的“熵”“温度”“广义力”“化学势”都是自己定义的，因此要完成证明，必须将它们与实际的热力学量联系起来。注意到，如果在粒子数固定的情况下与热力学方程等同，则一般情况自然可以得出。因此，我们的下一步是证明“广义力”具有通常的意义。\\
+\indent 不失一般性，我们取体积作为唯一的广义位移。量子力学中的绝热近似告诉我们，准静态过程中，能量本征态仍然处在能量本征态。因此，我们可以追踪每一个能量本征态，于是每个本征值$E_k$可作为体积的函数。当系统处于某个本征态$\ket{\psi_k}$时，根据绝热近似我们显然有
+\[P_m=-\frac{\partial E_k}{\partial V}\]
+其中$P_m$是通常意义下的压强，与前面定义的压强区分。\\
+\indent 由于我们可以在体积的改变中追踪态，因此能量比$E(V)$小的态数量不会发生改变。因此夹层$E(V)\sim E(V)+\delta E(V)$内的态数不会变，于是$\Omega$不变。当然，这其实是基于微正则系综与外界的微小相互作用与体积变换无关的假设下。实际上，与其假设$\delta E$按$E(V)$变化，不如直接认定态不会由于体积变化而取不到，这在某种程度上直接假设了$\Omega$不变。鉴于这个说不清楚的原因，下面会给出第二个证明。\\
+\indent 对系综进行平均，我们有
+\[\xoverline{P_m}=-\xoverline{\dfrac{\partial E}{\partial V}}\]
+注意，上式在微正则系综中成立不需要之前的讨论，鉴于$P_m$相对$E$的缓变性质（例如理想气体，$\dfrac{\partial P_m}{\partial E}=\dfrac{2}{3V}$，在热力学极限下趋于零），我们可以在单位能量内求平均。上式对于之后的正则系综和巨正则系综是显然的，因为能量可以取任意值。\\
+\indent 鉴于$\Omega$不变，于是$S$不变，我们有\footnote[3]{下式与前式无关，是直接从定义出发的结果。}
+\[P_m=-\left(\frac{\partial E}{\partial V}\right)_S\]
+由此可见
+\[\mathrm{d}E=T\mathrm{d}S-P_m\mathrm{d}V\]
+与热力学基本方程一致，且先前定义的$P$正是通常意义下的压强$P_m$。\\
+\indent{\CJKfamily{zhkai}除了上面这种证法外，还有另一种证法。考虑单位能量态密度$\omega$，我们有
+\[\Omega=\omega\delta E\]
+\indent 让我们从来分析$\Omega$的数学结构。令$V$改变$\delta V$，对于同一个能壳内的态数量$\Omega$，我们有
+\[\delta\Omega\approx-\left.\omega\xoverline{\dfrac{\partial E}{\partial V}}\delta V\right|_{E+\delta E}+\left.\omega\xoverline{\dfrac{\partial E}{\partial V}}\delta V\right|_E\]
+其中$\dfrac{\partial E}{\partial V}$是在单位能量内做平均。因此我们有
+\[\frac{\partial \Omega}{\partial V}\approx-\frac{\partial}{\partial E}\left(\xoverline{\dfrac{\partial E}{\partial V}}\omega\delta E\right)=\frac{\partial}{\partial E}(P_m\Omega)\]
+因此我们有
+\begin{align*}
+	\frac{\partial S}{\partial V}&=\frac{\partial}{\partial V}k\ln\Omega\\
+	&=\frac{k}{\Omega}\left(\frac{\partial \Omega}{\partial E}P_m+\Omega\frac{\partial P_m}{\partial E}\right)\\
+	&=\frac{\partial S}{\partial E}+k\frac{\partial P_m}{\partial E}\\
+	&=\frac{P_m}{T}+k\frac{\partial P_m}{\partial E}
+\end{align*}
+根据前面的讨论我们知道，第二项在热力学极限下可忽略。因此证明了两种压强的等价性。\\
+\indent 实际上，在前面的讨论中，我们看到了热力学极限的反复利用，这在一定程度上说明了微正则系综的适用范围。实际上，一般只有在面对大系统的时候使用微正则系综，当系统太小时，等概率原理不一定能得到保证，我们通常使用正则系综或巨正则系综。同时也可以发现，微正则系综在系统太小时压强的定义也不太明确。\footnote[4]{顺带一提，当系统处于能量本征态时，压强似乎是直接给定的，这与通常的压强是时间平均的看法似乎不符，但实际上系统不一定真的处在能量本征态，再加上系统状态在系综中改变，时间平均的概念还是适用的。}
+}\\
+\indent 为了进一步得出温度$T$与热力学温度一致，可以具体计算理想气体模型，与实验对比即可验证。这将在下一节中讨论。
+\section{正则系综}
+由于态数难以直接计算，微正则系综用的地方并不多，实际使用时常用的系综之一便是\textbf{正则系综}（Canonical ensemble）。正则系综对应的是与一个热源接触的恒温系统，热源温度是给定的$T$。为了推导其密度矩阵形式，我们将热源和研究的系统看成一个大的孤立系统，因此我们可以用微正则系综来研究。\\
+\indent 由于热源足够大，可以将其近似作为微正则系综来研究。设热源态数为$\Omega(E_1)$，大系统总态数为$\Omega_{tot}$，总能量为$E_{tot}$。利用等概率假设，系统能量为$E$的一个态对应的概率为：
+\[P=\frac{\Omega(E_{tot}-E)\cdot1}{\Omega_{tot}}\]
+鉴于系统相对于整体很小，我们可以将$\Omega(E_{tot}-E)$对$E$泰勒展开。然而，其一阶项系数$\dfrac{\partial\Omega}{\partial E_1}=\dfrac{\Omega}{kT}$，数量级$\sim\Omega$，因此与$E$相乘后不一定比零阶项小，所以直接泰勒展开并不是很好的近似。因此我们选择取对数后展开，得到：
+\[\ln\Omega(E_{tot}-E)\approx\ln\Omega(E_{tot})-\left.\frac{\partial\ln\Omega}{\partial E_1}\right|_{E_{tot}}E\]
+于是我们有
+\[P\approx C\exp(-\beta E)\]
+其中$\beta=\dfrac{1}{kT}$。为了得到系数$C$，定义\textbf{配分函数}（Partition function）$Q$为
+\[\sum \exp(-\beta E_k)\]
+对所有态求和，最后得到
+\[P=\frac{\exp(-\beta E)}{Q}\]
+\indent 然而，故事并没有结束。也许有人会问为什么一定要取对数，而我们实际上无法回答。不过，鉴于热力学极限的情况下涨落可忽略，对于大系统怎么取这个函数形式是不影响的，因此为了方便会取对数。然而，对于一个小系统，涨落的影响不可忽略，因此在这里的展开不一定合理，我们不予讨论。\footnote[5]{实际上，对于近独立子系可以用马尔可夫随机场算出通常形式的概率分布（见附录\ref{B}），而对于其他情况，小系统的统计力学仍在发展中。}\\
+\indent 由上式我们可以得出我们想要的一切热力学量：
+\begin{align*}
+	\xoverline{E}&=\frac{\sum E_k\exp(-\beta E_k)}{Q}\\
+	&=-\frac{1}{Q}\frac{\partial Q}{\partial\beta}\\
+	&=-\frac{\partial\ln Q}{\partial\beta}
+\end{align*}
+\begin{align*}
+	\xoverline{J_i}&=\frac{1}{Q}\sum\frac{\partial E_k}{\partial x_i}\exp(-\beta E_k)\\
+	&=-\frac{1}{\beta}\frac{\partial\ln Q}{\partial x_i}
+\end{align*}
+容易发现正则系综仍满足热力学基本方程，因为
+\begin{align*}
+	&k\beta(\mathrm{d}\xoverline{E}-\xoverline{J_i}\mathrm{d}x_i)\\
+	&=-k\beta\mathrm{d}\left(\frac{\partial\ln Q}{\partial\beta}\right)+k\frac{\partial\ln Q}{\partial x_i}\mathrm{d}x_i\\
+	&=k\frac{\partial\ln Q}{\partial\beta}\mathrm{d}\beta-k\mathrm{d}\left(\beta\frac{\partial\ln Q}{\partial\beta}\right)+k\frac{\partial\ln Q}{\partial x_i}\mathrm{d}x_i\\
+	&=k\mathrm{d}\left(\ln Q-\beta\frac{\partial\ln Q}{\partial \beta}\right)
+\end{align*}
+因此我们可以定义熵为
+\[S=k\left(\ln Q-\beta\frac{\partial\ln Q}{\partial \beta}\right)\]
+这时我们有
+\[\mathrm{d}\xoverline{E}=T\mathrm{d}S+\xoverline{J_i}\mathrm{d}x_i\]
+\indent 我们还可以计算正则系综的相对涨落。对于能量，我们有
+\[\xoverline{E}Q=\sum E_k\exp(-\beta E_k)\]
+两边对$T$求导得
+\[\frac{\partial\xoverline{E}}{\partial T}Q+\frac{1}{kT^2}\xoverline{E}^2Q=\frac{1}{kT^2}\sum E_k^2\exp(-\beta E_k)\]
+因此我们有
+\[\frac{\xoverline{(E-\xoverline{E})^2}}{\xoverline{E}^2}=\frac{\overline{E^2}-\xoverline{E}^2}{\xoverline{E}^2}=kT^2\frac{C_{x_i}}{\xoverline{E}^2}\]
+其中$C_{x_i}$为广义位移固定时的热容。由实验可知$C_{x_i}\sim Nk,\xoverline{E}\sim NkT$（例如理想气体），我们发现右侧数量级$\sim\dfrac{1}{N}$。\\
+\indent 类似的，对于广义力我们有
+\[\xoverline{J_i}Q=\sum\frac{\partial E_k}{\partial x_i}\exp(-\beta E_k)\]
+两边对$x_i$求导得
+\begin{align*}
+	&\frac{\partial\xoverline{J_i}}{\partial x_i}Q-\frac{1}{kT}\xoverline{J_i}^2Q\\
+	&=\sum\frac{\partial^2 E_k}{\partial x_i^2}\exp(-\beta E_k)-\frac{1}{kT}\sum\left(\frac{\partial E_k}{\partial x_i}\right)^2\exp(-\beta E_k)\\
+\end{align*}
+因此我们有
+\[\frac{\xoverline{(J_i-\xoverline{J_i})^2}}{\xoverline{J_i}^2}=\frac{kT}{\xoverline{J_i}^2}\left(-\frac{\partial\xoverline{J_i}}{\partial x_i}+\xoverline{\dfrac{\partial J_i}{\partial x_i}}\right)\]
+利用理想气体方程，右侧第一项显然数量级$\sim\dfrac{1}{N}$，而第二项跟相互作用细节有关。可以证明，第二项也可忽略。\\
+\indent 由上可知，在热力学极限下涨落可忽略，所以对于大系统而言热力学量是良定义的。除此之外，系统的亥姆霍兹自由能$F=E-TS$此时为
+\[F=-\frac{\partial\ln Q}{\partial\beta}-\frac{1}{k\beta}k\left(\ln Q-\beta\frac{\partial\ln Q}{\partial \beta}\right)=-kT\ln Q\]
+因此我们有$Q=\exp(-\beta F)$。我们称$F$为正则系综的特征函数。\\
+\indent{\CJKfamily{zhkai}关于正则系综的配分函数，除了前面提到的方法之外还有一种证法。在上面的讨论中我们可以看到，热源的形式并不重要。实际上，当我们写出$\Omega(E_{tot}-E)\cdot1$时就已经考虑了这一点。写出这个式子的前提是系统与热源的耦合可以忽略，由此也可看出热源的具体形式可以任意取。为了方便计算，我们取热源为大量全同系统。这种情况实际上就是系综思想的具象化。\\
+\indent 我们用$\mathcal{N}$来代表系统数。在这种特殊情况下，首先注意到由于系统之间近独立，根据系综的思想容易知道，系统处于某个态的概率正是占据该态的系统数的平均$\xoverline{n_r}$除以总数$\mathcal{N}$。根据等概率原理我们有
+\[\xoverline{n_r}=\frac{\sum n_k\Omega\{n_k\}}{\sum\Omega\{n_k\}}\]
+其中
+\[\Omega\{n_k\}=\frac{\mathcal{N}}{n_0!n_1!n_2!\cdots}\]
+对所有不同的分布求和。分布必须满足约束条件
+\begin{align*}
+	&\sum n_k=\mathcal{N}\\
+	&\sum n_kE_k=E_{tot}=\mathcal{N}U
+\end{align*}
+其中$U$代表系统能量的平均。\\
+\indent 第一种想法是求出最概然分布$n^*_k$，这是因为热力学极限下涨落可以忽略，最概然分布可以代表平均分布。取对数得到
+\[\ln\Omega\{n_k\}=\ln\mathcal{N}!-\sum\ln n_k!\]
+由于$\mathcal{N}\rightarrow\infty$时$n_k\rightarrow\infty$（严格来说是并不是所有态都会趋于无穷，但是趋于无穷的态的贡献肯定占主要部分），因此可以使用斯特林公式（见附录\ref{A}）得
+\[\ln\Omega\{n_k\}=\mathcal{N}\ln\mathcal{N}-\sum n_k\ln n_k\]
+其中用到了约束条件。令分布偏移一点$\{n_k\}\rightarrow\{n_k+\delta n_k\}$，我们有
+\[\delta\ln\Omega\{n_k\}=-\sum(\ln n_k+1)\delta n_k\]
+由于分布满足约束条件，利用拉格朗日乘子法，得到最概然分布要求
+\[\sum(\ln n^*_k+1-\alpha-\beta E_k)\delta n_k=0\]
+此时$n_k$可视作独立，我们得到
+\[n^*_k=C\exp(-\beta E_k)\]
+因此
+\[\frac{\xoverline{n_r}}{\mathcal{N}}\approx\frac{n^*_r}{\mathcal{N}}=\frac{\exp(-\beta E_r)}{\sum\exp(-\beta E_k)}\]
+我们还有
+\[U=\frac{\sum E_k\exp(-\beta E_k)}{\sum\exp(-\beta E_k)}\]
+此时总态数可以近似为
+\[\ln\Omega_{tot}=\sum\ln\Omega\{n_k\}\approx\ln\Omega\{n^*_k\}=\mathcal{N}\left(-\sum\frac{n^*_k}{\mathcal{N}}\ln\frac{n^*_k}{\mathcal{N}}\right)\]
+利用微正则系综的公式得到
+\begin{align*}
+	\frac{1}{kT}&=\frac{\partial\ln\Omega_{tot}}{\partial E_{tot}}\\
+	&\approx\frac{\partial\ln\Omega\{n^*_k\}}{\partial\mathcal{N}U}\\
+	&=\frac{\partial}{\partial U}\left[\ln Q+\frac{1}{Q}\sum\beta E_k\exp(-\beta E_k)\right]\\
+	&=\frac{\partial}{\partial U}\left(\ln Q+\beta U\right)
+\end{align*}
+其中$Q=\sum\exp(-\beta E_k)$。由于$\beta$是$U$的函数，同时我们有
+\[U=\frac{\sum E_k\exp(-\beta E_k)}{\sum\exp(-\beta E_k)}=-\frac{\partial\ln Q}{\partial\beta}\]
+因此我们有
+\begin{align*}
+	\frac{1}{kT}&=\frac{\partial}{\partial U}\left(\ln Q+\beta U\right)\\
+	&=-U\frac{\partial\beta}{\partial U}+\frac{\partial\beta}{\partial U}U+\beta\\
+	&=\beta
+\end{align*}
+于是我们得到了熟悉的等式$\beta=\dfrac{1}{kT}$。由此亦可见所求的概率分布与前面得到的相同。\\
+\indent 实际上，我们可以直接从平均分布出发。为了达到这个目的，我们重新定义$\Omega\{n_k\}$为
+\[\tilde{\Omega}\{n_k\}=\frac{\mathcal{N!}\omega_0^{n0}\omega_1^{n_1}\omega_2^{n_2}\cdots}{n_0!n_1!n_2!\cdots}\]
+令$\omega_k$全取$1$就回到了原来的式子，这么写的目的是得出更好操作的$\xoverline{n_r}$表达式。我们定义
+\[\Gamma=\sum\tilde{\Omega}\{n_k\}\]
+于是
+\[\xoverline{n_r}=\left.\omega_r\frac{\partial}{\partial\omega_r}\ln\Gamma\right|_{\omega_k=1}\]
+约束条件的第一条可以用二项式定理处理，为了处理第二条，定义生成函数
+\[G(\mathcal{N},z)=\sum\Gamma(\mathcal{N},U)z^{\mathcal{N}U}\]
+对所有可能的能量求和。因此在求和时能量约束条件被解除，可以直接利用二项式定理得到
+\begin{align*}
+	G(\mathcal{N},z)&=\sum\Gamma(\mathcal{N},U)z^{\mathcal{N}U}\\
+	&=\sum\sum\frac{\mathcal{N!}}{n_0!n_1!\cdots}\left(\omega_0z^{E_0}\right)^{n_0}\left(\omega_1z^{E_1}\right)^{n_1}\cdots\\
+	&=(\omega_0z^{E_0}+\omega_1z^{E_1}+\cdots)^\mathcal{N}\\
+	&=[f(z)]^{\mathcal{N}}
+\end{align*}
+为了求出$\Gamma(\mathcal{N},U)$，我们发现$G$的表达式正是幂级数\footnote[6]{虽然次数不为整数，但是我们可以取一个常量$\delta E$，使得任一多项的幂次都是$\delta E$的倍数，因此该幂级数可以任意逼近通常意义下的幂级数。同时，根据$f(z)$的表达式很容易看出，该幂级数的收敛圆为$|z|=1$。}，于是可以利用环路积分
+\[\Gamma(\mathcal{N},U)=\frac{1}{2\pi i}\oint\frac{[f(z)]^\mathcal{N}}{z^{\mathcal{N}U+1}}\mathrm{d}z\]
+接下来我们将利用鞍点近似法（见附录\ref{A}）。令
+\[\frac{[f(z)]^\mathcal{N}}{z^{\mathcal{N}U+1}}=\exp(\mathcal{N}g(z))\]
+即
+\[g(z)=\ln f(z)-\left(U+\frac{1}{\mathcal{N}}\ln z\right)\]
+令$g'(z)=0$，找到$g(z)$的鞍点$z_0$
+\[\frac{f'(z_0)}{f(z_0)}-\frac{1}{z_0}\left(U+\frac{1}{\mathcal{N}}\right)\]
+鉴于$\mathcal{N}$很大，忽略$\dfrac{1}{\mathcal{N}}$。
+\[U\approx z_0\frac{f'(z_0)}{f(z_0)}=\frac{\sum\omega_kE_kz_0^{E_k}}{\sum\omega_kz_0^{E_k}}\]
+\indent 让我们在正实轴上找$z_0$，并记其为$x_0$。如前面脚注所示，我们可以发现$f(z)$与$\dfrac{1}{1-z}$同敛散，$f'(z)$同理。因此我们得到$z\dfrac{f'(z)}{f(z)}$与$\dfrac{z}{1-z}$同敛散。由于在$z=0$时右式为$0$，$z$沿正实轴趋于$1$时右式趋于无穷，因此总能在正实轴上找到鞍点$x_0$。\\
+\indent 随着$x_0$增大，右式中$E_k$大的占比逐渐增大，因此右式沿正实轴单调递增，由此我们显然有
+\[g''(x_0)>0\]
+因此取环路积分经过该鞍点，并在其附近沿直线$z=x_0+iy$。由于鞍点附近的积分占主导地位，可以只做鞍点附近的积分，同时由于$\mathcal{N}\rightarrow\infty$，我们可以将对$y$的积分延伸到无穷远而不大影响积分值。我们最后得到
+\begin{align*}
+	\Gamma(\mathcal{N},U)&\approx\frac{1}{2\pi i}\frac{[f(x_0)]^\mathcal{N}}{x_0^{\mathcal{N}U+1}}\int_{-\infty}^{+\infty}\exp\left(-\frac{\mathcal{N}}{2}g''(x_0)y^2\right)i\mathrm{d}y\\
+	&=\frac{[f(x_0)]^\mathcal{N}}{x_0^{\mathcal{N}U+1}}\frac{1}{\sqrt{2\pi\mathcal{N}g''(x_0)}}
+\end{align*}
+于是我们有
+\[\frac{1}{\mathcal{N}}\ln\Gamma(\mathcal{N},U)=\ln f(x_0)-U\ln x_0-\frac{1}{\mathcal{N}}\ln x_0-\frac{1}{2\mathcal{N}}\ln[2\pi\mathcal{N}g''(x_0)]\]
+当$\mathcal{N}\rightarrow\infty$时，我们得到
+\[\frac{1}{\mathcal{N}}\ln\Gamma(\mathcal{N},U)=\ln f(x_0)-U\ln x_0\]
+定义
+\[x_0=\exp(-\beta)\]
+我们有
+\[\frac{1}{\mathcal{N}}\ln\Gamma(\mathcal{N},U)=\ln\sum\omega_k\exp(-\beta E_k)+\beta U\]
+代入$\xoverline{n_r}$的表达式中我们得到
+\[\left.\frac{\xoverline{n_r}}{\mathcal{N}}=\frac{\omega_r\exp(-\beta E_r)}{\sum\omega_k\exp(-\beta E_k)}+\left[-\frac{\sum\omega_kE_k\exp(-\beta E_k)}{\sum\omega_k\exp(-\beta E_k)}+U\right]\omega_r\frac{\partial\beta}{\partial\omega_r}\right|_{\omega_k=1}\]
+注意$\beta=-\ln x_0$是$\omega_k$的函数。显然右式第二项为$0$，因此我们得到熟悉的分布
+\[\frac{\xoverline{n_r}}{\mathcal{N}}=\frac{\exp(-\beta E_r)}{\sum\exp(-\beta E_k)}\]
+与前面的最概然分布一致，这并不令人意外。通过和前面一样的讨论，我们得到
+\[\beta=\frac{1}{kT}\]
+\indent 上面的两种推导方法并没有比原来的系综法多出什么物理内容，而且推导过程更加复杂，不过提供了一个系综平均的物理图像，同时鞍点近似法也是物理中重要的近似方法。\\
+}
+\indent 我们发现，只要知道配分函数$Q$便知道了系统的全部热力学量，因此如何求得配分函数$Q$是关键。对于绝大多数系统，直接求出配分函数并不容易，因此我们需要一些近似。当我们研究经典系统时，用到最多的便是经典近似，因此如何从量子统计近似到经典统计是一个重要问题。一种方法是利用Wigner表象。\\
+\indent 在Wigner表象中，每个算符都对应着一个函数\footnote[7]{下文中为了分辨算符和数，我们将标注尖帽。}
+\[A_w(\boldsymbol{p},\boldsymbol{q})=\int\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)\Braket{\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}|\hat{A}|\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}}\]
+我们还可以写出动量积分形式
+\begin{align*}
+	A_w(\boldsymbol{p},\boldsymbol{q})&=\int\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)\Braket{\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}|\hat{A}|\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}}\\
+	&=\frac{1}{(2\pi\hbar)^{n}}\iiint\mathrm{d}^n\boldsymbol{p_1}\mathrm{d}^n\boldsymbol{p_2}\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)\exp\left(\frac{i\boldsymbol{p_1}\cdot\left(\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}\right)}{\hbar}\right)\\
+	&\exp\left(\frac{i\boldsymbol{p_2}\cdot\left(\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}\right)}{\hbar}\right)\braket{\boldsymbol{p_1}|\hat{A}|\boldsymbol{p_2}}\\
+	&=\iint\mathrm{d}^n\boldsymbol{p_1}\mathrm{d}^n\boldsymbol{p_2}\;\delta\left(\frac{\boldsymbol{p_1+p_2}}{2}-\boldsymbol{p}\right)\exp\left(\frac{i(\boldsymbol{p_1-p_2})\cdot\boldsymbol{q}}{\hbar}\right)\braket{\boldsymbol{p_1}|\hat{A}|\boldsymbol{p_2}}\\
+	&=\int\mathrm{d}^n\boldsymbol{k}\exp\left(\frac{i\boldsymbol{q\cdot k}}{\hbar}\right)\Braket{\boldsymbol{p}+\frac{1}{2}\boldsymbol{k}|\hat{A}|\boldsymbol{p}-\frac{1}{2}\boldsymbol{k}}
+\end{align*}
+对于坐标算符函数$\hat{U}(\hat{\boldsymbol{q}})$，我们有
+\begin{align*}
+	U_w(\boldsymbol{p},\boldsymbol{q})&=\int\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)\Braket{\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}|\hat{U}(\hat{\boldsymbol{q}})|\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}}\\
+	&=\int\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)U\left(\boldsymbol{q+\frac{1}{2}s}\right)\delta(\boldsymbol{s})\\
+	&=U(\boldsymbol{q})
+\end{align*}
+同理，对于动量算符函数$\hat{K}(\hat{\boldsymbol{p}})$，我们有$K_w(\boldsymbol{p},\boldsymbol{q})=K(\boldsymbol{p})$。但是对于任意函数形式的算符，其在Wigner表象下的形式自然与原来形式不同。\\
+\indent 容易发现，这其实是一个傅里叶变换，因此我们有
+\[\Braket{\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}|\hat{A}|\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}}=\frac{1}{(2\pi\hbar)^{n}}\int\mathrm{d}^n\boldsymbol{p}\exp\left(\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)A_w(\boldsymbol{p},\boldsymbol{q})\]
+令$\boldsymbol{s}=0$，我们得到
+\[\braket{\boldsymbol{q}|\hat{A}|\boldsymbol{q}}=\frac{1}{(2\pi\hbar)^{n}}\int\mathrm{d}^n\boldsymbol{p}A_w(\boldsymbol{p},\boldsymbol{q})\]
+同理有
+\[\braket{\boldsymbol{p}|\hat{A}|\boldsymbol{p}}=\frac{1}{(2\pi\hbar)^{n}}\int\mathrm{d}^n\boldsymbol{q}A_w(\boldsymbol{p},\boldsymbol{q})\]
+于是
+\[\mathrm{Tr}(\hat{A})=\frac{1}{(2\pi\hbar)^{n}}\iint\mathrm{d}^n\boldsymbol{p}\mathrm{d}^n\boldsymbol{q}A_w(\boldsymbol{p},\boldsymbol{q})\]
+令$A$为密度矩阵$\rho$，我们有
+\[f(\boldsymbol{p},\boldsymbol{q})=\int\mathrm{d}^n\boldsymbol{s}\exp\left(-\frac{i\boldsymbol{p\cdot s}}{\hbar}\right)\Braket{\boldsymbol{q}+\frac{1}{2}\boldsymbol{s}|\rho|\boldsymbol{q}-\frac{1}{2}\boldsymbol{s}}\]
+做傅里叶逆变换得
+\[\braket{\boldsymbol{q_1}|\rho|\boldsymbol{q_2}}=\frac{1}{(2\pi\hbar)^{n}}\int\mathrm{d}^n\boldsymbol{p}\exp\left(\frac{i\boldsymbol{p\cdot (\boldsymbol{q_1-q_2})}}{\hbar}\right)f(\boldsymbol{p},\boldsymbol{q})\]
+因此
+\begin{align*}
+	\xoverline{A}=\mathrm{Tr}(\rho \hat{A})&=\frac{1}{(2\pi\hbar)^{n}}\iiint\mathrm{d}^n\boldsymbol{q_1}\mathrm{d}^n\boldsymbol{q_2}\mathrm{d}^n\boldsymbol{p}\braket{\boldsymbol{q_1}|\hat{A}|\boldsymbol{q_2}}\exp\left(\frac{i\boldsymbol{p\cdot (\boldsymbol{q_1-q_2})}}{\hbar}\right)f(\boldsymbol{p},\boldsymbol{q})\\
+	&=\frac{1}{(2\pi\hbar)^{n}}\iint\mathrm{d}^n\boldsymbol{p}\mathrm{d}^n\boldsymbol{q}A_w(\boldsymbol{p},\boldsymbol{q})f(\boldsymbol{p},\boldsymbol{q})
+\end{align*}
+其中最后一步通过交换$\boldsymbol{q_1},\boldsymbol{q_2}$并换元可得。\\
+\indent 从上面来看，Wigner分布函数似乎和经典的相空间有很好的对应，但实际上Wigner分布函数并不是一个相空间中的概率分布，因为它可能在某些区域取负号。因此，我们需要另寻办法进行经典近似。\footnote[8]{如果对Wigner分布函数进行一定程度的抹平，可以使其在相空间上恒正，得到的是Husimi分布，但是后者仍然不是一个概率分布。关于后者的经典近似仍在研究中。}\\
+\indent 为了接下来的计算，我们首先可以注意到正则系综的密度矩阵可以写成一个好看的形式
+\[\rho=\exp(-\beta\hat{H})\]
+我们的目的是计算配分函数
+\[Q=\mathrm{Tr}(\rho)=\sum\braket{\psi_k|\exp(-\beta\hat{H})|\psi_k}\]
+其中我们取$\ket{\psi_k}$为能量本征态。为了方便起见，我们令哈密顿量取最简单的形式
+\[\hat{H}=\frac{\hat{\bm{p}}^2}{2m}+\hat{U}(\hat{\bm{r}})\]
+\indent 实际上，由于全同粒子的交换对称性，并不是所有的能量本征态都可以取到，我们应该取合适对称性的态（玻色子对应对称态，费米子对应反对称态）。由于哈密顿量与置换算符对易，我们总可以令能量本征态为对称或反对称。我们将用$+$表示对称，$-$表示反对称。容易发现，对于对称或反对称的态，我们有
+\[\braket{\bm{r}|\psi_k}=\frac{1}{N!}\sum(\pm1)^{|P_{\bm{r}}|}\braket{P_{\bm{r}}\bm{r}|\psi_k}\]
+其中$P_{\bm{r}}$表示置换，$|P_{\bm{r}}|$表示置换的奇偶性，求和对全部置换求和。根据上式，我们定义坐标表象的对称基和反对称基为
+\[\ket{\bm{r}_{\pm}}=\frac{1}{\sqrt{N!}}\sum(\pm1)^{|P_{\bm{r}}|}\ket{\bm{P_{\bm{r}}r}}\]
+类似的，我们也可以定义动量表象的对称基和反对称基
+\[\ket{\bm{p}_{\pm}}=\frac{1}{\sqrt{N!}}\sum(\pm1)^{|P_{\bm{p}}|}\ket{P_{\bm{p}}\bm{p}}\]
+它们满足
+\[\braket{\bm{r}_\pm|\psi}=\begin{cases}
+	\sqrt{N!}\braket{\bm{r}|\psi}&\text{,if }\ket{\psi_k}\text{ is symmetric for +, vice versa}\\
+	0&\text{,if not}
+\end{cases}\]
+\indent 因此，我们可以通过对称基或反对称基还原出所有的本征态。我们有
+\begin{align*}
+	Q&=\sum\braket{\psi_k|\exp(-\beta\hat{H})|\psi_k}\\
+	&=\iint\mathrm{d}^n\bm{r}\mathrm{d}^n\bm{p}\braket{\bm{p}|\psi_k}\braket{\psi_k|\bm{r}}\braket{\bm{r}|\exp(-\beta\hat{H})|\bm{p}}\\
+	&=\frac{1}{N!}\iint\mathrm{d}^n\bm{r}\mathrm{d}^n\bm{p}\braket{\bm{p}_\pm|\bm{r}_\pm}\braket{\bm{r}|\exp(-\beta\hat{H})|\bm{p}}
+\end{align*}
+其中，$\braket{\bm{p}_\pm|\bm{r}_\pm}$这一项展开为
+\[\braket{\bm{p}_\pm|\bm{r}_\pm}=\frac{1}{N!}\sum\sum(\pm1)^{|P_{\bm{r}}|+|P_{\bm{p}}|}\braket{P_{\bm{p}}\bm{p}|P_{\bm{r}}\bm{r}}\]
+由于遍历两次置换相当于每个置换出现$N!$次，且$|P_{\bm{r}}P_{\bm{p}}|=|P_{\bm{r}}|+|P_{\bm{p}}|$，我们有
+\[\braket{\bm{p}_\pm|\bm{r}_\pm}=\sqrt{N!}\braket{\bm{p}_\pm|\bm{r}}\]
+而后一项$\braket{\bm{r}|\exp(-\beta\hat{H})|\bm{p}}=\exp(-\beta\mathcal{H})\braket{\bm{r}|\bm{p}}$，其中$\mathcal{H}$为
+\[\mathcal{H}=-\frac{\hbar^2}{2m}\nabla^2+U(\bm{r})\]
+让我们设其为
+\begin{align*}
+	(2\pi\hbar)^{3N/2}\exp(-\beta\mathcal{H})\braket{\bm{r}|\bm{p}}&=\exp(-\beta\mathcal{H})\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\\
+	&=\exp(-\beta H(\bm{r},\bm{p}))\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)w(\bm{r},\bm{p},\beta)\\
+	&=F(\bm{r},\bm{p},\beta)
+\end{align*}
+为了进一步操作，我们首先发现
+\[\frac{\partial F}{\partial\beta}=-\mathcal{H}F\]
+且其满足初始条件
+\[F(\beta=0)=\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\]
+将前式代入得到
+\begin{align*}
+	&\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\left(\exp(-\beta H)\frac{\partial w}{\partial\beta}-H\exp(-\beta H)w\right)\\
+	&=-U\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\exp(-\beta H)w+\frac{\hbar^2}{2m}\left[\exp(-\beta H)\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\nabla^2w\right.\\
+	&+\exp(-\beta H)w\nabla^2\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)+\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)w\nabla^2\exp(-\beta H)\\
+	&+2\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\nabla w\cdot\nabla\exp(-\beta H)+2\exp(-\beta H)\nabla w\cdot\nabla\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\\
+	&\left.+2w\nabla\exp(-\beta H)\nabla\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\right]
+\end{align*}
+经过化简得到
+\begin{align*}
+	\frac{\partial w}{\partial\beta}&=\frac{\hbar^2}{2m}\left[\nabla^2w-\beta w\nabla^2U-2\beta\nabla w\cdot\nabla U+\beta^2w(\nabla U)^2\right]\\
+	&+\frac{i\hbar}{m}(\nabla w\cdot\bm{p}-\beta w\nabla U\cdot\bm{p})
+\end{align*}
+我们得到了$w(\bm{r},\bm{p},\beta)$关于$\beta$的微分方程，满足边界条件$w(\beta=0)=1$。为了进行经典近似，我们令$\hbar\rightarrow0$，将$w$按$\hbar$展开
+\[w(\bm{r},\bm{p},\beta)=\sum\hbar^lw_l(\bm{r},\bm{p},\beta)\]
+逐阶代入前式，我们得到
+\begin{align*}
+	&w_0=1\\
+	&w_1=-\frac{i\beta^2}{2m}\nabla U\cdot\bm{p}\\
+	&w_2=-\frac{1}{2m}\left\{\frac{\beta^2}{2}\nabla^2U-\frac{\beta^3}{3}\left[(\nabla U)^2+\frac{1}{m}(\bm{p}\cdot\nabla)^2U\right]+\frac{\beta^4}{4m}(\nabla U\cdot\bm{p})^2\right\}\\
+	&\dots
+\end{align*}
+\indent 最后将这些代入$Q$的表达式，我们得到
+\begin{align*}
+	Q&=\frac{1}{N!h^{3N}}\sum(\pm1)^{|P_{\bm{p}}|}\iint\left[P_{\bm{p}}\exp\left(-\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\right]\exp\left(\frac{i\bm{p}\cdot\bm{r}}{\hbar}\right)\\
+	&\exp(-\beta H(\bm{r},\bm{p}))(1+w_1\hbar+w_2\hbar^2+\cdots)\mathrm{d}^n\bm{p}\mathrm{d}^n\bm{r}
+\end{align*}
+\indent 接下来我们来看如何近似。定义热波长$\Lambda$为
+\[\Lambda=\frac{h}{\sqrt{2\pi mkT}}\]
+当$U=0$或$\Lambda$趋于$0$时，$w$的展开式能狠好地保留第一项。再看交换对称性引起的除了恒等置换外的项。当$\hbar$很小时，由于置换导致指数上存在振荡，因此会相消趋于$0$。但是哈密顿量中的动能项与$\beta$相乘，如果$kT$足够小，$\bm{p}$会被限定在$0$附近，振荡效应会消失。因此只有当$\Lambda$趋于$0$时才能很好地只保留恒等置换那一项。\\
+\indent 于是，当$\Lambda\rightarrow0$时，我们得到配分函数的经典近似为
+\[Q=\frac{1}{N!h^{3N}}\iint\exp(-\beta H(\bm{r},\bm{p}))\mathrm{d}^n\bm{p}\mathrm{d}^n\bm{r}\]
+\indent 上面的结果告诉我们$\Lambda$是衡量量子效应的重要物理量。实际上，对于理想气体模型，$v\sim\sqrt{\dfrac{kT}{m}}$，因此德布罗意波长$\dfrac{h}{mv}\sim\dfrac{h}{\sqrt{mkT}}\sim\Lambda$。由此可见$\Lambda\rightarrow0$这个条件相当于粒子波包可以忽略。这显然符合我们的直觉。\\
+\indent 在讨论下一个系综之前，我们先来建立微正则系综和正则系综之间的等价性。当我们取热力学极限时，正则系综能量的涨落可以忽略，因此这时能量被限定在很小范围内，我们可以将系统近似看作微正则系综。除此之外，将能量相同的态相加得到
+\[Q=\sum\Omega(E)\exp(-\beta E)\]
+当我们取热力学极限时，由于$\Omega(E)$相对于$N$是指数级增长，其中最大的一项将主导整个求和（见附录\ref{A}），于是我们有
+\[Q\approx\Omega(E_{m})\exp(-\beta E_m)\]
+当然，这里我们将$\delta E$范围内的能量视为等同。注意到此时最概然能量$E_m\approx\xoverline{E}$，因而我们可以将其与系统能量等同。此时我们有
+\[F=-kT\ln Q=E-kT\ln\Omega\]
+于是
+\[S=k\ln\Omega\]
+我们得到了微正则系综的结论。同时，从最概然条件中我们得到
+\[\frac{\partial(\ln\Omega(E)-\beta E)}{\partial E}=0\Rightarrow\beta=\frac{\partial\ln\Omega}{\partial E}\]
+其他结果也可以类似得出。值得注意的是，这里的偏导数是以$E,N_i,x_i$作为自变量。\\
+\indent 由于上述的等价性，我们也容易得到微正则系综态数目的经典近似形式。实际上，在热力学极限条件下，占积分主导地位的是被积量最大处，整个积分可近似为
+\[Q\approx\omega(E)\exp(-\beta E)\delta E\]
+其中$\delta E$相比$E$很小。因此我们得到了微正则系综态数目的经典近似式
+\[\Omega=\frac{1}{N!h^{3N}}\iint\limits_{E\le H\le E+\delta E}\mathrm{d}^n\bm{p}\mathrm{d}^n\bm{r}\]
+\indent 除了上述方法外，还有半经典近似法（详见朗道），可以更加直观的看出相格$h$的来源正是不确定性原理。在下节我们将再引入一种系综来结束第一章的讨论。\\
+\indent{\CJKfamily{zhkai}在开始下一节前，我们再来回顾一下目前所得到的结果。实际上，微正则系综已经包含了全部热力学所研究的对象，因为每个处于平衡态的热力学系统都可以与外界孤立保持热力学量不变。但是这只能说明包含关系。其实微正则系综也包含了一些不是热力学研究对象的系统，比如负温度系统。在热力学中，根据热力学第二定律可以推出温度必须是正的。但是在微正则系综温度的定义里，我们并没有任何理由认为
+\[\frac{1}{kT}=\frac{\partial\ln\Omega}{\partial E}\]
+一定是正的。我们可以利用这一节的正则系综来解释温度的正负性。\\
+\indent 首先由上面的讨论我们可以知道，正则系综在热力学极限下是和微正则系综等价的，因此我们可以将一个负温度系统与负温热源接触。利用类似的讨论，能量为$E$的态的概率应该正比于$\exp(-\beta E)$，但这个时候$\beta$是负的，因此如果能量$E$没有上界的话（能量有下界是显然的，否则系统将能一直给出能量），配分函数一定会发散。实际上，如果能量没有上界，系统将不断从负温热源中汲取能量，从而使条件$E\ll E_{tot}$不满足，不能达到平衡。由上可知，系统要达到负温度的必要条件是能量有上界。\\
+\indent 从鞍点近似法来看亦是如此。回忆$f(z)$的定义容易发现，能量如果没有上界，$z$的收敛圆半径就是$1$。然而如果能量有上界，$f(z)$便是整函数，在$x_0>1$处即$\beta=-\ln x_0<0$处取到鞍点也是有可能的（此时鞍点满足的方程右边显然仍然是单调递增的，且在$x_0\rightarrow+\infty$时趋于最大能量）。\\
+\indent 然而，当一个负温度系统和一个正温度热源接触时，根据正则系综，负温度系统将转变为正温度。这也是为什么热力学中不考虑这一类系统，因为热力学研究的系统总是与环境这个正温度热源接触。负温度系统在上世纪50年代就已经在LiF晶体核自旋系统中实现了。\\
+}
+\section{巨正则系综}
+\indent 虽然正则系综取消了能量限制从而带来了一定的计算便利，个数限制仍然对求解配分函数带来一定困难，因此这一节我们将引入\textbf{巨正则系综}（Grand canonical ensemble）。巨正则系综对应的是与一个恒温热源接触的开放系统，热源温度为$T$，化学势为$\mu_i$。和正则系综密度矩阵的推导方式一样，我们把热源和系统看作一个大的微正则系综并展开：
+\begin{align*}
+	\ln\Omega(E_{tot}-E,N_{i,tot}-N_i)&\approx\ln\Omega(E_{tot},N_{i,tot})-\left.\frac{\partial\ln\Omega}{\partial E_1}\right|_{E_{tot},N_{i,tot}}E\\
+	&-\left.\frac{\partial\ln\Omega}{\partial N_{i,1}}\right|_{E_{tot},N_{i,tot}}N_i
+\end{align*}
+令$\beta=\dfrac{1}{kT},\alpha_i=-\beta\mu_i$我们得到
+\[P\approx C\exp(-\alpha_iN_i-\beta E)\]
+定义\textbf{巨配分函数}（Grand partition function）$\Xi$
+\[\Xi=\sum\sum\exp(-\alpha_iN_i-\beta E)\]
+其中求和号是对所有可能的$E,N_i$求和。若只考虑一种组分，令$z=\exp(-\alpha)$，那么我们有
+\[\Xi=\sum z^{N}Q(N)\]
+其中$Q_{N}$是粒子数为$N$时的配分函数。由此可见，巨配分函数是配分函数的生成函数。跟上一节类似，热力学量可以从巨配分函数导出
+\[\xoverline{N_i}=-\frac{\partial\ln\Xi}{\partial\alpha_i}\]
+\[\xoverline{E}=-\frac{\partial\ln\Xi}{\partial\beta}\]
+\[\xoverline{J_i}=-\frac{1}{\beta}\frac{\partial\ln\Xi}{\partial x_i}\]
+\[S=k\left(\ln\Xi-\beta\frac{\partial\ln\Xi}{\partial\beta}-\alpha_i\frac{\partial\ln\Xi}{\partial\alpha_i}\right)\]
+并且满足热力学基本方程
+\[\mathrm{d}\xoverline{E}=T\mathrm{d}S+\xoverline{J_i}\mathrm{d}x_i+\mu_i\mathrm{d}\xoverline{N_i}\]
+涨落也有类似的
+\[\frac{\xoverline{(E-\xoverline{E})^2}}{\xoverline{E}^2}=kT^2\frac{C_{x_i,N_i}}{\xoverline{E}^2}\]
+\[\frac{\xoverline{(N_i-\xoverline{N_i})^2}}{\xoverline{E}^2}=-\frac{1}{\xoverline{N_i}^2}\frac{\partial\xoverline{N_i}}{\partial\alpha_i}\]
+\[\frac{\xoverline{(J_i-\xoverline{J_i})^2}}{\xoverline{J_i}^2}=\frac{kT}{\xoverline{J_i}^2}\left(-\frac{\partial\xoverline{J_i}}{\partial x_i}+\xoverline{\dfrac{\partial J_i}{\partial x_i}}\right)\]
+显然在热力学极限下涨落可忽略，这与预期相符。此时的特征函数为巨势$\mathscr{G}=E-TS-\mu_iN_i$
+\[\mathscr{G}=E-TS-\mu_iN_i=-kT\ln\Xi\]
+\indent 和正则系综一样，在热力学极限下巨正则系综与微正则系综等价。我们有
+\[\Xi\approx\Omega(E_m,N_{i,m})\exp(-\alpha_iN_{i,m}-\beta E_i)\]
+最概然能量$E_m$满足
+\[\frac{\partial\ln\Omega}{\partial E}=\beta\]
+最概然粒子数$N_{i,m}$满足
+\[\frac{\partial\ln\Omega}{\partial N_i}=\alpha_i\]
+巨势$\mathscr{G}$为
+\[\mathscr{G}=-kT\ln\Xi=E-\mu_i N_i+k\ln\Omega\]
+因此熵为
+\[S=k\ln\Omega\]
+回到了微正则系综。\\
+\indent 在结束本章前，我们先回顾一下各种系综中熵的表达式。首先我们有各种系综中态的概率分布：
+\begin{align*}
+	&P_k=\frac{1}{\Omega}\\
+	&P_k=\frac{\exp(-\beta E_k)}{Q}\\
+	&P_k=\frac{\exp(-\alpha_i N_{i,k}-\beta E_k)}{\Xi}
+\end{align*}
+容易发现，对应的熵都可以写成同一种形式
+\[S=-\sum P_k\ln P_k\]
+对所有态求和。实际上，除了我们前面的推导方式，还有一种可以求出系综分布的办法，那就是先假设熵的公式如上，再在不同的约束条件下利用拉格朗日乘子法求出最大熵对应的分布。其实这种方法在数学上的表述与上一节中的最概然方法相同，其物理意义也可看作是最概然的一种延伸。下一章中我们将利用这几种系综求解一些简单模型。\\
+\indent{\CJKfamily{zhkai}除了上述的三种系综，实际上还有几种不太常用的系综。\\
+\indent 首先是吉布斯系综（Gibbs canonical ensemble），其对应的是与恒温热源接触的广义位移不固定的系统，推导方式都是一样的，得到的分布为
+\[P=\exp(\beta J_ix_i-\beta E)\]
+这种系综常被用于磁性系统，但实际上磁性系统也可以用正则系综求解。\\
+\indent 另一种系综是广义系综（Generalized ensemble），对应的是与恒温热源接触的，广义位移和粒子数都不固定的系统，得到的分布为
+\[P=\exp(\beta J_ix_i-\alpha_i N_i-\beta E)\]
+这种系综由于涨落的太大以及对应的配分函数难以计算等原因已经不再被使用。\\
+}
+{\CJKfamily{zhkai}附1：关于磁介质的热力学\\
+\indent 在大部分热力学教材中，都是这样推导磁介质的热力学方程：
+\[\mathrm{d}E=T\mathrm{d}S+H\mathrm{d}B=T\mathrm{d}S+\mathrm{d}\left(\frac{1}{2}\mu_0H^2\right)+H\mathrm{d}M\]
+其中第二项叫做磁化功，并把第一项看作是真空中磁场的能量。当我们只考虑磁介质时，基本方程化为
+\[\mathrm{d}E=T\mathrm{d}S+H\mathrm{d}M\]
+\indent 然而，$H$并不是磁场本身，将第一项视作磁场能量未免不妥。其次，由于退磁化的存在，磁介质与磁场理应是相互耦合的，不能做到所谓的只考虑磁介质。从实际应用考察，这个方程通常是应用于顺磁体，因此可以做如下理解。由于顺磁体退磁化场弱，磁感应强度可近似看作外加磁场，这实际上就是忽略极化电流之间的相互作用，因此这时候可以直接写出磁化功为$H\mathrm{d}M$。\\
+}
+{\CJKfamily{zhkai}附2：关于定域系统的巨配分函数\\
+\indent 在国内老教材中经常将系统分成非定域和定域，以此来使用不同的统计方式。在定域系统中使用巨正则系综会发现，巨配分函数是发散的。这其实是因为定域系统限制了巨正则系综的使用。\\
+\indent 实际上，配分函数和巨配分函数的收敛性通常是由粒子的全同性保证的（除了临界现象）。当遇到定域系统时，粒子可分辨，因此巨配分函数的发散是正常的。事实上，定域系统之所以可以分辨源于粒子态占据一定的空间，使得粒子之间波函数几乎不重叠，但这同时也意味着如果把系统当作定域系统，引入粒子时必将导致体积的变化，这根本就不是巨正则系综，而应该使用广义系综。由此可见，巨配分函数的发散源于我们对系统的定性与所用系综相悖，而不是根本意义上的问题。\\
+}
+\chapter{气体系统}
+\newpage
+\appendix
+\chapter{概率论基础}\label{A}
+\chapter{概率论进阶}\label{B}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
