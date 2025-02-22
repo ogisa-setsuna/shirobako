@@ -1,0 +1,47 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\title{统计力学作业1}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.3\\
+\[-\frac{1}{V}\left(\frac{\partial V}{\partial p}\right)_T=\kappa_T\]
+\[V_1=V_0\exp(-\kappa_Tp)\approx V_0(1-\kappa_Tp)\]
+\[\frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_p=\alpha\]
+\begin{align*}
+	V(T,p)&=V_1(T_0,p)\exp[\alpha(T-T_0)]\\
+	&\approx V_0(T_0,0)[1+\alpha(T-T_0)-\kappa_Tp]
+\end{align*}
+1.5\\
+由于
+\[\left(\frac{\partial T}{\partial\mathcal{F}}\right)_L\left(\frac{\partial\mathcal{F}}{\partial L}\right)_T\left(\frac{\partial L}{\partial T}\right)_\mathcal{F}=-1\]
+因此
+\[\left(\frac{\partial\mathcal{F}}{\partial T}\right)_L=-EA\alpha\]
+\[\Delta\mathcal{F}=-EA\alpha(T_2-T_1)\]
+1.7\\
+跟踪进入箱子中的气体，显然周围其他气体将其压入箱子所做的功为$p_0V_0$，而箱子内为真空，且忽略气体间热传导，因此我们有
+\[U-U_0=p_0V_0\]
+若为理想气体，则有
+\[\frac{5}{2}nR(T-T_0)=p_0V_0=nRT_0\]
+\[nRT=p_0V\]
+所以
+\[T=\frac{7}{5}T_0\]
+\[V=\frac{7}{5}V_0\]
+其中$T_0$为大气温度。\\
+1.11\\
+根据绝热方程
+\[pV^\gamma=C\rightarrow\frac{T^\gamma}{p^{\gamma-1}}=C\]
+我们有
+\[\gamma\frac{\mathrm{d}T}{T}=(\gamma-1)\frac{\mathrm{d}p}{p}\]
+同时我们有
+\[\mathrm{d}p=-\rho g\mathrm{d}z\]
+\[\rho=\frac{\mu p}{RT}\]
+所以
+\[\frac{\mathrm{d}T}{\mathrm{d}z}=-\frac{\gamma-1}{\gamma}\frac{\mu g}{R}\]
+代入数值得
+\[\frac{\mathrm{d}T}{\mathrm{d}z}=\qty[per-mode=symbol]{-9.77e-3}{\kelvin\per\meter}\]
+\end{document}
