@@ -1,0 +1,92 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\title{统计力学作业2}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.14\\
+若两条绝热线相交，作一等温线与两条绝热线分别相交，这总是可以做到的，只要两条绝热线都能达到某个温度$T$。显然，此时三条线围成的三角形正是一个从单一热源吸热全部转化为做功的循环，而这是热力学第二定律所不允许的。\\
+1.19\\
+假设该杆长度为$L$，单位长度热容为$c$，且初始情况下均匀分布，即
+\[T(x)=T_1+\frac{T_2-T_1}{L}x\]
+我们有
+\begin{align*}
+	\Delta S&=\int_{0}^{L}\mathrm{d}x\int_{T(x)}^{(T_1+T_2)/2}\frac{c\mathrm{d}T}{T}\\
+	&=\int_{0}^{L}\mathrm{d}xc\ln\frac{(T_1+T_2)/2}{T(x)}\\
+	&=cL\left[\ln\frac{T_1+T_2}{2\sqrt{T_1T_2}}-\frac{\ln T_2-\ln T_1}{2(T_2-T_1)}(T_1+T_2)+1\right]
+\end{align*}
+1.21\\
+根据熵的定义，我们有
+\[\Delta S'=\frac{Q-W}{T_2}\]
+根据熵增定理，我们有
+\[\Delta S'-(S_1-S_2)\ge0\]
+所以我们有
+\[W\le Q-T_2(S_1-S_2)\]
+\[\therefore W_{max}=Q-T_2(S_1-S_2)\]
+2.12\\
+根据
+\[(p+\frac{a}{V^2})(V-b)=RT\]
+其中$V$是摩尔体积，我们有
+\[\left(\frac{\partial U}{\partial V}\right)_T=T\left(\frac{\partial p}{\partial T}\right)_V-p=\frac{a}{V^2}\]
+\[\therefore \mathrm{d}U=C_V(T,V)\mathrm{d}T+\frac{a}{V^2}\mathrm{d}V\]
+由麦克斯韦关系知，
+\[\left(\frac{\partial C_V}{\partial V}\right)_T=T\left(\frac{\partial^2p}{\partial T^2}\right)_V=0\]
+因此$C_V$只与$T$有关。\\
+由于$V$趋于无穷时应该与理想气体相同，于是$C_V$为常数，所以
+\[U(T,V)=C_VT-\frac{a}{V}+U_0\]
+\[H(T,V)=\left(C_V+\frac{RV}{V-b}\right)T-\frac{2a}{V}+U_0\]
+\[S(T,V)=C_V\ln T+R\ln(V-b)+S_0\]
+\[F(T,V)=C_VT(1-\ln T)-\frac{a}{V}-RT\ln(V-b)+U_0-TS_0\]
+\[G(T,V)=\left[C_V(1-\ln T)+\frac{RV}{V-b}\right]T-\frac{2a}{V}-RT\ln(V-b)+U_0-TS_0\]
+2.14\\
+(a)熵应该下降，因为分子链拉长后态变得更加有序，因此态数减少，由玻尔兹曼熵的形式知熵应该减小。\\
+(b)根据麦克斯韦关系知
+\[\left(\frac{\partial\mathcal{F}}{\partial T}\right)_L=-\left(\frac{\partial S}{\partial L}\right)_T>0\]
+所以由
+\[\left(\frac{\partial L}{\partial T}\right)_\mathcal{F}\left(\frac{\partial T}{\partial\mathcal{F}}\right)_L\left(\frac{\partial\mathcal{F}}{\partial L}\right)_T=-1\]
+以及第三项显然大于零知
+\[\alpha=\frac{1}{L}\left(\frac{\partial L}{\partial T}\right)_\mathcal{F}<0\]
+2.20\\
+由麦克斯韦关系得
+\[\left(\frac{\partial S}{\partial\mathcal{H}}\right)_T=\mu_0\left(\frac{\partial\mathcal{M}}{\partial T}\right)_\mathcal{H}=-\frac{\mu_0C}{T^2}\mathcal{H}\]
+所以磁化热容为
+\[T\left(\frac{\partial S}{\partial\mathcal{H}}\right)_T=-\frac{\mu_0C}{T}\mathcal{H}\]
+因此放出热量
+\[Q=\frac{\mu_0C}{2T}\mathcal{H}^2\]
+2.22\\
+根据麦克斯韦关系知
+\[\left(\frac{\partial C_\mathcal{M}}{\partial\mathcal{M}}\right)_T=-\mu_0T\left(\frac{\partial^2\mathcal{H}}{\partial T^2}\right)_\mathcal{M}=0\]
+代入$\mathrm{d}U$表达式得
+\[U=\int C_\mathcal{M}\mathrm{d}T+U_0\]
+再由$\mathrm{d}U=T\mathrm{d}S+\mu_0\mathcal{H}\mathrm{d}\mathcal{M}$得
+\[S=\int\frac{C_\mathcal{M}}{T}\mathrm{d}T-\frac{\mu_0\mathcal{M}^2}{2C}+S_0\]
+\[F=\int C_\mathcal{M}\mathrm{d}T-T\int\frac{C_\mathcal{M}}{T}\mathrm{d}T+T\frac{\mu_0\mathcal{M}^2}{2C}+U_0-TS_0\]
+对于第二种磁化功，麦克斯韦关系仍然成立，因此$C_\mathcal{M}$仍与$\mathcal{M}$无关，不过此时焓的形式与前相同，因此我们有
+\[U=\int C_\mathcal{M}\mathrm{d}T-\mu_0\mathcal{M}\mathcal{H}+U_0\]
+由此可见熵形式与前相同
+\[S=\int\frac{C_\mathcal{M}}{T}\mathrm{d}T-\frac{\mu_0\mathcal{M}^2}{2C}+S_0\]
+\[F=\int C_\mathcal{M}\mathrm{d}T-T\int\frac{C_\mathcal{M}}{T}\mathrm{d}T+T\frac{\mu_0\mathcal{M}^2}{2C}-\mu_0\mathcal{M}\mathcal{H}+U_0-TS_0\]
+实际上这两种磁化功分别对应是否剔除磁介质与外磁场之间的互能。\\
+4.11\\
+\[\mathrm{d}F=-S\mathrm{d}T+\sigma\mathrm{d}A\]
+\[\therefore F(T,A)=F(T,0)+\sigma A\]
+\[S(T,A)=S(T,0)-\frac{\mathrm{d}\sigma}{\mathrm{d}T}A\]
+根据热力学第三定律，$T\rightarrow0$时左右两边熵相等，因此
+\[\lim_{T\rightarrow0}\frac{\mathrm{d}\sigma}{\mathrm{d}T}=0\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
