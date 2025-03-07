@@ -1,0 +1,82 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{统计力学作业3}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent3.5\\
+我们有
+\[\left(\frac{\partial U}{\partial n}\right)_{T,V}=T\left(\frac{\partial S}{\partial n}\right)_{T,V}+\mu\]
+根据$\mathrm{d}F=-S\mathrm{d}T-p\mathrm{d}V+\mu\mathrm{d}n$我们知道
+\[\left(\frac{\partial S}{\partial n}\right)_{T,V}=-\left(\frac{\partial \mu}{\partial T}\right)_{V,n}\]
+因此
+\[\left(\frac{\partial U}{\partial n}\right)_{T,V}-\mu=-T\left(\frac{\partial \mu}{\partial T}\right)_{V,n}\]
+4.2\\
+根据
+\[\mu_i=\left(\frac{\partial G}{\partial n_i}\right)_{n_{j\neq i}}\]
+我们有
+\begin{align*}
+	&\sum_jn_j\frac{\partial \mu_i}{\partial n_j}\\[8pt]
+	&=\frac{\partial}{\partial n_i}\left(\sum_jn_j\frac{\partial G}{\partial n_j}\right)-\frac{\partial G}{\partial n_i}\\[8pt]
+	&=0
+\end{align*}
+4.8\\
+(1)由于过程绝热，根据能量守恒温度不变，我们有
+\[p\left(\frac{n_1RT}{p_1}+\frac{n_2RT}{p_2}\right)=(n_1+n_2)RT\]
+因此
+\[p=\frac{(n_1+n_2)p_1p_2}{n_1p_2+n_2p_1}\]
+(2)由于是不同的气体，直接计算其最终态分压，得到熵。
+\[p_1'=\frac{n_1p_1p_2}{n_1p_2+n_2p_1}\]
+\[p_2'=\frac{n_2p_1p_2}{n_1p_2+n_2p_1}\]
+\[\Delta S=n_1R\ln\frac{n_1p_2+n_2p_1}{n_1p_2}+n_2R\ln\frac{(n_1p_2+n_2p_1)}{n_2p_1}\]
+(3)由于是同种气体，分别使其通过可逆过程达到最终态再叠加，得到
+\[\Delta S=n_1R\ln\frac{n_1p_2+n_2p_1}{(n_1+n_2)p_2}+n_2R\ln\frac{(n_1p_2+n_2p_1)}{(n_1+n_2)p_1}\]
+3.7\\
+根据
+\[L=T\Delta S_m=\Delta U_m+p\Delta V_m\]
+以及克拉伯龙方程
+\[\frac{\mathrm{d}p}{\mathrm{d}T}=\frac{L}{T\Delta V_m}\]
+我们有
+\[\Delta U_m=L\left(1-\frac{p}{T}\frac{\mathrm{d}T}{\mathrm{d}p}\right)\]
+3.10\\
+我们有
+\[L=T\Delta S_m\]
+对$T$求导，我们得到
+\[\frac{\mathrm{d}L}{\mathrm{d}T}=T\left(\frac{\partial \Delta S_m}{\partial T}\right)_p+\frac{L}{T}+T\left(\frac{\partial \Delta S_m}{\partial p}\right)_T\frac{\mathrm{d}p}{\mathrm{d}T}\]
+根据麦克斯韦关系和克拉伯龙方程
+\[\left(\frac{\partial S}{\partial p}\right)_T=-\left(\frac{\partial V}{\partial T}\right)_p\]
+\[\frac{\mathrm{d}p}{\mathrm{d}T}=\frac{L}{T\Delta V_m}\]
+以及
+\[c_p=T\left(\frac{\partial S_m}{\partial T}\right)_p\]
+我们有
+\[\frac{\mathrm{d}L}{\mathrm{d}T}=c_p^\beta-c_p^\alpha+\frac{L}{T}-T\left[\left(\frac{\partial V_m^\beta}{\partial T}\right)_p-\left(\frac{\partial V_m^\alpha}{\partial T}\right)_p\right]\frac{L}{V_m^\beta-V_m^\alpha}\]
+若$\beta$为气态，$\alpha$为凝聚态，忽略凝聚态体积及其变化并带入理想气体方程得到
+\[\frac{\mathrm{d}L}{\mathrm{d}T}=c_p^\beta-c_p^\alpha\]
+3.13\\
+我们有
+\[\left(p+\frac{a}{V_m^2}\right)(V_m-b)=RT\]
+求导并使其等于$0$得到
+\[\frac{RT}{(V_m-b)^2}=\frac{2a}{V_m^3}\]
+代入原方程消去$RT$，容易得到
+\[pV_m^3=a(V_m-2b)\]
+图中区域\Rmnum{1}和区域\Rmnum{3}为亚稳态区域，区域\Rmnum{2}为不稳定态区域。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
