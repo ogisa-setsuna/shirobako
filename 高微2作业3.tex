@@ -1,0 +1,104 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{高微2作业3}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)首先$|f(x)-g(x)|$显然也是连续函数，由于连续函数在闭区间上可以取到最大值，该度量是良定义的。\\
+其次，正定性是显然的，因为$d(f,g)$肯定大于等于$0$，且若其为$0$则有
+\[0\le|f(x)-g(x)|\le d(f,g)=0\]
+因此其等于$0$当且仅当$f=g$。\\
+对称性也是显然的，而三角不等式可由普通的三角不等式得出。首先
+\[|f(x)-h(x)|\le|f(x)-g(x)|+|g(x)-h(x)|\]
+设左边在$x_0$处取到最大值，我们有
+\[d(f,h)=|f(x_0)-h(x_0)|\le|f(x_0)-g(x_0)|+|g(x_0)-h(x_0)|\le d(f,g)+d(g,h)\]
+(2)根据定义，我们知道对于任一$x\in I$，当$n,m\ge N$时我们有
+\[|f_n(x)-f_m(x)|\le d(f_n,f_m)<\epsilon\]
+根据实数的柯西收敛定理知每点都有极限$f(x)$。首先证$f$为连续函数，为此，先对上式取极限
+\[\lim_{m\rightarrow+\infty}|f_n(x)-f_m(x)|=|f_n(x)-f(x)|\le\epsilon\]
+由于$f_n$为连续函数，对于任一$\epsilon$，存在$\delta>0$使得$|x-x_0|<\delta$时有
+\[|f_n(x)-f_n(x_0)|<\epsilon\]
+因此我们有
+\[|f(x)-f(x_0)|\le |f(x)-f_n(x)|+|f_n(x)-f_n(x_0)|+|f_n(x_0)-f(x_0)|<3\epsilon\]
+因此$f$为连续函数。最后由$n\ge N$时$|f_n(x)-f(x)|\le\epsilon$得
+\[d(f_n,f)\le\epsilon<2\epsilon\]
+因此有
+\[\lim_{n\rightarrow+\infty}f_n=f\]
+2.\\
+取任意实数$t$，根据积分不等式我们有
+\[\int_{a}^{b}(f-tg)^2\ge0\]
+展开得
+\[\int_{a}^{b}f^2+t^2\int_{a}^{b}g^2-2t\int_{a}^{b}fg\ge0\]
+由于对于所有$t$成立，该二次函数判别式需小于等于$0$，因此我们有
+\[4\left(\int_{a}^{b}fg\right)-4\left(\int_{a}^{b}f^2\right)\left(\int_{a}^{b}g^2\right)\le0\]
+于是
+\[\left(\int_{a}^{b}fg\right)\le\left(\int_{a}^{b}f^2\right)\left(\int_{a}^{b}g^2\right)\]
+3.\\
+由于$U$是开集，任一$x\in U$为$U$的内点，因此存在开球邻域$B_{x,r}\subseteq U$。于是我们有
+\[U\subseteq\bigcup_{x\in U}B_{x,r}\subseteq U\]
+因此$U$可以表示成一族开球邻域的并。反之，对于任一$x\in U$存在一开球使得$x\in B_{x_0,r_0}$，取$r<r_0-d(x,x_0)$，我们有
+\[B_{x,r}\subseteq B_{x_0,r_0}\subseteq\bigcup B_{x_i,r_i}=U\]
+因此$U$是开集。\\
+4.\\
+(1)由于
+\[1-\cos(xy)=2\sin^2\frac{xy}{2}\le\frac{x^2y^2}{2}\]
+令$x=r\cos\theta,y=r\sin\theta$，我们有
+\[0\le\frac{1-\cos(xy)}{x^2+y^2}\le\frac{x^2y^2}{2(x^2+y^2)}=\frac{r^2}{2}\sin^2\theta\cos^2\theta\le r^2\]
+根据夹逼定理得该函数极限为$0$。\\
+(2)若存在极限$L$，取$x=t,y=kt$，显然满足复合函数极限定理条件\Rmnum{1}，我们有
+\[L=\lim_{t\rightarrow0^+}\frac{-3kt^3+k^3t^3-4kt^2}{(1+k^2)t^2}=-\frac{4k}{1+k^2}\]
+显然为$k$的函数，因此矛盾。所以极限不存在。\\
+(3)首先证明函数$\dfrac{(1+x)^{\frac{1}{x}-e}}{x}$在$x=0$处存在极限。由于上下趋于$0$，利用洛必达得
+\begin{align*}
+	&\lim_{x\rightarrow0}\frac{(1+x)^\frac{1}{x}-e}{x}\\
+	&=\lim_{x\rightarrow0}\left(-\frac{1}{x^2}\ln(1+x)+\frac{1}{(1+x)x}\right)(1+x)^\frac{1}{x}\\
+	&=\lim_{x\rightarrow0}\left(-\frac{1}{1+x}+\frac{1}{2}+\frac{o(x^3)}{x^2}\right)(1+x)^\frac{1}{x}\\
+	&=-\frac{e}{2}
+\end{align*}
+再根据复合函数极限定理，显然满足条件\Rmnum{1}，得到原函数极限为$-\dfrac{e}{2}$。\\
+(4)令$x=r\cos\theta,y=r\sin\theta$，我们有
+\[\frac{ax+by}{(x^2+y^2)^\alpha}=r^{1-2\alpha}(a\cos\theta+b\sin\theta)\]
+当$\alpha<\dfrac{1}{2}$时，我们有
+\[-\sqrt{a^2+b^2}r^{1-2\alpha}\le r^{1-2\alpha}(a\cos\theta+b\sin\theta)\le\sqrt{a^2+b^2}r^{1-2\alpha}\]
+因此极限为$0$。当$\alpha>\dfrac{1}{2}$时，若存在极限$L$，取$x=t,y=kt$，根据复合函数定理满足条件\Rmnum{1}，我们有
+\[L=\lim_{t\rightarrow0^+}\frac{(a+bk)t^{1-2\alpha}}{(1+k^2)^\alpha}\]
+若$a=b=0$，极限为$0$，否则取$k$使分子不为$0$，必有极限趋于无穷。若$\alpha=\dfrac{1}{2}$，要求极限存在且等于$0$，至少要求
+\[\frac{a+bk}{\sqrt{1+k^2}}=0\]
+对于所有$k$成立。因此$a=b=0$。综上所述，我们要求$\alpha<\dfrac{1}{2}$或$a=b=0$。\\
+5.\\
+根据三角不等式我们有
+\[d(x_0,x)-d(x_0,x')\le d(x',x)\]
+\[d(x_0,x')-d(x_0,x)\le d(x,x')=d(x',x)\]
+因此
+\[|d(x_0,x)-d(x_0,x')|\le d(x',x)\]
+对于任一$\epsilon>0$，取$\delta<\epsilon$，对于$d(x,x')<\delta$我们总有
+\[|d(x_0,x)-d(x_0,x')|\le d(x',x)<\epsilon\]
+因此该函数连续。\\
+6.\\
+由于$h(x)$可以写作
+\[h(x)=\frac{1}{2}(f(x)+g(x)-|f(x)-g(x)|)\]
+且对连续函数求和求绝对值后仍然连续，因此$h(x)$为连续函数。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
