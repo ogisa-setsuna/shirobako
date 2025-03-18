@@ -1,0 +1,52 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\title{统计力学作业4}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent3.20\\
+根据朗道自由能公式我们有
+\[F(T)=\begin{cases}
+	F_0(T)-\dfrac{a_0^2(T_C-T)^2}{4b}&T<T_C\\[8pt]
+	F_0(T)&T>T_C
+\end{cases}\]
+根据$S=-\dfrac{\mathrm{d}F}{\mathrm{d}T}$我们有
+\[S(T)=\begin{cases}
+	-\dfrac{\mathrm{d}F_0}{\mathrm{d}T}+\dfrac{a_0^2(T-T_C)}{2b}&T<T_C\\[8pt]
+	-\dfrac{\mathrm{d}F_0}{\mathrm{d}T}&T>T_C
+\end{cases}\]
+显然连续。\\
+选做题\\
+求导为$0$算出极值点
+\[m^2=\frac{\pm\sqrt{\frac{16}{9}c^2-6bd}-\frac{4}{3}c}{3d},0\]
+求二阶导易知，只有取正号才是稳定平衡。观察函数图样随$b$的变化，发现$b<0$时，$0$为不稳定平衡点，除此之外还有两个稳定平衡点。当$b>0$时，又出现两个不稳定平衡点，$0$变成稳定平衡点。当$b$越来越大时，两个稳定平衡点逐渐上升，超过$0$，直至最后消失。由此观之，一级相变将发生在两个稳定平衡点等于$0$的附近，此时$b$为
+\[-\frac{1}{3}c-\frac{1}{2}dm^2=0\rightarrow b_0=\frac{2c^2}{9d}\]
+$m$为
+\[m=\pm\sqrt{-\frac{2c}{3d}}\]
+在$b_0$附近展开$b$为$b_0+b_1(T-T_C)$，只保留一阶项，再根据$S=-\dfrac{\mathrm{d}G}{\mathrm{d}T}$得
+\[L=T\Delta S=T\left|\frac{b_1c}{3d}\right|\]
+其中$m$对$T$的依赖正好被消掉。\\
+作业题目1\\
+(1)直接积分得$C=\dfrac{4}{a^2b^2}$，因此
+\[p(x,y)=\frac{4xy}{a^2b^2}\]
+(2)对$x$积分得
+\[p(y)=\frac{2}{b^2}y\]
+因此我们有
+\[p(x|y)=\frac{p(x,y)}{p(y)}=\frac{2}{a^2}x\]
+作业题目2\\
+(1)
+\[\bar{X}=\int_{0}^{+\infty}axe^{-ax}\mathrm{d}x=\frac{1}{a}\]
+(2)
+\[\bar{X^2}=\int_{0}^{+\infty}ax^2e^{-ax}\mathrm{d}x=\frac{2}{a^2}\]
+\[\Delta X=\sqrt{\bar{X^2}-\bar{X}^2}=\frac{1}{a}\]
+(3)
+\[\delta X=1\]
+\end{document}
