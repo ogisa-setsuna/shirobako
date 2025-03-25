@@ -1,0 +1,131 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+\newcommand*\xoverline[2][0.75]{%
+	\sbox{\myboxA}{$\m@th#2$}%
+	\setbox\myboxB\null% Phantom box
+	\ht\myboxB=\ht\myboxA%
+	\dp\myboxB=\dp\myboxA%
+	\wd\myboxB=#1\wd\myboxA% Scale phantom
+	\sbox\myboxB{$\m@th\overline{\copy\myboxB}$}% Overlined phantom
+	\setlength\mylenA{\the\wd\myboxA}% calc width diff
+	\addtolength\mylenA{-\the\wd\myboxB}%
+	\ifdim\wd\myboxB<\wd\myboxA%
+	\rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+	\else
+	\hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+	\fi}
+\makeatother
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\title{高微2作业4}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+根据条件
+\[\lim_{|\bm{x}|\rightarrow+\infty}f(\bm{x})=+\infty\]
+我们有$\exists M>0$使得
+\[f(\bm{x})>f(\bm{0}),|\bm{x}|>M\]
+取闭球$\xoverline{B_M(\bm{0})}$，对其使用最值定理知，存在点$(x_0,y_0)$使得
+\[f(x,y)\ge f(x_0,y_0),(x,y)\in B_M(\bm{0})\]
+对于$|x|>M$，我们有
+\[f(\bm{x})>f(\bm{0})\ge f(x_0,y_0)\]
+因此
+\[f(x,y)\ge f(x_0,y_0),\forall(x,y)\in \mathbb{R}^2\]
+2.\\
+(1)由于$x^2+y^2$为连续映射，因而闭集的原像是闭集，而单点$1$是闭集，于是$S=\{(x,y)|x^2+y^2=1\}$是闭集。\\
+(2)由于$S$是$\mathbb{R}^2$中的有界闭集，因而紧致，所以最值定理成立，于是存在$(x_0,y_0),(x_1,y_1)\in S$使得
+\[f(x_0,y_0)\le f(x,y)\le f(x_1,y_1),\forall(x,y)\in S\]
+3.\\
+(1)正确。若可微，鉴于线性映射连续，我们有
+\begin{align*}
+	\lim_{\bm{h}\rightarrow\bm{0}}f(\bm{x+h})-f(\bm{x})&=\lim_{\bm{h}\rightarrow\bm{0}}(L(\bm{h})+\alpha(\bm{h}))\\[8pt]
+	&=0+\lim_{\bm{h}\rightarrow\bm{0}}|\bm{h}|\frac{\alpha(\bm{h})}{|\bm{h}|}\\[8pt]
+	&=0
+\end{align*}
+因而连续。\\
+(2)正确。若可微，我们有
+\begin{align*}
+	\nabla_{\bm{v}}f&=\lim_{t\rightarrow0}\frac{f(\bm{x}+\bm{v}t)-f(\bm{x})}{t}\\[8pt]
+	&=\lim_{t\rightarrow0}\frac{tL(\bm{v})+\alpha(\bm{v}t)}{t}\\[8pt]
+	&=L(\bm{v})+\lim_{t\rightarrow0}|\bm{v}|\frac{\alpha(\bm{v}t)}{|\bm{v}|t}\\[8pt]
+	&=L(\bm{v})
+\end{align*}
+(3)(4)错误。取一函数$f$为
+\[f(x,y)=\begin{cases}
+	\dfrac{|y|\sqrt{x^2+y^2}}{x} & x\neq0\\[8pt]
+	0 &x=0
+\end{cases}\]
+其各个方向导数都存在，因为令$\bm{v}=(v\cos\theta,v\sin\theta)$，我们有
+\[\nabla_{\bm{v}}f=\begin{cases}
+	\dfrac{v|\sin\theta|}{\cos\theta} & \cos\theta\neq0\\[8pt]
+	0 & \cos\theta=0
+\end{cases}\]
+但是该函数显然不连续，因为对于$x\neq0$，我们有
+\[|f|\ge\frac{y^2}{|x|}\]
+因而在$x$轴附近无界。同理，线性关系也不成立，因为
+\[\partial_xf=\frac{|\sin\theta|}{\cos\theta}=0\]
+\[\partial_yf=0\]
+而$\nabla_{\bm{v}}f$并非皆为$0$。因此不成立。\\
+4.\\
+根据定义，令$\bm{v}=(v\cos\theta,v\sin\theta)$，我们有
+\[\nabla_{\bm{v}}\sqrt{|x^2-y^2|}=\lim_{t\rightarrow0}\frac{\sqrt{v^2t^2|\cos2\theta|}}{t}=\frac{|t|v\sqrt{|\cos2\theta|}}{t}\]
+鉴于$\dfrac{|t|}{t}$无极限，因此只有当$\cos2\theta=0$时才有方向导数，于是满足条件的所有方向为
+\[\theta=\frac{\pi}{4},\frac{3\pi}{4},\frac{5\pi}{4},\frac{7\pi}{4}\]
+5.\\
+(1)当$x\neq0$时，我们有
+\[\partial_xx^y=yx^{y-1},\partial_yx^y=x^y\ln x\]
+(2)当$x\neq0$时，我们有
+\[\partial_x\arctan\frac{y}{x}=-\frac{y}{x^2+y^2},\partial_y\arctan\frac{y}{x}=\frac{x}{x^2+y^2}\]
+(3)当$x_i$不全为$0$时，我们有
+\[\partial_i\sqrt{x_1^2+\cdots+x_n^2}=\frac{x_i}{\sqrt{x_1^2+\cdots+x_n^2}}\]
+6.\\
+(1)令$\bm{v}=(v\cos\theta,v\sin\theta)$，我们有
+\[\nabla_{\bm{v}}f=\lim_{t\rightarrow0}\frac{v|t|\sqrt{|\sin\theta\cos\theta|}}{t}\]
+由于$\dfrac{|t|}{t}$无极限，并不是所有方向都存在方向导数，于是不可微。\\
+(2)微分为零映射，因为首先$f(\bm{0})$显然为$0$，我们又有
+\[\frac{|f(x,y)|}{\sqrt{x^2+y^2}}\le\sqrt{x^2+y^2}\]
+后者在$|\bm{x}|\rightarrow0$的极限下趋于$0$，因此根据夹逼定理前项极限为$0$，因此我们有
+\[f(x,y)=f(0,0)+0(\bm{h})+\alpha(\bm{h})\]
+其中
+\[\lim_{\bm{h}\rightarrow\bm{0}}\frac{\alpha(\bm{h})}{|\bm{h}|}=\lim_{|\bm{x}|\rightarrow0}\frac{f(x,y)}{\sqrt{x^2+y^2}}=0\]
+因此可微，且根据微分的唯一性，微分正是零映射。\\
+(3)不一定。取$g$为$\sqrt{2|xy|}$，显然有
+\[\sqrt{x^2+y^2}\ge\sqrt{2|xy|}=g\]
+而由(1)知$g$在$(0,0)$处不可微，因此不一定可微。
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
