@@ -1,0 +1,126 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+\newcommand*\xoverline[2][0.75]{%
+	\sbox{\myboxA}{$\m@th#2$}%
+	\setbox\myboxB\null% Phantom box
+	\ht\myboxB=\ht\myboxA%
+	\dp\myboxB=\dp\myboxA%
+	\wd\myboxB=#1\wd\myboxA% Scale phantom
+	\sbox\myboxB{$\m@th\overline{\copy\myboxB}$}% Overlined phantom
+	\setlength\mylenA{\the\wd\myboxA}% calc width diff
+	\addtolength\mylenA{-\the\wd\myboxB}%
+	\ifdim\wd\myboxB<\wd\myboxA%
+	\rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+	\else
+	\hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+	\fi}
+\makeatother
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\title{高微2作业5}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent1.\\
+(1)
+\[\frac{\partial z}{\partial x}=y+f\left(\frac{y}{x}\right)-\frac{y}{x}f'\left(\frac{y}{x}\right)\]
+\[\frac{\partial z}{\partial y}=x+f'\left(\frac{y}{x}\right)\]
+\[x\frac{\partial z}{\partial x}+y\frac{\partial z}{\partial y}=2xy+xf\left(\frac{y}{x}\right)\]
+(2)
+\[\frac{\partial z}{\partial y}=-f_y\frac{x}{y^2}\]
+\[\frac{\partial^2z}{\partial y^2}=f_{yy}\frac{x^2}{y^4}+f_y\frac{2x}{y^3}\]
+(3)
+\[\frac{\partial z}{\partial y}=f'\left(\frac{y}{x}\right)+g\left(\frac{x}{y}\right)-\frac{x}{y}g'\left(\frac{x}{y}\right)\]
+\[\frac{\partial^2z}{\partial x\partial y}=-\frac{y}{x^2}f''\left(\frac{y}{x}\right)-\frac{x}{y^2}g''\left(\frac{x}{y}\right)\]
+(4)
+\[\frac{\partial z}{\partial x}=-\frac{2xy}{f^2(x^2-y^2)}f'(x^2-y^2)\]
+\[\frac{\partial z}{\partial y}=\frac{1}{f(x^2-y^2)}+\frac{2y^2}{f^2(x^2-y^2)}f'(x^2-y^2)\]
+\[\frac{1}{x}\frac{\partial z}{\partial x}+\frac{1}{y}\frac{\partial z}{\partial y}=\frac{1}{yf(x^2-y^2)}\]
+(5)
+\[\begin{bmatrix}
+	u_x&u_y&u_z
+\end{bmatrix}=\begin{bmatrix}
+f_x&f_y&f_z
+\end{bmatrix}\begin{bmatrix}
+1&0&0\\
+y&x&0\\
+yz&xz&xy
+\end{bmatrix}\]
+\[u_x=f_x+yf_y+yzf_z\]
+\[u_y=xf_y+xzf_z\]
+\[u_z=xyf_z\]
+2.\\
+令$F'(x,y,z,u)=F(u^2-x^2,u^2-y^2,u^2-z^2)$，我们有
+\[\begin{bmatrix}
+	F'_x&F'_y&F'_z&F'_u
+\end{bmatrix}=\begin{bmatrix}
+F_x&F_y&F_z
+\end{bmatrix}\begin{bmatrix}
+-2x&0&0&2u\\
+0&-2y&0&2u\\
+0&0&-2z&2u
+\end{bmatrix}\]
+所以
+\[F'_x=-2xF_x\]
+\[F'_y=-2yF_y\]
+\[F'_z=-2zF_z\]
+\[F'_u=2u(F_x+F_y+F_z)\]
+3.\\
+(1)分别对行列进行求导得到
+\[\frac{\partial Q}{\partial x_k}=A_{ij}\delta_{ki}x_j+A_{ij}x_i\delta_{kj}=A_{kl}x_l+A_{lk}x_l=2A_{kl}x_l\]
+因此微分为
+\[\mathrm{d}Q=\begin{bmatrix}
+	2A_{1i}x_i&2A_{2i}x_i&\cdots&2A_{ni}x_i
+\end{bmatrix}\]
+以上我们使用了爱因斯坦求和约定。\\
+(2)
+\[\frac{\partial g}{\partial x_i}=\frac{\partial f}{\partial x_i}e^{-\frac{1}{2}Q}-(A_{ij}x_j)fe^{-\frac{1}{2}Q}\]
+4.\\
+(1)
+\[g'(t)=\begin{bmatrix}
+	f_x&f_y&f_z
+\end{bmatrix}\begin{bmatrix}
+x\\
+y\\
+z
+\end{bmatrix}=xf_x+yf_y+zf_z\]
+(2)根据定积分的线性性，由上题知等式右边恰为
+\[f(0,0,0)+\int_{0}^{1}g'(t)\mathrm{d}t=f(0,0,0)+g(1)-g(0)\]
+由$g$定义知
+\[f(0,0,0)+g(1)-g(0)=g(1)=f(x,y,z)\]
+(3)由题设条件知
+\[txf_x(tx,ty,tz)+tyf_y(tx,ty,tz)+tzf_z(tx,ty,tz)=nf(tx,ty,tz)\]
+\[h'(t)=\frac{xf_x+yf_y+zf_z}{t^n}-\frac{nf}{t^{n+1}}=0\]
+(4)
+由于$h'(t)=0$，因此$h$为常数，又因为$h(1)=f(x,y,z)$，所以
+\[f(tx,ty,tz)=t^nf(x,y,z)\]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
