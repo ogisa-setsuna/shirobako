@@ -1,0 +1,116 @@
+\documentclass[utf8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+\newcommand*\xoverline[2][0.75]{%
+	\sbox{\myboxA}{$\m@th#2$}%
+	\setbox\myboxB\null% Phantom box
+	\ht\myboxB=\ht\myboxA%
+	\dp\myboxB=\dp\myboxA%
+	\wd\myboxB=#1\wd\myboxA% Scale phantom
+	\sbox\myboxB{$\m@th\overline{\copy\myboxB}$}% Overlined phantom
+	\setlength\mylenA{\the\wd\myboxA}% calc width diff
+	\addtolength\mylenA{-\the\wd\myboxB}%
+	\ifdim\wd\myboxB<\wd\myboxA%
+	\rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+	\else
+	\hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+	\fi}
+\makeatother
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\title{统计力学作业7}
+\author{郑子诺，物理41}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent7.11\\
+类似三维的麦克斯韦分布，可以直接写出速度分布为
+\[f(\bm{v})=\left(\frac{m}{2\pi kT}\right)e^{-\frac{m(v_x^2+v_y^2+v_z^2)}{2kT}}\]
+速率分布为
+\[f(v)=2\pi v\left(\frac{m}{2\pi kT}\right)e^{-\frac{mv^2}{2kT}}\]
+\[\xoverline{v}=\int_{0}^{+\infty}2\pi v^2\left(\frac{m}{2\pi kT}\right)e^{-\frac{mv^2}{2kT}}\mathrm{d}v=\sqrt{\frac{\pi kT}{2m}}\]
+\[\frac{\mathrm{d}f(v)}{\mathrm{d}v}=0\rightarrow v_m=\sqrt{\frac{kT}{m}}\]
+\[v_s^2=\int_{0}^{+\infty}2\pi v^3\left(\frac{m}{2\pi kT}\right)e^{-\frac{mv^2}{2kT}}\mathrm{d}v=\sqrt{\frac{2kT}{m}}\rightarrow v_s=\sqrt{\frac{2kT}{m}}\]
+\setlength{\arraycolsep}{8pt}
+7.12\\
+设$\bm{v_r}=\bm{v_2}-\bm{v_1},v_c=\dfrac{\bm{v_1}+\bm{v_2}}{2}$，我们有
+\[\bm{v_1}=\bm{v_c}-\frac{\bm{v_r}}{2},\bm{v_2}=\bm{v_c}+\frac{\bm{v_r}}{2}\]
+换元的雅可比行列式为
+\begin{align*}
+	J&=\begin{bmatrix}
+		1&0&0&-\dfrac{1}{2}&0&0\\[8pt]
+		0&1&0&0&-\dfrac{1}{2}&0\\[8pt]
+		0&0&1&0&0&-\dfrac{1}{2}\\[8pt]
+		1&0&0&\dfrac{1}{2}&0&0\\[8pt]
+		0&1&0&0&\dfrac{1}{2}&0\\[8pt]
+		0&0&1&0&0&\dfrac{1}{2}\\[8pt]
+	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		2&0&0&0&0&0\\[8pt]
+		0&2&0&0&0&0\\[8pt]
+		0&0&2&0&0&0\\[8pt]
+		1&0&0&\dfrac{1}{2}&0&0\\[8pt]
+		0&1&0&0&\dfrac{1}{2}&0\\[8pt]
+		0&0&1&0&0&\dfrac{1}{2}\\[8pt]
+	\end{bmatrix}\\
+	&=\det\begin{bmatrix}
+		2&0&0\\[8pt]
+		0&2&0\\[8pt]
+		0&0&2\\[8pt]
+	\end{bmatrix}\det\begin{bmatrix}
+	\dfrac{1}{2}&0&0\\[8pt]
+	0&\dfrac{1}{2}&0\\[8pt]
+	0&0&\dfrac{1}{2}\\[8pt]
+	\end{bmatrix}=1 
+\end{align*}
+因此我们有
+\[f(\bm{v_r},\bm{v_c})=J\left(\frac{m}{2\pi kT}\right)^3e^{-\frac{mv_1^2}{2kT}}e^{-\frac{mv_2^2}{2kT}}=\left(\frac{2m}{2\pi kT}\right)^\frac{3}{2}e^{-\frac{2mv_c^2}{2kT}}\left(\frac{m}{4\pi kT}\right)^\frac{3}{2}e^{-\frac{mv_r^2}{4kT}}\]
+因此
+\[\xoverline{v_r}=4\sqrt{\frac{kT}{\pi m}}\]
+7.17\\
+此时的配分函数为
+\[Z_1=\frac{S}{h^3}\int e^{-\beta\epsilon(\bm{p})}\mathrm{d}\bm{p}\int_{0}^{H}e^{-\beta mgz}\mathrm{d}z=Z_0\frac{1-e^{-\beta mgH}}{mg\beta}\]
+因此
+\[U=-\frac{N\partial\ln Z_1}{\partial \beta}=U_0+NkT-\frac{NmgH}{e^{\frac{mgH}{kT}}-1}\]
+\[C_V=C_V^0+Nk-\frac{N(mgH)^2e^{\frac{mgH}{kT}}}{(e^{\frac{mgH}{kT}}-1)^2}\frac{1}{kT^2}\]
+7.21\\
+\[Z_1=e^{-\beta\epsilon_1}+e^{-\beta\epsilon_2}\]
+令$|\epsilon_2-\epsilon_1|=\Delta,\dfrac{\epsilon_1+\epsilon_2}{2}=\epsilon_0$，我们有
+\[Z_1=2e^{-\beta\epsilon_0}\cosh\beta\frac{\Delta}{2}\]
+\[U=-N\frac{\partial\ln Z_1}{\partial\beta}=N\epsilon_0-N\frac{\Delta}{2}\tanh\beta\frac{\Delta}{2}\]
+\[S=Nk\left(\ln Z_1-\beta\frac{\partial\ln Z_1}{\partial\beta}\right)=Nk\left(\ln 2\cosh\beta\frac{\Delta}{2}-\beta\frac{\Delta}{2}\tanh\beta\frac{\Delta}{2}\right)\]
+当$T\rightarrow0,\beta\rightarrow+\infty$时，
+\[U\rightarrow N\epsilon_0-N\frac{\Delta}{2},S\rightarrow0\]
+这是因为低温极限下系统处于能量最低态，且无简并。\\
+当$T\rightarrow+\infty,\beta\rightarrow0$时，
+\[U\rightarrow N\epsilon_0,S\rightarrow Nk\ln2\]
+这是因为高温极限下系统处于任何态的概率都相等，因此能量为两能级平均值，熵为$Nk\ln2$。\\
+7.23\\
+\begin{align*}
+	Z_1^r&=\frac{1}{h^2}\iint\mathrm{d}p_\theta\mathrm{d}p_\varphi\int_{0}^{\pi}\mathrm{d}\theta\int_{0}^{2\pi}\mathrm{d}\varphi\exp\left\{-\beta\left[\frac{1}{2I}\left(p_\theta^2+\frac{p_\varphi^2}{\sin^2\theta}\right)-d_0E\cos\theta\right]\right\}\\
+	&=\frac{I}{\beta\hbar^2}\int_{0}^{\pi}\sin\theta e^{\beta d_0E\cos\theta}\mathrm{d}\theta\\
+	&=\frac{I}{\beta\hbar^2}\frac{e^{\beta d_0E}-e^{-\beta d_0E}}{\beta d_0E}
+\end{align*}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
